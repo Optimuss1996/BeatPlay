@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.5",
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/auth-helpers-react": "^0.5.0",
+    "@supabase/auth-ui-react": "^0.4.7",
+    "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/supabase-js": "^2.47.15",
     "@types/node": "22.10.5",
     "@types/react": "19.0.6",
@@ -22,13 +25,18 @@
     "postcss": "8.4.49",
     "react": "19.0.0",
     "react-dom": "19.0.0",
+    "react-hook-form": "^7.54.2",
+    "react-hot-toast": "^2.5.1",
     "react-icons": "^5.4.0",
     "stripe": "^17.5.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss": "3.4.17",
-    "typescript": "5.7.3"
+    "typescript": "5.7.3",
+    "uniqid": "^5.4.0",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@types/uniqid": "^5.3.4",
     "supabase": "^2.6.8"
   }
 }

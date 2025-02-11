@@ -1,8 +1,21 @@
 import { TbPlaylist } from "react-icons/tb";
 import { AiOutlinePlus } from "react-icons/ai";
-
+import { useUser } from "@/hooks/useUser";
+import useAuthModal from "@/hooks/useAuthModal";
+import useUploadModal from "@/hooks/useUploadModal";
+//
+//
 export default function Library() {
-  function handleClick() {}
+  const { user } = useUser();
+  const authModal = useAuthModal();
+  const uploadModal = useUploadModal();
+  function onClick() {
+    if (!user) {
+      return authModal.onOpen();
+    }
+    /// check for subscription
+    return uploadModal.onOpen();
+  }
 
   return (
     <div className=" flex flex-col">
@@ -14,7 +27,7 @@ export default function Library() {
 
         <AiOutlinePlus
           size={20}
-          onClick={handleClick}
+          onClick={onClick}
           className="text-neutral-400 hover:text-white transition cursor-pointer"
         />
       </div>

@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import ListItem from "../components/ListItem";
 
+export const revalidate = 0;
 export default function Home() {
   return (
     <main className="bg-neutral-900 w-full h-full overflow-hidden overflow-y-auto rounded">
