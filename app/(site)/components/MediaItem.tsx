@@ -1,7 +1,6 @@
 import useLoadImage from "@/hooks/useLoadImage";
 import { Song } from "@/types";
 import Image from "next/image";
-import { ReactNode } from "react";
 
 interface MediaItemProps {
   data: Song;

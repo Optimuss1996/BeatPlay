@@ -18,6 +18,7 @@ export default function ListItem({ name, href }: ListItemProps) {
 
   return (
     <button
+      onClick={handleRoute}
       className="
     relative 
     flex

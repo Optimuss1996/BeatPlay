@@ -1,12 +1,10 @@
 import { Song } from "@/types";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { data } from "autoprefixer";
 import { cookies } from "next/headers";
 
 async function getSongsByUserId(): Promise<Song[]> {
-  const supabase = createServerComponentClient({
-    cookies: cookies,
-  });
+  const cookieStore = cookies();
+  const supabase = createServerComponentClient({ cookies: () => cookieStore });
 
   const { data: sessionData, error: sessionError } =
     await supabase.auth.getSession();

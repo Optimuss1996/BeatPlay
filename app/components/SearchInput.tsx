@@ -26,7 +26,7 @@ export default function SearchInput() {
       // Update the URL in the browser without reloading the page
       router.push(url);
     }
-  }, [debounceValue]); // Use debounceValue as dependency to trigger updates
+  }, [debounceValue]);
 
   return (
     <div>
