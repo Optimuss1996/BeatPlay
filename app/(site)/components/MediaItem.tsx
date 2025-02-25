@@ -4,12 +4,15 @@ import Image from "next/image";
 
 interface MediaItemProps {
   data: Song;
-  onClick?: (id: string) => void;
+  onClick: (id: string) => void;
 }
 export default function MediaItem({ data, onClick }: MediaItemProps) {
   const imageUrl = useLoadImage(data);
   return (
-    <div className=" flex items-center gap-x-3 cursor-pointer hover:bg-neutral-800/050 w-full p-2 rounded-md">
+    <div
+      onClick={() => onClick(data.id)}
+      className=" flex items-center gap-x-3 cursor-pointer hover:bg-neutral-800/050 w-full p-2 rounded-md"
+    >
       <div className=" relative rounded-md min-h-[48px] min-w-[48px] overflow-hidden">
         {" "}
         <Image

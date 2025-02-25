@@ -19,8 +19,8 @@ export default function Slider({ value = 1, onChange }: SliderProps) {
       aria-label="Volume"
       className="relative flex items-center select-none touch-none w-full h-10"
     >
-      <RadixSlider.Track className=" relative bg-neutral-600 rounded-full h-[3px] grow">
-        <RadixSlider.Range className=" absolute rounded-full h-full bg-white"></RadixSlider.Range>
+      <RadixSlider.Track className=" relative bg-neutral-600 rounded-full h-[3px] grow cursor-pointer">
+        <RadixSlider.Range className=" absolute rounded-full h-full bg-white "></RadixSlider.Range>
       </RadixSlider.Track>
     </RadixSlider.Root>
   );

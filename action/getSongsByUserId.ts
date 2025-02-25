@@ -3,8 +3,9 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
 async function getSongsByUserId(): Promise<Song[]> {
-  const cookieStore = cookies();
-  const supabase = createServerComponentClient({ cookies: () => cookieStore });
+  const supabase = createServerComponentClient({
+    cookies: cookies,
+  });
 
   const { data: sessionData, error: sessionError } =
     await supabase.auth.getSession();
@@ -13,7 +14,6 @@ async function getSongsByUserId(): Promise<Song[]> {
     console.log(sessionError.message);
     return [];
   }
-
   const { data, error } = await supabase
     .from("songs")
     .select("*")
@@ -21,9 +21,8 @@ async function getSongsByUserId(): Promise<Song[]> {
     .order("created_at", { ascending: false });
 
   if (error) {
-    console.log("Fetching Songs is Failed");
+    console.log(error.message);
   }
-
   return (data as any) || [];
 }
 

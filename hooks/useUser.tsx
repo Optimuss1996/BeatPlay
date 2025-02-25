@@ -89,7 +89,7 @@ export function MyUserContextProvider({ children }: Props) {
     subscription,
   };
 
-  console.log("UserContext value:", value);
+  // console.log("UserContext value:", value);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }

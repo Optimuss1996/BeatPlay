@@ -5,6 +5,7 @@ import useAuthModal from "@/hooks/useAuthModal";
 import useUploadModal from "@/hooks/useUploadModal";
 import { Song } from "@/types";
 import MediaItem from "../(site)/components/MediaItem";
+import useOnPlay from "@/hooks/useOnPlay";
 //
 interface PropsLibrary {
   songs: Song[];
@@ -14,6 +15,9 @@ export default function Library({ songs }: PropsLibrary) {
   const { user } = useUser();
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
+
+  const onPlay = useOnPlay(songs);
+
   function onClick() {
     if (!user) {
       return authModal.onOpen();
@@ -39,7 +43,7 @@ export default function Library({ songs }: PropsLibrary) {
       <div className=" flex flex-col gap-y-2 mt-4 px-3">
         {songs.map((song) => (
           <div key={song.id}>
-            <MediaItem onClick={() => {}} data={song} />
+            <MediaItem onClick={(id: string) => onPlay(id)} data={song} />
           </div>
         ))}
       </div>

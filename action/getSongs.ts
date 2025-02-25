@@ -15,7 +15,6 @@ async function getSongs(): Promise<Song[]> {
   if (error) {
     console.log("Fetching Songs is Failed");
   }
-
   return (data as any) || [];
 }
 
