@@ -7,7 +7,7 @@ interface ChildrenProps {
 export default function Box({ children, className }: ChildrenProps) {
   return (
     <div
-      className={twMerge(`bg-neutral-900 w-full h-fit rounded-lg`, className)}
+      className={twMerge(`bg-purple-100 w-full h-fit rounded-lg`, className)}
     >
       {children}
     </div>

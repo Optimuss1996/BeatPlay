@@ -9,7 +9,7 @@ async function getSongsByUserId(): Promise<Song[]> {
 
   const { data: sessionData, error: sessionError } =
     await supabase.auth.getSession();
-
+  console.log(sessionData);
   if (sessionError) {
     console.log(sessionError.message);
     return [];

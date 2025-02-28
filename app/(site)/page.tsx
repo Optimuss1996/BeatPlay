@@ -8,7 +8,7 @@ export const revalidate = 0;
 export default async function Home() {
   const songs = await getSongs();
   return (
-    <main className="bg-neutral-900 w-full h-full overflow-hidden overflow-y-auto rounded">
+    <main className="bg-white w-full h-full overflow-hidden overflow-y-auto rounded">
       <Header>
         <div className=" mb-2">
           <h1 className=" text-white text-3xl font-semibold ">Welcome back</h1>

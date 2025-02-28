@@ -8,6 +8,7 @@ import ModalProvider from "@/providers/ModalProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
 import getSongsByUserId from "@/action/getSongsByUserId";
 import Player from "./components/Player";
+import { getArtist } from "@/action/getSongs";
 
 const inter = Figtree({ subsets: ["latin"] });
 
@@ -22,6 +23,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const userSongs = await getSongsByUserId();
+  const userArtist = await getArtist("Weekend");
+  console.log(userArtist);
+
   return (
     <html lang="en">
       <body className={inter.className}>

@@ -19,3 +19,20 @@ async function getSongs(): Promise<Song[]> {
 }
 
 export default getSongs;
+
+export async function getArtist(artistName: string) {
+  try {
+    const response = await fetch(`https://api.deezer.com/artist/${artistName}`);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch artist data: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching artist:", error);
+    return null;
+  }
+}

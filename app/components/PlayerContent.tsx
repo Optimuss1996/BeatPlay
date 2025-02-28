@@ -32,7 +32,9 @@ export default function PlayerContent({ song, songUrl }: PlayerContentProps) {
     const currentIndex = player.ids.findIndex((id) => {
       id === player.activeId;
     });
+    console.log(currentIndex);
     const nextSong = player.ids[currentIndex + 1];
+    console.log(nextSong);
 
     if (!nextSong) {
       player.setId(player.ids[0]);
@@ -86,9 +88,9 @@ export default function PlayerContent({ song, songUrl }: PlayerContentProps) {
 
   function toggleVolume() {
     if (volume === 0) {
-      setVolume(0);
-    } else {
       setVolume(1);
+    } else {
+      setVolume(0);
     }
   }
 
