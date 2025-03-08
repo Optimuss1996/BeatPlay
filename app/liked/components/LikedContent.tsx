@@ -31,9 +31,12 @@ export default function LikedContent({ songs }: LikedContentProps) {
     );
   }
   return (
-    <div>
+    <div className="bg-purple-100 px-4 py-2 rounded-md">
       {songs.map((song) => (
-        <div key={song.id} className="flex items-center gap-x-4 w-full">
+        <div
+          key={song.id}
+          className="flex items-center gap-x-4 p-1 w-full hover:rounded-md hover:bg-purple-200 transition"
+        >
           <div className=" flex-1">
             <MediaItem
               onClick={(id: string) => {

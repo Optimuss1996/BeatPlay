@@ -9,21 +9,18 @@ export default async function Page() {
   const songs = await getSongsLiked();
 
   return (
-    <div className=" bg-neutral-900 rounded-lg w-full h-full overflow-hidden overflow-y-auto">
+    <div className=" bg-white rounded-lg w-full h-full overflow-hidden overflow-y-auto">
       <Header>
         <div className=" mt-20">
           <div className=" flex flex-col md:flex-row  items-center gap-x-6">
-            <div
-              className=" relative flex justify-center items-center w-32 h-32 lg:h-44 lg:w-44        bg-gradient-to-tr from-emerald-900 to-emerald-400
-               rounded-md"
-            >
-              <HiHeart className=" w-20 h-20  " />
+            <div className=" ">
+              <HiHeart
+                size={100}
+                className="text-red-500 bg-red-200 p-2 rounded-md "
+              />
             </div>
             <div className=" flex flex-col  gap-y-2 mt-4 md:mt-0">
-              <p className=" font-semibold text-sm  hidden md:block">
-                PlayList
-              </p>
-              <h1 className=" font-bold text-white text-4xl sm:text-5xl lg:text-7xl ">
+              <h1 className=" font-bold text-purple-700 bg-purple-200 rounded-md text-2xl sm:text-3xl lg:text-4xl px-3 py-2">
                 LikedSong!
               </h1>
             </div>

@@ -1,29 +1,45 @@
-import { useState, useEffect } from "react";
+"use client";
 
-const ThemeToggle: React.FC = () => {
-  // Define state type
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
+
+const ThemeToggle = () => {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Retrieve saved theme from localStorage
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === "dark");
-      document.documentElement.classList.add(savedTheme); // Apply saved theme
-    }
+    setMounted(true);
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = isDarkMode ? "light" : "dark"; // Toggle between light and dark
-    setIsDarkMode(!isDarkMode); // Switch the state value
-    document.documentElement.classList.remove(isDarkMode ? "dark" : "light"); // Remove the current theme class
-    document.documentElement.classList.add(newTheme); // Add the new theme class
-    localStorage.setItem("theme", newTheme); // Save the new theme to localStorage
-  };
+  if (!mounted) return null; // Prevent hydration mismatch
+
+  const isDarkMode = theme === "dark";
 
   return (
-    <button onClick={toggleTheme}>
-      {isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+    <button
+      onClick={() => setTheme(isDarkMode ? "light" : "dark")}
+      className="relative w-10 h-10 flex items-center justify-center rounded-md hover:bg-purple-200   transition-colors duration-300"
+    >
+      {/* Light Mode Icon */}
+      <MdLightMode
+        className={`absolute text-purple-700 transition-all duration-300 ease-in-out ${
+          isDarkMode
+            ? "opacity-0 scale-50 rotate-180"
+            : "opacity-100 scale-100 rotate-0"
+        }`}
+        size={35}
+      />
+
+      {/* Dark Mode Icon */}
+      <MdDarkMode
+        className={`absolute text-purple-700 transition-all duration-300 ease-in-out ${
+          isDarkMode
+            ? "opacity-100 scale-100 rotate-0"
+            : "opacity-0 scale-50 -rotate-180"
+        }`}
+        size={35}
+      />
     </button>
   );
 };

@@ -6,9 +6,9 @@ import SupabaseProvider from "@/providers/SupabaseProviders";
 import UserProvider from "@/providers/UserProvider";
 import ModalProvider from "@/providers/ModalProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
-import getSongsByUserId from "@/action/getSongsByUserId";
 import Player from "./components/Player";
-import { getArtist } from "@/action/getSongs";
+import { ThemeProvider } from "next-themes";
+import getPlaylists from "@/action/getPlaylists";
 
 const inter = Figtree({ subsets: ["latin"] });
 
@@ -22,21 +22,22 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const userSongs = await getSongsByUserId();
-  const userArtist = await getArtist("Weekend");
-  console.log(userArtist);
+  const userPlaylists = await getPlaylists();
+  // console.log(userPlaylists);
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ToasterProvider />
-        <SupabaseProvider>
-          <UserProvider>
-            <ModalProvider />
-            <Sidebar songs={userSongs}>{children}</Sidebar>
-            <Player />
-          </UserProvider>
-        </SupabaseProvider>
+        <ThemeProvider>
+          <SupabaseProvider>
+            <UserProvider>
+              <ModalProvider />
+              <Sidebar playlists={userPlaylists}>{children}</Sidebar>
+              <Player />
+            </UserProvider>
+          </SupabaseProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

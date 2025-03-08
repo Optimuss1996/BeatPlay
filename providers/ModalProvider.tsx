@@ -1,6 +1,7 @@
 "use client";
 
 import AuthModal from "@/app/components/AuthModal";
+import PlayListModal from "@/app/components/PlayListModal";
 import UploadModal from "@/app/components/UploadModal";
 import { useEffect, useState } from "react";
 
@@ -17,6 +18,7 @@ export default function ModalProvider() {
     <>
       <AuthModal />
       <UploadModal />
+      <PlayListModal />
     </>
   );
 }

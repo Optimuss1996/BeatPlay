@@ -1,6 +1,7 @@
 import useAuthModal from "@/hooks/useAuthModal";
 import * as Dialog from "@radix-ui/react-dialog";
 import { IoMdClose } from "react-icons/io";
+import { twMerge } from "tailwind-merge";
 
 interface ModalProps {
   isOpen: boolean;
@@ -8,14 +9,15 @@ interface ModalProps {
   title: string;
   description: string;
   children: React.ReactNode;
+  className?: string;
 }
-
 export default function Modal({
   isOpen,
   onChange,
   title,
   description,
   children,
+  className,
 }: ModalProps) {
   const { onClose } = useAuthModal();
 
@@ -24,17 +26,19 @@ export default function Modal({
       <Dialog.Portal>
         <Dialog.Overlay
           className="
-             bg-neutral-900/90
+             bg-purple-200/40
              backdrop-blur-sm
              fixed
-             inset-0"
+             inset-0
+             "
         />
         <Dialog.Content
-          className="
+          className={twMerge(
+            `
                fixed
                drop-shadow-md
                border
-               border-neutral-700
+               border-purple-800
                top-[50%]
                left-[50%]
                max-h-full
@@ -47,11 +51,11 @@ export default function Modal({
                translate-x-[-50%]
                translate-y-[-50%]
                rounded-md
-               bg-neutral-800
+               bg-purple-300
                p-[25px]
-               focus:outline-none
-
-"
+               focus:outline-none z-50 `,
+            className
+          )}
         >
           <Dialog.Title
             className="
@@ -76,8 +80,8 @@ export default function Modal({
               <button
                 onClick={onClose}
                 className="
-               text-neutral-400
-               hover:text-white
+               text-black
+               hover:border-b-2
                  absolute
                  top-[10px]
                  right-[10px]

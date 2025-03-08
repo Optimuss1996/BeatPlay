@@ -1,9 +1,9 @@
 "use client";
 
-import { Song } from "@/types";
+import { Playlist, Song } from "@/types";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
-export default function useLoadImage(song: Song) {
+export default function useLoadImage(song: Song | Playlist) {
   const supabase = useSupabaseClient();
 
   if (!song) {

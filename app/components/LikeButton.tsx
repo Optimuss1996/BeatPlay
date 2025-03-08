@@ -81,7 +81,7 @@ export default function LikeButton({ songId }: LikeButton) {
   return (
     <div>
       <button onClick={handleClick} className=" opacity-65">
-        <Icon color={isLiked ? "22c55e" : "white"} size={25} />
+        <Icon color={isLiked ? "#7e22ce" : "white"} size={25} />
       </button>
     </div>
   );

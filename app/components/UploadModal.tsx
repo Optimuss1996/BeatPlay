@@ -34,7 +34,7 @@ export default function UploadModal() {
     }
   }
 
-  async function onSubmit(values) {
+  async function onSubmit(values: FieldValues) {
     try {
       setIsLoading(true);
 

@@ -1,29 +1,33 @@
-import getSongs from "@/action/getSongs";
 import Header from "../components/Header";
-import ListItem from "../components/ListItem";
-import PageContent from "./components/PageContent";
+import BannerSlider from "./components/BannerSlider";
+import ListOfGenre from "./components/ListOfGenre";
+import PopularArtist from "./components/PopularArtist";
+import TrendMusic from "./components/TrendMusic";
+import {
+  getPopularArtist,
+  getTrendingTracks,
+} from "@/action/getSongsFromDeezerApi";
 
 export const revalidate = 0;
 
 export default async function Home() {
-  const songs = await getSongs();
+  const songs = await getTrendingTracks(10);
+  const artists = await getPopularArtist(10);
+  console.log(songs);
   return (
-    <main className="bg-white w-full h-full overflow-hidden overflow-y-auto rounded">
+    <main className="bg-white  w-full  h-full overflow-hidden overflow-y-auto rounded">
       <Header>
         <div className=" mb-2">
-          <h1 className=" text-white text-3xl font-semibold ">Welcome back</h1>
-          <div className=" grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 mt-4">
-            <ListItem name="Liked Songs" href="liked" />
-          </div>
+          <h1 className=" text-white text-3xl font-semibold  hidden">
+            Welcome back
+          </h1>
         </div>
       </Header>
-      <div className=" px-6 mt-2 mb-7">
-        <div className=" flex justify-between items-center">
-          <p className=" font-semibold text-2xl text-white">Newest Songs</p>
-        </div>
-        <div>
-          <PageContent songs={songs} />
-        </div>
+      <div className=" px-4  mb-7 z-0">
+        <BannerSlider />
+        <ListOfGenre />
+        <TrendMusic songs={songs} />
+        <PopularArtist artists={artists} />
       </div>
     </main>
   );

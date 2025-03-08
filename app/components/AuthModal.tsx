@@ -46,8 +46,8 @@ export default function AuthModal() {
           variables: {
             default: {
               colors: {
-                brand: "#404040",
-                brandAccent: "#22c55e",
+                brand: "#a855f7",
+                brandAccent: "#071a0e",
               },
             },
           },

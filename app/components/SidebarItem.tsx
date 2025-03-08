@@ -19,11 +19,11 @@ export default function SidebarItem({
     <Link
       href={href}
       className={twMerge(
-        ` flex items-center gap-x-4 h-auto w-full text-md font-medium hover:text-white cursor-pointer transition text-neutral-400 py-1  `,
-        active && "text-white"
+        ` flex items-center gap-x-4 h-auto w-full text-md font-medium hover:bg-purple-200 rounded-md cursor-pointer transition text-black py-1 px-2   `,
+        active && "text-purple-700 font-semibold"
       )}
     >
-      <Icon size={26} />
+      <Icon size={30} className="" />
       <p className=" truncate w-full">{label}</p>
     </Link>
   );

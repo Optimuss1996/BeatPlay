@@ -17,7 +17,13 @@ async function getSongs(): Promise<Song[]> {
   }
   return (data as any) || [];
 }
-
+//
+//
+//
+//
+//
+//
+//
 export default getSongs;
 
 export async function getArtist(artistName: string) {
@@ -29,7 +35,7 @@ export async function getArtist(artistName: string) {
     }
 
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     console.error("Error fetching artist:", error);
