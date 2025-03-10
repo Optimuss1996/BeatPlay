@@ -28,8 +28,8 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ToasterProvider />
-        <ThemeProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ToasterProvider />
           <SupabaseProvider>
             <UserProvider>
               <ModalProvider />

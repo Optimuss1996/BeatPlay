@@ -16,12 +16,12 @@ interface ArtistProp {
 
 export default function PopularArtist({ artists }: ArtistProp) {
   return (
-    <div className="w-full px-4 my-8 md:mb-10">
+    <div className="w-full  my-8 md:mb-10">
       <p className=" font-bold text-start text-lg md:text-xl px-4 mb-8">
         Popular Artist
       </p>
       <Swiper
-        slidesPerView={3} // Show 3 on small screens
+        slidesPerView={2} // Show 3 on small screens
         spaceBetween={15}
         loop={true}
         autoplay={{ delay: 3500 }}
@@ -37,7 +37,7 @@ export default function PopularArtist({ artists }: ArtistProp) {
         {artists.map((artist) => (
           <SwiperSlide key={artist.id}>
             <div className="flex flex-col gap-y-3 items-center justify-center ">
-              <div className="w-36 xl:w-48 2xl:w-56 h-auto  flex justify-center items-center transition-all duration-300 ease-in-out  cursor-pointer  relative hover:opacity-60  group-hover:scale-105 ">
+              <div className="w-32 xl:w-48 2xl:w-56 h-auto  flex justify-center items-center transition-all duration-300 ease-in-out  cursor-pointer  relative hover:opacity-60  group-hover:scale-105 ">
                 <img
                   src={artist.picture_medium}
                   alt={artist.name}

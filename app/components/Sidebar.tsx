@@ -52,7 +52,7 @@ export default function Sidebar({ children, playlists }: SidebarProps) {
       )}
     >
       <div
-        className={`flex flex-col gap-y-2 z-20 fixed top-0 left-0 h-full w-[250px] md:w-[280px] p-2 shadow-lg transition-transform duration-500 ease-in-out
+        className={`flex flex-col gap-y-2 bg-white dark:bg-slate-950 z-50 fixed top-0 left-0 h-full w-[250px] md:w-[280px] p-2 shadow-lg transition-transform duration-500 ease-in-out
           ${
             isOpenSidebar.isOpen ? "translate-x-0" : "-translate-x-full"
           } md:translate-x-0 md:relative `}
@@ -82,7 +82,7 @@ export default function Sidebar({ children, playlists }: SidebarProps) {
         </Box>
       </div>
 
-      <main className=" flex-1 h-full overflow-y-auto p-2 ">{children}</main>
+      <main className=" flex-1 h-full overflow-y-auto p-1 ">{children}</main>
     </div>
   );
 }

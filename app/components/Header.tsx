@@ -1,8 +1,5 @@
 "use client";
 
-import { BiSearch } from "react-icons/bi";
-import { HiHome } from "react-icons/hi";
-import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { twMerge } from "tailwind-merge";
 import Button from "./Button";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
@@ -16,11 +13,10 @@ import { AiOutlineMenu } from "react-icons/ai";
 import useIsOpenSidebar from "@/hooks/useIsOpenSidebar";
 
 interface HeaderPropType {
-  children: React.ReactNode;
   className?: string;
 }
 
-export default function Header({ children, className }: HeaderPropType) {
+export default function Header({ className }: HeaderPropType) {
   const { onOpen } = useAuthModal();
   const supabaseClient = useSupabaseClient();
   const router = useRouter();
@@ -38,7 +34,12 @@ export default function Header({ children, className }: HeaderPropType) {
     }
   }
   return (
-    <div className={twMerge(`h-fit bg-white  p-3 mt-2 md:mt-0`, className)}>
+    <div
+      className={twMerge(
+        `h-fit bg-white dark:bg-slate-800/30  p-3 mt-2 md:mt-0`,
+        className
+      )}
+    >
       <div className="w-full flex justify-between md:justify-end items-center mb-4">
         <button
           onClick={isOpenSidebar.toggleSidebar}
@@ -78,7 +79,6 @@ export default function Header({ children, className }: HeaderPropType) {
           <ThemeToggle />
         </div>
       </div>
-      {children}
     </div>
   );
 }

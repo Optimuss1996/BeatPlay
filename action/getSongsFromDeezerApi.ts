@@ -3,16 +3,19 @@ import { Artist, SongDezzer } from "@/types";
 export async function getTrendingTracks(number: number): Promise<SongDezzer[]> {
   try {
     const res = await fetch(
-      `https://api.deezer.com/chart/0/tracks?limit=${number}`
+      `https://api.deezer.com/chart/0/tracks?limit=${number}`,
+      {
+        cache: "no-store", // Prevents stale data
+      }
     );
 
     if (!res.ok) {
       throw new Error(`Deezer API Error: ${res.status} ${res.statusText}`);
     }
 
-    const data = await res.json();
+    const text = await res.text();
+    const data = JSON.parse(text);
 
-    // Transforming response
     return data.data.map((song: any) => ({
       id: song.id,
       title: song.title,
@@ -35,6 +38,7 @@ export async function getTrendingTracks(number: number): Promise<SongDezzer[]> {
     throw new Error("Failed to fetch trending tracks. Please try again.");
   }
 }
+
 //
 //
 export async function getPopularArtist(number: number): Promise<Artist[]> {

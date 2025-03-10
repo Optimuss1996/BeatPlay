@@ -8,7 +8,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 
 export default function BannerSlider() {
   return (
-    <div className="w-full  py-1 mx-auto z-0 mb-8 md:mb-10">
+    <div className="w-full px-2 py-1 mx-auto z-0 mb-8 md:mb-10 cursor-pointer">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

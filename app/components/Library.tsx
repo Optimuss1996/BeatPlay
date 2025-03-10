@@ -40,7 +40,7 @@ export default function Library({ playlists }: PropsLibrary) {
   return (
     <div className=" flex flex-col">
       <div className=" flex justify-between items-center px-5 pt-4">
-        <div className=" inline-flex items-center gap-x-2 text-black cursor-pointer">
+        <div className=" inline-flex items-center gap-x-2 text-black dark:text-white cursor-pointer">
           <TbPlaylist size={26} />
           <p>Your Library</p>
         </div>
@@ -48,13 +48,13 @@ export default function Library({ playlists }: PropsLibrary) {
         <AiOutlinePlus
           size={20}
           onClick={handleClick}
-          className="text-black hover:bg-purple-200 rounded-md transition cursor-pointer"
+          className="text-black dark:text-white  rounded-md transition cursor-pointer"
         />
       </div>
       <div className=" flex flex-col gap-y-2 mt-4 px-3">
         <div
           onClick={handleClick}
-          className=" flex justify-start gap-x-3 items-center rounded-md hover:bg-purple-200 p-2 cursor-pointer"
+          className=" flex justify-start gap-x-3 items-center rounded-md hover:bg-purple-200 dark:hover:bg-purple-600 p-2 cursor-pointer "
         >
           <HiHeart
             size={45}
@@ -64,10 +64,12 @@ export default function Library({ playlists }: PropsLibrary) {
         </div>
         <div
           onClick={handleOpenModal}
-          className="flex justify-start gap-x-3 items-center rounded-md hover:bg-purple-200 p-2 cursor-pointer "
+          className="flex justify-start gap-x-3 items-center rounded-md hover:bg-purple-200 dark:hover:bg-purple-600 p-2 cursor-pointer "
         >
-          <HiOutlinePlusSm size={35} className="opacity-35" />
-          <p className="font-medium opacity-35 text-lg">Create Playlist</p>
+          <HiOutlinePlusSm size={35} className="opacity-35 dark:opacity-80" />
+          <p className="font-medium opacity-35 dark:opacity-80 text-lg">
+            Create Playlist
+          </p>
         </div>
         <div className=" flex flex-col gap-y-1">
           {playlists.map((playlist) => (

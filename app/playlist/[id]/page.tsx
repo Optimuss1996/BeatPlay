@@ -22,7 +22,9 @@ export default async function PlaylistPage({
 
   return (
     <div className="p-6">
-      <h1 className="text-center bg-purple-800 text-white">list of playlist</h1>
+      <h1 className="text-center bg-white dark:bg-slate-800/30 text-white">
+        list of playlist
+      </h1>
     </div>
   );
 }

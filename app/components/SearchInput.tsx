@@ -29,7 +29,7 @@ export default function SearchInput() {
   }, [debounceValue]);
 
   return (
-    <div>
+    <div className="px-5 mb-5">
       <Input
         placeholder="what do you want to listen music ?"
         value={value}

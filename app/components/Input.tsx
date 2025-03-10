@@ -14,9 +14,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         className={twMerge(
           `
      w-full
+     md:w-1/2
      p-3
      rounded-md
-     bg-neutral-700
+     bg-purple-200 dark:bg-slate-900
      border
      border-transparent
      text-sm

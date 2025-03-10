@@ -15,15 +15,10 @@ export default async function Home() {
   const artists = await getPopularArtist(10);
   console.log(songs);
   return (
-    <main className="bg-white  w-full  h-full overflow-hidden overflow-y-auto rounded">
-      <Header>
-        <div className=" mb-2">
-          <h1 className=" text-white text-3xl font-semibold  hidden">
-            Welcome back
-          </h1>
-        </div>
-      </Header>
-      <div className=" px-4  mb-7 z-0">
+    <main className=" bg-white dark:bg-slate-800/30  w-full  h-full overflow-hidden overflow-y-auto ">
+      <Header />
+
+      <div className=" px-1 md:px-4  mb-7 z-0">
         <BannerSlider />
         <ListOfGenre />
         <TrendMusic songs={songs} />

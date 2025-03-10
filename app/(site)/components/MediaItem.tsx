@@ -23,8 +23,12 @@ export default function MediaItem({ data, onClick }: MediaItemProps) {
         />
       </div>
       <div className=" flex flex-col gap-y-1 overflow-hidden">
-        <p className="text-black truncate font-bold">{data.title}</p>
-        <p className=" text-neutral-900 text-sm truncate ">{data.author}</p>
+        <p className="text-black dark:text-white truncate font-bold">
+          {data.title}
+        </p>
+        <p className=" text-neutral-900 dark:text-white dark:opacity-70 text-sm truncate ">
+          {data.author}
+        </p>
       </div>
     </div>
   );
