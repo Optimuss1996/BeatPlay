@@ -1,3 +1,4 @@
+"use client";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,7 +6,7 @@ import Link from "next/link";
 export default function Logo() {
   const { theme } = useTheme();
   return (
-    <Link href="/" className=" ">
+    <Link href="/">
       <Image
         src={theme === "dark" ? "/WhiteLogo.png" : "/blackLogo.png"}
         alt="Logo"

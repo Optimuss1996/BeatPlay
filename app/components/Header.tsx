@@ -36,7 +36,7 @@ export default function Header({ className }: HeaderPropType) {
   return (
     <div
       className={twMerge(
-        `h-fit bg-white dark:bg-slate-800/30  p-3 mt-2 md:mt-0`,
+        `h-fit bg-white dark:bg-slate-800/30  p-3 mt-2 md:mt-0 border-b border-gray-300 dark:border-gray-700  flex justify-between items-center`,
         className
       )}
     >

@@ -8,7 +8,12 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        delaGothic: ["var(--font-delaGothic)"],
+        LuckiestGuy: ["var(--font-LuckiestGuy)"],
+      },
+    },
   },
   plugins: [],
 };

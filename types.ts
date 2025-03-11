@@ -47,8 +47,20 @@ export type SongDezzer = {
   };
 };
 export type Artist = {
-  id: string;
+  id: number | string;
   name: string;
   picture_small: string;
   picture_medium: string;
+  picture_big: string;
+  number_album?: number;
+  number_fan?: number;
+};
+export type AlbumType = {
+  id: string;
+  title: string;
+  cover: string;
+  cover_medium: string;
+  cover_big: string;
+  fans: number;
+  release_date: string;
 };

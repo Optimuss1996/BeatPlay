@@ -17,7 +17,6 @@ export default async function Home() {
   return (
     <main className=" bg-white dark:bg-slate-800/30  w-full  h-full overflow-hidden overflow-y-auto ">
       <Header />
-
       <div className=" px-1 md:px-4  mb-7 z-0">
         <BannerSlider />
         <ListOfGenre />
