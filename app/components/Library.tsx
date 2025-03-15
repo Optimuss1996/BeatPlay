@@ -47,7 +47,7 @@ export default function Library({ playlists }: PropsLibrary) {
 
         <AiOutlinePlus
           size={20}
-          onClick={handleClick}
+          onClick={uploadModal.onOpen}
           className="text-black dark:text-white  rounded-md transition cursor-pointer"
         />
       </div>

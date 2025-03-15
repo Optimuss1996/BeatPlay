@@ -10,8 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        delaGothic: ["var(--font-delaGothic)"],
-        LuckiestGuy: ["var(--font-LuckiestGuy)"],
+        ClashGrotesk: ["ClashGrotesk", "cursive"],
       },
     },
   },

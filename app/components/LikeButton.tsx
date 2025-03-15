@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 interface LikeButton {
-  songId: string;
+  songId: string | number;
 }
 
 export default function LikeButton({ songId }: LikeButton) {

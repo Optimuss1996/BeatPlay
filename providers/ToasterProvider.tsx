@@ -8,7 +8,7 @@ export default function ToasterProvider() {
       toastOptions={{
         style: {
           color: "#fff",
-          background: "#333",
+          background: "#7e22ce",
         },
       }}
     />

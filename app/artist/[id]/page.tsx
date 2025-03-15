@@ -16,8 +16,8 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   const [artistInformation, artistAlbums, artistTopTracks] = await Promise.all([
     getArtistInformation(artistId),
-    getArtistAlbums(artistId),
-    getArtistTopTracks(artistId),
+    getArtistAlbums(artistId, 5),
+    getArtistTopTracks(artistId, 20),
   ]);
 
   console.log(artistInformation);

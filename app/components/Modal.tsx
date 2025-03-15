@@ -26,34 +26,36 @@ export default function Modal({
       <Dialog.Portal>
         <Dialog.Overlay
           className="
-             bg-purple-200/40
-             backdrop-blur-sm
+             bg-slate-700/40
+             dark:bg-slate-600/60 
              fixed
              inset-0
+             z-50
              "
         />
         <Dialog.Content
           className={twMerge(
             `
                fixed
-               drop-shadow-md
-               border
-               border-purple-800
+               drop-shadow-xl
                top-[50%]
                left-[50%]
                max-h-full
                h-full
                md:h-auto
-               md:max-h-[85vh]
                w-full
                md:w-[90vw]
                md:max-w-[450px]
                translate-x-[-50%]
                translate-y-[-50%]
                rounded-md
-               bg-purple-300
+               border-none
+               outline-none
+               bg-purple-200
+               dark:bg-slate-900
                p-[25px]
-               focus:outline-none z-50 `,
+               focus:outline-none 
+               z-50 `,
             className
           )}
         >

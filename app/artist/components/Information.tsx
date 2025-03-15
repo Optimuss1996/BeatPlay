@@ -22,17 +22,17 @@ export default function Information({ artistInfo }: InformationProps) {
           />
         </div>
 
-        <div className=" flex flex-row md:flex-col gap-y-3 ">
-          <h1 className=" font-delaGothic text-3xl md:text-5xl text-black dark:text-white">
+        <div className=" flex justify-center items-center flex-col gap-y-3 ">
+          <h1 className=" font-ClashGrotesk text-4xl sm:text-2xl lg:text-6xl text-black dark:text-white">
             {artistInfo.name}
           </h1>
-          <div className=" flex flex-col opacity-65 text-black dark:text-white">
+          <div className=" flex flex-col items-center opacity-65 text-black dark:text-white">
             <p>{artistInfo.number_fan} fans</p>
             <p>{artistInfo.number_album} albums</p>
           </div>
         </div>
       </div>
-      <div className="w-full md:w-11">
+      <div className="w-full md:w-11 md:mt-0 mt-4">
         <div className="flex flex-row md:flex-col gap-2 justify-center items-center cursor-pointer md:mr-5">
           <FaSquareXTwitter size={30} className=" text-black dark:text-white" />
           <FaInstagram size={30} className=" " />

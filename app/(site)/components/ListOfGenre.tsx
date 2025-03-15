@@ -106,7 +106,7 @@ export default function ListOfGenre() {
       >
         {genre.map(({ id, name, icon: Icon, color, bgOnHover }) => (
           <SwiperSlide key={id} className="flex justify-center items-center">
-            <div className="flex flex-col gap-y-2 items-center justify-center">
+            <div className="flex flex-col gap-y-2 items-center justify-center ">
               <div
                 onMouseEnter={() => setHoveredId(id)} // Set the hovered ID
                 onMouseLeave={() => setHoveredId(null)} // Reset the hovered ID

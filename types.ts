@@ -32,13 +32,14 @@ export type SongDezzer = {
   title: string;
   titleShort: string;
   preview: string;
+  duration: number;
   artist: {
     name: string;
     id: string;
     picture: string; // Default artist cover image
     picture_medium: string;
   };
-  album: {
+  album?: {
     id: string;
     title: string;
     cover: string; // Default album cover image

@@ -1,4 +1,5 @@
 import { AlbumType } from "@/types";
+import Image from "next/image";
 
 interface AlbumProps {
   artistAlbums: AlbumType[];
@@ -7,24 +8,28 @@ interface AlbumProps {
 export default function Album({ artistAlbums }: AlbumProps) {
   return (
     <section className="mt-20 px-3 md:px-6">
-      <p className="text-3xl md:text-5xl text-black dark:text-white font-semibold">
+      <p className="text-3xl md:text-5xl text-black dark:text-white font-semibold mb-8">
         Albums
       </p>
-      <div className=" grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-2 gap-y-4">
+      <div className=" grid gap-x-6  grid-cols-[repeat(auto-fit,_minmax(180px,_1fr))] gap-y-8 ">
         {artistAlbums.map((album) => (
-          <div key={album.id} className=" flex flex-col gap-y-4 ">
-            <div className=" relative w-36 h-auto md:w-48  overflow-hidden">
-              <img
-                src={album.cover_medium}
+          <div
+            key={album.id}
+            className=" flex flex-col  justify-center items-center  gap-y-4 bg-purple-200 dark:bg-slate-700 rounded-md h-64  pb-3 hover:opacity-70 transition cursor-pointer"
+          >
+            <div className="relative w-full h-5/6 overflow-hidden rounded-md">
+              <Image
+                src={album.cover_big}
                 alt={album.title}
-                className="object-cover rounded-md"
+                className="absolute inset-0 w-full h-full object-cover"
+                width={400}
+                height={400}
               />
             </div>
-            <div className=" flex flex-col gap-y-3">
-              <p className="  md:text-base text-black dark:text-white">
-                {album.title}
-              </p>
-            </div>
+
+            <p className=" h-1/6 text-sm text-black  dark:text-white px-1 ">
+              {album.title}
+            </p>
           </div>
         ))}
       </div>

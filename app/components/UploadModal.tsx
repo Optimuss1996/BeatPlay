@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import uniqid from "uniqid";
@@ -11,9 +11,11 @@ import Button from "./Button";
 import { useUser } from "@/hooks/useUser";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
+import Select from "@/app/components/Select";
 
 export default function UploadModal() {
   const [isLoading, setIsLoading] = useState(false);
+
   const { user } = useUser();
   const router = useRouter();
   const uploadModal = useUploadModal();
@@ -122,11 +124,11 @@ export default function UploadModal() {
           placeholder="Song title"
         />
         <Input
-          id="author"
+          id="Singer"
           type="input"
           disabled={isLoading}
-          {...register("author", { required: true })}
-          placeholder="Song author"
+          {...register("Singer", { required: true })}
+          placeholder="Songs Singer"
         />
         <div className=" flex flex-col gap-y-2">
           <p>select a song file</p>
@@ -147,6 +149,10 @@ export default function UploadModal() {
             {...register("image", { required: true })}
             accept="image/*"
           />
+        </div>
+        <div className="w-full flex flex-col gap-y-4">
+          <p>Add to playlist or liked songs?</p>
+          <Select />
         </div>
         <Button disabled={isLoading} type="submit">
           Create

@@ -6,3 +6,10 @@
 html {
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
+@font-face {
+  font-family: "ClashGrotesk";
+  src: url("/fonts/ClashGrotesk-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}

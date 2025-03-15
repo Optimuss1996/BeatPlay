@@ -74,7 +74,7 @@ export async function getPopularArtist(number: number): Promise<Artist[]> {
 //
 export async function getArtistTopTracks(
   artistId: number | string,
-  limit = 30
+  limit: number
 ): Promise<SongDezzer[]> {
   try {
     const res = await fetch(
@@ -94,6 +94,7 @@ export async function getArtistTopTracks(
       title: song.title,
       titleShort: song.title_short,
       preview: song.preview,
+      duration: song.duration,
       artist: {
         name: song.artist.name,
         id: song.artist.id,
@@ -114,11 +115,12 @@ export async function getArtistTopTracks(
 //
 //
 export async function getArtistAlbums(
-  artistId: number | string
+  artistId: number | string,
+  limit: number
 ): Promise<AlbumType[]> {
   try {
     const res = await fetch(
-      `https://api.deezer.com/artist/${artistId}/albums`,
+      `https://api.deezer.com/artist/${artistId}/albums?limit=${limit}`,
       {
         next: { revalidate: 604800 }, // Refresh data once every 7 days (604800 sec)
       }
