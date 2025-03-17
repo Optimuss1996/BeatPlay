@@ -1,51 +1,40 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useState } from "react";
 import { Playlist } from "@/types";
 import { FaChevronDown } from "react-icons/fa";
+import { usePlaylistIdStore } from "@/hooks/usePlaylistId";
 
-export default function CustomSelect() {
-  const supabase = createClientComponentClient();
-  const [playlists, setPlaylists] = useState<Playlist[]>([]);
+interface CustomSelectProps {
+  playlists: Playlist[];
+  isLoading: boolean; // Pass loading state
+}
+
+export default function CustomSelect({
+  playlists,
+  isLoading,
+}: CustomSelectProps) {
   const [selected, setSelected] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    async function getPlaylists() {
-      const { data, error } = await supabase
-        .from("playlists")
-        .select("*")
-        .order("created_at", { ascending: false });
-
-      if (error) {
-        console.error("Error fetching playlists:", error);
-        return;
-      }
-
-      setPlaylists(data || []);
-    }
-
-    getPlaylists();
-  }, []);
+  const usePlaylistId = usePlaylistIdStore();
 
   return (
-    <div className="relative w-full ">
+    <div className="relative w-full">
       {/* Button to Open Select */}
       <button
         onClick={() => setOpen(!open)}
         className={`flex justify-between items-center w-full bg-purple-300
                dark:bg-slate-800/60 text-black dark:text-gray-400 py-3 px-5 rounded-md transition ${
-                 selected && "font-semibold"
-               } `}
+                 selected && "text-gray-800"
+               } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
       >
-        {selected ? selected : "where do you upload ?"}
+        {selected ? selected : "Where do you upload?"}
         <FaChevronDown className="h-4 w-4 text-gray-400" />
       </button>
 
       {/* Dropdown Options */}
-      {open && (
-        <div className="absolute left-0 -mt-[315px] h-auto max-h-64 overflow-y-auto w-full bg-purple-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-md overflow-hidden">
+      {open && !isLoading && (
+        <div className="absolute left-0 -mt-[170px] h-auto max-h-40 overflow-y-auto w-full bg-purple-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-md overflow-hidden">
           <ul className="py-2">
             {/* Liked Songs (Fixed Option) */}
             <li
@@ -56,6 +45,7 @@ export default function CustomSelect() {
               }`}
               onClick={() => {
                 setSelected("Liked Songs");
+                usePlaylistId.setId("liked_songs");
                 setOpen(false);
               }}
             >
@@ -63,7 +53,7 @@ export default function CustomSelect() {
             </li>
 
             {/* Separator */}
-            <hr className="border-gray-300 dark:border-gray-700 my-1" />
+            <hr className="border-gray-300 dark:border-gray-600 my-1" />
 
             {/* Dynamic Playlist Options */}
             {playlists.length > 0 ? (
@@ -77,6 +67,7 @@ export default function CustomSelect() {
                   }`}
                   onClick={() => {
                     setSelected(playlist.title);
+                    usePlaylistId.setId(playlist.id);
                     setOpen(false);
                   }}
                 >

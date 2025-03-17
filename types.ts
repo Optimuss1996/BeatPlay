@@ -16,6 +16,18 @@ export interface Playlist {
   title: string;
   description: string;
   image_path: string;
+  image_url: string;
+}
+export interface PlaylistTracks {
+  song_id: string;
+  playlist_id: string;
+  user_id: string;
+  song_title: string;
+  song_path: string;
+  song_image: string;
+  song_url: string;
+  image_url: string;
+  song_artist: string;
 }
 
 export interface Song {

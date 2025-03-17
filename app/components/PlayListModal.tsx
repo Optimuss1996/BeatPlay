@@ -57,37 +57,44 @@ export default function PlayListModal() {
 
   async function onSubmit(values: FieldValues) {
     setIsLoading(true);
-    console.log("Form values:", values); // ✅ Added debugging log
+    console.log("Form values:", values);
 
-    const imageFile = values.image; // ✅ Fixed: Avoids error when accessing undefined value
+    const imageFile = values.image;
     const title = values.title;
     const description = values.description;
 
     if (!imageFile || !title || !user) {
       toast.error("Missing required fields");
-      return; // ✅ Fixed: Return early to prevent further execution
+      return;
     }
 
     try {
       const uniqueID = uniqid();
+      const imagePath = `image-${values.title}-${uniqueID}`;
       console.log("Uploading image to Supabase Storage...");
 
       const { data: imageData, error: imageError } =
         await supabaseClient.storage
           .from("images")
-          .upload(`image-${title}-${uniqueID}`, imageFile, {
+          .upload(imagePath, imageFile, {
             cacheControl: "3600",
             upsert: false,
           });
 
+      // Get the public URL of the uploaded song
+      const { data: imageDataUrl } = supabaseClient.storage
+        .from("images")
+        .getPublicUrl(imagePath);
+      const imagePublicUrl = imageDataUrl.publicUrl;
+
       if (imageError) {
-        console.error("Image Upload Error:", imageError); // ✅ Added error logging
+        console.error("Image Upload Error:", imageError);
         setIsLoading(false);
         toast.error("Failed image upload.");
-        return; // ✅ Fixed: Return early to prevent further execution
+        return;
       }
 
-      console.log("Image uploaded successfully:", imageData); // ✅ Debugging log
+      console.log("Image uploaded successfully:", imageData);
 
       const { error: supabaseError } = await supabaseClient
         .from("playlists")
@@ -96,23 +103,24 @@ export default function PlayListModal() {
           title: title,
           description: description,
           image_path: imageData.path,
+          image_url: imagePublicUrl,
         });
 
       if (supabaseError) {
-        console.error("Supabase Insert Error:", supabaseError); // ✅ Added error logging
+        console.error("Supabase Insert Error:", supabaseError);
         setIsLoading(false);
         toast.error("Something went wrong");
-        return; // ✅ Fixed: Return early to prevent further execution
+        return;
       }
 
-      console.log("Playlist created successfully!"); // ✅ Debugging log
+      console.log("Playlist created successfully!");
 
       router.refresh();
       toast.success("Playlist created!");
       reset();
       onClose();
     } catch (error) {
-      console.error("Unexpected Error:", error); // ✅ Added error logging
+      console.error("Unexpected Error:", error);
       toast.error("Something went wrong");
     } finally {
       setIsLoading(false);

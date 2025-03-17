@@ -2,19 +2,18 @@
 
 import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
+import { SongDezzer } from "@/types";
 import { useSessionContext } from "@supabase/auth-helpers-react";
-import { data } from "autoprefixer";
-import { error } from "console";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 interface LikeButton {
-  songId: string | number;
+  data: SongDezzer | number;
 }
 
-export default function LikeButton({ songId }: LikeButton) {
+export default function LikeButton({ data }: LikeButton) {
   const [isLiked, setIsLiked] = useState(false);
   const { supabaseClient } = useSessionContext();
   const router = useRouter();
@@ -66,6 +65,10 @@ export default function LikeButton({ songId }: LikeButton) {
       const { error } = await supabaseClient.from("liked_songs").insert({
         user_id: user?.id,
         song_id: songId,
+        song_title: values.title,
+        song_artist: values.singer,
+        song_image: imageData.path,
+        song_path: songData.path,
       });
 
       if (error) {

@@ -8,7 +8,7 @@ import ModalProvider from "@/providers/ModalProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
 import Player from "./components/Player";
 import { ThemeProvider } from "next-themes";
-import getPlaylists from "@/action/getPlaylists";
+import { getPlaylists } from "@/action/getPlaylists";
 
 const inter = Figtree({ subsets: ["latin"] });
 

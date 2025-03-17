@@ -2,10 +2,19 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
-export async function uploadSong(formData) {
-  const supabase = createServerComponentClient(  {
+interface FormDataType {
+  image: string;
+  title: string;
+  Singer: string;
+  song: string;
+}
+
+export async function uploadSong(formData: FormData) {
+  const supabase = createServerComponentClient({
     cookies: cookies,
   });
+
+  console.log(formData);
 
   const { data: sessionData, error: sessionError } =
     await supabase.auth.getSession();

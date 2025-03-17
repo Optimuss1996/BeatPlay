@@ -2,7 +2,7 @@ import { Playlist } from "@/types";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
-async function getPlaylists(): Promise<Playlist[]> {
+export async function getPlaylists(): Promise<Playlist[]> {
   const supabase = createServerComponentClient({
     cookies: cookies,
   });
@@ -18,4 +18,20 @@ async function getPlaylists(): Promise<Playlist[]> {
   return (data as any) || [];
 }
 
-export default getPlaylists;
+// Fetch the playlist by ID
+export async function getPlaylistById(playlistId: string): Promise<Playlist> {
+  const supabase = createServerComponentClient({
+    cookies: cookies,
+  });
+
+  const { data, error } = await supabase
+    .from("playlists")
+    .select("*")
+    .eq("id", playlistId)
+    .single();
+
+  if (error) {
+    console.log("Something wrong about Fetching Playlist by Id");
+  }
+  return (data as any) || [];
+}
