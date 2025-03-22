@@ -17,7 +17,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
      mx-auto
      p-3
      rounded-md
-     bg-purple-300 dark:bg-slate-800/60
+     bg-purple-300
+      dark:bg-slate-800/60
      border
      border-transparent
      text-sm

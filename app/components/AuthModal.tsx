@@ -7,12 +7,11 @@ import {
   useSupabaseClient,
 } from "@supabase/auth-helpers-react";
 import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
+import { ThemeMinimal, ThemeSupa } from "@supabase/auth-ui-shared";
 import { useEffect } from "react";
 import useAuthModal from "@/hooks/useAuthModal";
+
 export default function AuthModal() {
-  //
-  //
   const supabaseClient = useSupabaseClient();
   const router = useRouter();
   const { session } = useSessionContext();
@@ -33,21 +32,24 @@ export default function AuthModal() {
     <Modal
       isOpen={isOpen}
       onChange={onChange}
-      title=" Welcome back"
+      title="Welcome back"
       description="Login to your account"
     >
       <Auth
-        theme="dark"
-        magicLink
-        providers={["github", "google"]}
         supabaseClient={supabaseClient}
+        magicLink
+        providers={["google"]}
         appearance={{
           theme: ThemeSupa,
           variables: {
             default: {
               colors: {
-                brand: "#a855f7",
-                brandAccent: "#071a0e",
+                brand: "#6b21a8",
+                brandAccent: "#7e22ce",
+                anchorTextColor: "#64748b",
+                inputText: "#9333ea",
+                inputBorder: "#475569",
+                inputPlaceholder: "#334155",
               },
             },
           },

@@ -5,6 +5,7 @@ import { FaMusic, FaPlus } from "react-icons/fa";
 import { MdOutlineWatchLater } from "react-icons/md";
 import { formatDuration } from "@/utilities/commonFunction";
 import { AiOutlineHeart } from "react-icons/ai";
+import LikeButton from "@/app/components/LikeButton";
 interface AlbumProps {
   artistTopTracks: SongDezzer[];
 }

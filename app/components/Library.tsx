@@ -40,9 +40,11 @@ export default function Library({ playlists }: PropsLibrary) {
   return (
     <div className=" flex flex-col">
       <div className=" flex justify-between items-center px-5 pt-4">
-        <div className=" inline-flex items-center gap-x-2 text-black dark:text-white cursor-pointer">
-          <TbPlaylist size={26} />
-          <p>Your Library</p>
+        <div className="sticky top-0">
+          <div className="inline-flex items-center gap-x-2 text-black dark:text-white cursor-pointer">
+            <TbPlaylist size={26} />
+            <p>Your Library</p>
+          </div>
         </div>
 
         <AiOutlinePlus

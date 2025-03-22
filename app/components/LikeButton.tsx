@@ -2,7 +2,7 @@
 
 import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
-import { SongDezzer } from "@/types";
+import { likedTracks, PlaylistTracks, SongDezzer } from "@/types";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -10,10 +10,10 @@ import toast from "react-hot-toast";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 interface LikeButton {
-  data: SongDezzer | number;
+  track: likedTracks;
 }
 
-export default function LikeButton({ data }: LikeButton) {
+export default function LikeButton({ track }: LikeButton) {
   const [isLiked, setIsLiked] = useState(false);
   const { supabaseClient } = useSessionContext();
   const router = useRouter();
@@ -28,7 +28,7 @@ export default function LikeButton({ data }: LikeButton) {
         .from("liked_songs")
         .select("*")
         .eq("user_id", user?.id)
-        .eq("song_id", songId)
+        .eq("song_id", track.song_id)
         .single();
 
       if (data && !error) {
@@ -50,7 +50,7 @@ export default function LikeButton({ data }: LikeButton) {
         .from("liked_songs")
         .delete()
         .eq("user_id", user?.id)
-        .eq("song_id", songId);
+        .eq("song_id", track.song_id);
 
       if (error) {
         toast.error(error.message);
@@ -64,11 +64,13 @@ export default function LikeButton({ data }: LikeButton) {
     if (!isLiked) {
       const { error } = await supabaseClient.from("liked_songs").insert({
         user_id: user?.id,
-        song_id: songId,
-        song_title: values.title,
-        song_artist: values.singer,
-        song_image: imageData.path,
-        song_path: songData.path,
+        song_id: track.song_id,
+        song_title: track.song_title,
+        song_artist: track.song_artist,
+        song_image: track.song_image,
+        song_path: track.song_path,
+        song_url: track.song_url,
+        image_url: track.image_url,
       });
 
       if (error) {
@@ -83,8 +85,8 @@ export default function LikeButton({ data }: LikeButton) {
 
   return (
     <div>
-      <button onClick={handleClick} className=" opacity-65">
-        <Icon color={isLiked ? "#7e22ce" : "white"} size={25} />
+      <button onClick={handleClick} className=" ">
+        <Icon color={isLiked ? "#7e22ce" : "white"} size={27} />
       </button>
     </div>
   );

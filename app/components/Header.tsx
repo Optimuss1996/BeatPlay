@@ -11,6 +11,7 @@ import useAuthModal from "@/hooks/useAuthModal";
 import ThemeToggle from "./ThemeToggle";
 import { AiOutlineMenu } from "react-icons/ai";
 import useIsOpenSidebar from "@/hooks/useIsOpenSidebar";
+import SearchInput from "./SearchInput";
 
 interface HeaderPropType {
   className?: string;
@@ -36,10 +37,13 @@ export default function Header({ className }: HeaderPropType) {
   return (
     <div
       className={twMerge(
-        `h-fit bg-white dark:bg-slate-800/30  p-3 mt-2 md:mt-0 border-b border-gray-300 dark:border-gray-700  flex justify-between items-center`,
+        `h-fit bg-white dark:bg-slate-800/30  p-3 mt-2 md:mt-0 border-b border-gray-300 dark:border-gray-700  flex flex-col md:flex-row justify-between items-center`,
         className
       )}
     >
+      <div className=" hidden md:block md:w-[500px]  ">
+        <SearchInput />
+      </div>
       <div className="w-full flex justify-between md:justify-end items-center mb-4">
         <button
           onClick={isOpenSidebar.toggleSidebar}
@@ -52,14 +56,14 @@ export default function Header({ className }: HeaderPropType) {
             <div className=" flex gap-x-4 items-center ">
               <Button
                 onClick={handleLogOut}
-                className="bg-purple-700 text-white text-sm md:text-base px-3 py-1 md:py-2 md:px-6 "
+                className="bg-purple-700 text-white text-base  py-2 px-4 md:px-6 "
               >
                 LogeOut
               </Button>
 
               <Button
                 onClick={() => router.push("/account")}
-                className="bg-purple-700 text-white  mx-auto hidden md:block"
+                className="bg-purple-700 text-white  mx-auto "
               >
                 <FaUserAlt className="mx-auto" />
               </Button>
@@ -69,15 +73,17 @@ export default function Header({ className }: HeaderPropType) {
               <div>
                 <Button
                   onClick={onOpen}
-                  className=" bg-purple-700 text-white text-sm md:text-base px-3 py-1 md:px-6  md:py-2"
+                  className=" bg-purple-700 text-white text-base px-6 py-2"
                 >
                   Login
                 </Button>
               </div>
             </>
           )}
-          <ThemeToggle />
         </div>
+      </div>
+      <div className=" md:hidden block w-full  ">
+        <SearchInput />
       </div>
     </div>
   );

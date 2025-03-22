@@ -59,9 +59,13 @@ export default function UploadModal() {
   // Function to handle modal close
   function onChange(open: boolean) {
     if (!open) {
+      if (abortController) {
+        abortController.abort(); // Cancel upload if in progress
+        setAbortController(null);
+        toast.error("Uploading cancelled!!");
+      }
       reset();
       setIsLoading(false);
-      setAbortController(null);
       return uploadModal.onClose();
     }
   }
@@ -76,8 +80,7 @@ export default function UploadModal() {
       const imageFile = values.image?.[0];
       const songFile = values.song?.[0];
 
-      if (!imageFile || !songFile || !user) {
-        3;
+      if (!imageFile || !songFile || !user || !usePlaylistId.id) {
         toast.error("Missing fields values");
         return;
       }
@@ -155,7 +158,8 @@ export default function UploadModal() {
       // Insert into the correct table
       const { error: supabaseError } = await supabaseClient
         .from(tableName)
-        .insert(insertData);
+        .insert(insertData)
+        .abortSignal(controller.signal); // Attach the signal for cancellation
 
       if (supabaseError) {
         console.error(`Error inserting into ${tableName}:`, supabaseError);
@@ -169,10 +173,10 @@ export default function UploadModal() {
 
       // Refresh UI and reset form
       router.refresh();
-      setIsLoading(false);
       toast.success("Song uploaded successfully!");
       reset();
       uploadModal.onClose();
+      setIsLoading(false);
     } catch (error) {
       console.error("Upload error:", error);
       toast.error("Something went wrong.");
@@ -195,6 +199,7 @@ export default function UploadModal() {
           disabled={isLoading}
           {...register("title", { required: true })}
           placeholder="Song title"
+          className=" placeholder:text-gray-700 dark:placeholder:text-gray-400"
         />
         <Input
           id="singer"
@@ -202,6 +207,7 @@ export default function UploadModal() {
           disabled={isLoading}
           {...register("singer", { required: true })}
           placeholder="Artist Name"
+          className=" placeholder:text-gray-700 dark:placeholder:text-gray-400"
         />
         <div className="flex flex-col gap-y-2">
           <p>Select a song file</p>

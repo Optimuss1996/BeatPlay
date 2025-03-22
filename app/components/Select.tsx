@@ -34,7 +34,7 @@ export default function CustomSelect({
 
       {/* Dropdown Options */}
       {open && !isLoading && (
-        <div className="absolute left-0 -mt-[170px] h-auto max-h-40 overflow-y-auto w-full bg-purple-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-md overflow-hidden">
+        <div className="absolute left-0 -mt-[220px] h-auto max-h-40 overflow-y-auto w-full bg-purple-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-md overflow-hidden">
           <ul className="py-2">
             {/* Liked Songs (Fixed Option) */}
             <li

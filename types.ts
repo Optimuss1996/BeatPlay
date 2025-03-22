@@ -29,14 +29,15 @@ export interface PlaylistTracks {
   image_url: string;
   song_artist: string;
 }
-
-export interface Song {
-  id: string;
+export interface likedTracks {
+  song_id: string;
   user_id: string;
-  author: string;
-  title: string;
+  song_title: string;
   song_path: string;
-  image_path: string;
+  song_image: string;
+  song_url: string;
+  image_url: string;
+  song_artist: string;
 }
 
 export type SongDezzer = {
@@ -76,4 +77,11 @@ export type AlbumType = {
   cover_big: string;
   fans: number;
   release_date: string;
+  artist?: {
+    id: string;
+    name: string;
+    cover: string; // Default album cover image
+    cover_medium: string;
+    cover_big: string;
+  };
 };

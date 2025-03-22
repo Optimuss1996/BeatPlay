@@ -82,8 +82,8 @@ export default function Modal({
               <button
                 onClick={onClose}
                 className="
-               text-black
-               hover:border-b-2
+               text-white
+               hover:opacity-65
                  absolute
                  top-[10px]
                  right-[10px]
@@ -95,7 +95,7 @@ export default function Modal({
                  justify-center
                  rounded-full
                  focus:outline-none
-
+                 bg-purple-600
               "
               >
                 <IoMdClose />
