@@ -1,7 +1,7 @@
 "use client";
 
 import { useUser } from "@/hooks/useUser";
-import { likedTracks, Playlist, PlaylistTracks } from "@/types";
+import { Playlist, SongDezzer } from "@/types";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import { FaPlus } from "react-icons/fa";
 
 interface AddToPlaylistProps {
-  track: likedTracks;
+  track: SongDezzer;
 }
 
 export default function AddToPlaylist({ track }: AddToPlaylistProps) {
@@ -17,7 +17,7 @@ export default function AddToPlaylist({ track }: AddToPlaylistProps) {
   const [isAdding, setIsAdding] = useState(false); // Prevent multiple clicks
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
-
+  console.log("album track", track);
   // Fetch playlists from Supabase
   useEffect(() => {
     async function getPlaylists() {
@@ -64,12 +64,12 @@ export default function AddToPlaylist({ track }: AddToPlaylistProps) {
     const { error: insertError } = await supabaseClient
       .from("playlist_songs")
       .insert({
-        user_id: track.user_id,
+        user_id: user?.id,
         playlist_id: playlistId,
         song_id: track.song_id,
         song_title: track.song_title,
-        song_artist: track.song_artist,
-        image_url: track.image_url,
+        song_artist: track.artist?.name,
+        image_url: track.artist?.picture_medium,
         song_url: track.song_url,
         duration: track.duration,
       });

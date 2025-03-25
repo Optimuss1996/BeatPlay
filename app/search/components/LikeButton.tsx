@@ -2,7 +2,7 @@
 
 import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
-import { likedTracks, PlaylistTracks, SongDezzer } from "@/types";
+import { likedTracks, PlaylistTracks, SongDezer, SongDezzer } from "@/types";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 interface LikeButton {
-  track: likedTracks;
+  track: SongDezzer;
 }
 
 export default function LikeButton({ track }: LikeButton) {
@@ -64,13 +64,12 @@ export default function LikeButton({ track }: LikeButton) {
     if (!isLiked) {
       const { error } = await supabaseClient.from("liked_songs").insert({
         user_id: user?.id,
-        song_id: track.song_id,
+        // song_id: track.song_id,
         song_title: track.song_title,
-        song_artist: track.song_artist,
-        song_image: track.song_image,
-        song_path: track.song_path,
+        song_artist: track.artist?.name,
         song_url: track.song_url,
-        image_url: track.image_url,
+        image_url: track.artist?.picture_medium,
+        duration: track.duration,
       });
 
       if (error) {
@@ -86,7 +85,10 @@ export default function LikeButton({ track }: LikeButton) {
   return (
     <div>
       <button onClick={handleClick} className=" ">
-        <Icon color={isLiked ? "#7e22ce" : "white"} size={27} />
+        <Icon
+          className={isLiked ? " text-purple-700 " : "  text-purple-500"}
+          size={27}
+        />
       </button>
     </div>
   );

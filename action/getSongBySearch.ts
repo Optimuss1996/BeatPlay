@@ -85,10 +85,10 @@ export async function getTracksBySearch(
 
     const data = await res.json();
     return data.data.map((song: any) => ({
-      id: song.id,
-      title: song.title,
-      titleShort: song.title_short,
-      preview: song.preview,
+      song_id: song.id,
+      song_title: song.title,
+      song_titleShort: song.title_short,
+      song_url: song.preview,
       duration: song.duration,
       artist: {
         name: song.artist.name,

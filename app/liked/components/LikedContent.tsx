@@ -2,10 +2,11 @@
 
 import MediaItem from "@/app/(site)/components/MediaItem";
 import AddToPlaylist from "@/app/components/AddToPlaylist";
-import LikeButton from "@/app/components/LikeButton";
+import LikeButton from "@/app/liked/components/LikeButton";
 import useOnPlay from "@/hooks/useOnPlay";
 import { useUser } from "@/hooks/useUser";
 import { likedTracks } from "@/types";
+import { formatDuration } from "@/utilities/commonFunction";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FaMusic } from "react-icons/fa";
@@ -64,7 +65,9 @@ export default function LikedContent({ songs }: LikedContentProps) {
                 <AddToPlaylist track={song} />
                 <LikeButton track={song} />
               </div>
-              <p className="w-11 text-center text-sm md:text-base">02:34</p>
+              <p className="w-11 text-center text-sm md:text-base">
+                {formatDuration(song.duration)}
+              </p>
             </div>
           </div>
         ))}

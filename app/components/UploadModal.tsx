@@ -2,31 +2,23 @@
 
 import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import uniqid from "uniqid";
 import useUploadModal from "@/hooks/useUploadModal";
 import Modal from "./Modal";
 import Input from "./Input";
 import Button from "./Button";
-import { useUser } from "@/hooks/useUser";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import { useRouter } from "next/navigation";
 import Select from "@/app/components/Select";
-import { usePlaylistIdStore } from "@/hooks/usePlaylistId";
-import { Playlist } from "@/types";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { ScaleLoader } from "react-spinners";
+import { Playlist } from "@/types";
+import useUploadMusic from "@/hooks/useUploadMusic";
 
 export const revalidate = 0;
+
 export default function UploadModal() {
-  const [isLoading, setIsLoading] = useState(false);
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
-  const [abortController, setAbortController] =
-    useState<AbortController | null>(null);
-  const { user } = useUser();
-  const router = useRouter();
   const uploadModal = useUploadModal();
   const supabaseClient = useSupabaseClient();
-  const usePlaylistId = usePlaylistIdStore();
+  const { isLoading, uploadMusic, cancelUpload } = useUploadMusic();
 
   const { register, reset, handleSubmit } = useForm<FieldValues>({
     defaultValues: {
@@ -37,7 +29,7 @@ export default function UploadModal() {
     },
   });
 
-  // Fetch playlists from Supabase
+  // Fetch playlists from Supabase  for list of playlist Select component
   useEffect(() => {
     async function getPlaylists() {
       const { data, error } = await supabaseClient
@@ -56,132 +48,11 @@ export default function UploadModal() {
     getPlaylists();
   }, []);
 
-  // Function to handle modal close
   function onChange(open: boolean) {
     if (!open) {
-      if (abortController) {
-        abortController.abort(); // Cancel upload if in progress
-        setAbortController(null);
-        toast.error("Uploading cancelled!!");
-      }
-      reset();
-      setIsLoading(false);
-      return uploadModal.onClose();
-    }
-  }
-
-  // Handle song upload
-  async function onSubmit(values: FieldValues) {
-    try {
-      setIsLoading(true);
-      const controller = new AbortController();
-      setAbortController(controller);
-
-      const imageFile = values.image?.[0];
-      const songFile = values.song?.[0];
-
-      if (!imageFile || !songFile || !user || !usePlaylistId.id) {
-        toast.error("Missing fields values");
-        return;
-      }
-
-      const uniqueID = uniqid();
-      const songPath = `song-${values.title}-${uniqueID}`;
-      // Upload song to storage
-      const { data: songData, error: songError } = await supabaseClient.storage
-        .from("songs")
-        .upload(songPath, songFile, {
-          cacheControl: "3600",
-          upsert: false,
-        });
-
-      if (songError) {
-        setIsLoading(false);
-        return toast.error("Failed to upload song.");
-      }
-
-      // Get the public URL of the uploaded song
-      const { data: songDataUrl } = supabaseClient.storage
-        .from("songs")
-        .getPublicUrl(songPath);
-      const songPublicUrl = songDataUrl.publicUrl;
-      //
-      const imagePath = `image-${values.title}-${uniqueID}`;
-      // Upload image to storage
-      const { data: imageData, error: imageError } =
-        await supabaseClient.storage
-          .from("images")
-          .upload(imagePath, imageFile, {
-            cacheControl: "3600",
-            upsert: false,
-          });
-
-      // Get the public URL of the uploaded song
-      const { data: imageDataUrl } = supabaseClient.storage
-        .from("images")
-        .getPublicUrl(imagePath);
-      const imagePublicUrl = imageDataUrl.publicUrl;
-
-      if (imageError) {
-        setIsLoading(false);
-        return toast.error("Failed to upload image.");
-      }
-
-      // Ensure user has selected a valid option (Liked Songs or Playlist)
-      if (!usePlaylistId.id) {
-        setIsLoading(false);
-        return toast.error(
-          "Please select a playlist or Liked Songs before uploading."
-        );
-      }
-
-      let tableName = "playlist_songs";
-      let insertData: any = {
-        user_id: user.id,
-        song_title: values.title,
-        song_artist: values.singer,
-        song_image: imageData.path,
-        image_url: imagePublicUrl,
-        song_path: songData.path,
-        song_url: songPublicUrl,
-      };
-
-      if (usePlaylistId.id === "liked_songs") {
-        tableName = "liked_songs";
-      } else {
-        insertData = {
-          ...insertData,
-          playlist_id: usePlaylistId.id, // Assign the selected playlist ID
-        };
-      }
-
-      // Insert into the correct table
-      const { error: supabaseError } = await supabaseClient
-        .from(tableName)
-        .insert(insertData)
-        .abortSignal(controller.signal); // Attach the signal for cancellation
-
-      if (supabaseError) {
-        console.error(`Error inserting into ${tableName}:`, supabaseError);
-        setIsLoading(false);
-        return toast.error(
-          `Failed to add to ${
-            usePlaylistId.id === "liked_songs" ? "Liked Songs" : "Playlist"
-          }`
-        );
-      }
-
-      // Refresh UI and reset form
-      router.refresh();
-      toast.success("Song uploaded successfully!");
+      cancelUpload();
       reset();
       uploadModal.onClose();
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Upload error:", error);
-      toast.error("Something went wrong.");
-    } finally {
-      setIsLoading(false);
     }
   }
 
@@ -192,14 +63,18 @@ export default function UploadModal() {
       isOpen={uploadModal.isOpen}
       onChange={onChange}
     >
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-4">
+      <form
+        onSubmit={handleSubmit((values) =>
+          uploadMusic(values, reset, uploadModal.onClose)
+        )}
+        className="flex flex-col gap-y-4"
+      >
         <Input
           id="title"
           type="text"
           disabled={isLoading}
           {...register("title", { required: true })}
           placeholder="Song title"
-          className=" placeholder:text-gray-700 dark:placeholder:text-gray-400"
         />
         <Input
           id="singer"
@@ -207,9 +82,8 @@ export default function UploadModal() {
           disabled={isLoading}
           {...register("singer", { required: true })}
           placeholder="Artist Name"
-          className=" placeholder:text-gray-700 dark:placeholder:text-gray-400"
         />
-        <div className="flex flex-col gap-y-2">
+        <div>
           <p>Select a song file</p>
           <Input
             id="song"
@@ -219,7 +93,7 @@ export default function UploadModal() {
             accept=".mp3"
           />
         </div>
-        <div className="flex flex-col gap-y-4">
+        <div>
           <p>Select an image file</p>
           <Input
             id="image"
@@ -229,7 +103,7 @@ export default function UploadModal() {
             accept="image/*"
           />
         </div>
-        <div className="w-full flex flex-col gap-y-4">
+        <div>
           <p>Add to Playlist or Liked Songs</p>
           <Select playlists={playlists} isLoading={isLoading} />
         </div>

@@ -19,34 +19,32 @@ export interface Playlist {
   image_url: string;
 }
 export interface PlaylistTracks {
-  song_id: string;
-  playlist_id: string;
   user_id: string;
+  song_id: number;
+  song_artist: string;
   song_title: string;
-  song_path: string;
-  song_image: string;
   song_url: string;
   image_url: string;
-  song_artist: string;
+  duration: number;
+  playlist_id: string;
 }
 export interface likedTracks {
-  song_id: string;
   user_id: string;
+  song_id: number;
   song_title: string;
-  song_path: string;
-  song_image: string;
+  song_artist: string;
   song_url: string;
   image_url: string;
-  song_artist: string;
+  duration: number;
 }
 
 export type SongDezzer = {
-  id: number;
-  title: string;
-  titleShort: string;
-  preview: string;
+  song_id: number;
+  song_title: string;
+  song_titleShort: string;
+  song_url: string;
   duration: number;
-  artist: {
+  artist?: {
     name: string;
     id: string;
     picture: string; // Default artist cover image
@@ -77,11 +75,12 @@ export type AlbumType = {
   cover_big: string;
   fans: number;
   release_date: string;
+  nb_tracks: number;
+  duration: number;
   artist?: {
     id: string;
     name: string;
-    cover: string; // Default album cover image
-    cover_medium: string;
-    cover_big: string;
+    picture_medium: string;
+    picture_big: string;
   };
 };

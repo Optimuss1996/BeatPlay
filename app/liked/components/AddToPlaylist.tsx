@@ -1,7 +1,7 @@
 "use client";
 
 import { useUser } from "@/hooks/useUser";
-import { likedTracks, Playlist, PlaylistTracks } from "@/types";
+import { likedTracks, Playlist, SongDezzer } from "@/types";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
@@ -64,7 +64,7 @@ export default function AddToPlaylist({ track }: AddToPlaylistProps) {
     const { error: insertError } = await supabaseClient
       .from("playlist_songs")
       .insert({
-        user_id: track.user_id,
+        user_id: user?.id,
         playlist_id: playlistId,
         song_id: track.song_id,
         song_title: track.song_title,

@@ -1,7 +1,7 @@
 "use client";
 
 import MediaItem from "@/app/(site)/components/MediaItem";
-import LikeButton from "@/app/components/LikeButton";
+import LikeButton from "@/app/liked/components/LikeButton";
 import useOnPlay from "@/hooks/useOnPlay";
 import { AlbumType, Artist, SongDezzer } from "@/types";
 import ArtistSearch from "@/app/search/components/ArtistSearch";

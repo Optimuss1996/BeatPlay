@@ -1,20 +1,22 @@
 "use client";
 
-import { PlaylistTracks, SongDezzer } from "@/types";
-import { FaMusic, FaPlus } from "react-icons/fa";
+import { SongDezzer } from "@/types";
+import { FaMusic } from "react-icons/fa";
 import { MdOutlineWatchLater } from "react-icons/md";
-import { AiOutlineHeart } from "react-icons/ai";
-import LikeButton from "@/app/liked/components/LikeButton";
-import AddToPlaylist from "./AddToPlaylist";
-interface playlistTracksProps {
-  playlistTracks: PlaylistTracks[];
+import LikeButton from "@/app/album/components/LikedButton";
+import AddToPlaylist from "@/app/album/components/AddToPlaylist";
+import { formatDuration } from "@/utilities/commonFunction";
+interface AlbumTracksProps {
+  albumTracks: SongDezzer[];
 }
 
-export default function Tracks({ playlistTracks }: playlistTracksProps) {
-  if (playlistTracks.length === 0) {
+export default function Tracks({ albumTracks }: AlbumTracksProps) {
+  console.log("album tracks", albumTracks);
+
+  if (albumTracks.length === 0) {
     return (
       <div className="flex justify-center items-center px-3 py-2  text-black dark:text-white md:text-xl mt-32 md:mt-56  ">
-        Unfortunately, no music was found by this singer.
+        Unfortunately, no music was found by this album.
       </div>
     );
   }
@@ -36,7 +38,7 @@ export default function Tracks({ playlistTracks }: playlistTracksProps) {
         </div>
       </main>
       <main className=" w-11/12 mx-auto flex flex-col gap-y-3    py-2 dark:border-b-gray-500 ">
-        {playlistTracks.map((song) => (
+        {albumTracks.map((song) => (
           <div
             key={song.song_id}
             className="w-full  flex justify-between items-center gap-x-3 px-3 py-3 cursor-pointer hover:bg-purple-200 dark:hover:bg-slate-800 transition  rounded-md"
@@ -44,7 +46,7 @@ export default function Tracks({ playlistTracks }: playlistTracksProps) {
             <div className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white">
               <FaMusic size={20} className="text-purple-600 rounded-md" />
               <p className=" md:text-sm text-xs font-semibold">
-                {song.song_title}
+                {song.song_titleShort}
               </p>
             </div>
 
@@ -53,7 +55,9 @@ export default function Tracks({ playlistTracks }: playlistTracksProps) {
                 <AddToPlaylist track={song} />
                 <LikeButton track={song} />
               </div>
-              <p className="w-11 text-center text-sm md:text-base">02:45</p>
+              <p className="w-11 text-center text-sm md:text-base">
+                {formatDuration(song.duration)}
+              </p>
             </div>
           </div>
         ))}
