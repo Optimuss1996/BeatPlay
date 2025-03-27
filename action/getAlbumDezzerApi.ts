@@ -1,16 +1,18 @@
 import { AlbumType, SongDezzer } from "@/types";
 
-export async function getAlbumDezzerApi(id: number): Promise<AlbumType> {
+export async function getAlbumDeezerApi(id: number): Promise<AlbumType | null> {
   try {
     const res = await fetch(`https://api.deezer.com/album/${id}`, {
-      next: { revalidate: 604800 }, // Refresh data once every 7 days (604800 sec)
+      next: { revalidate: 604800 }, // Refresh data once every 7 days
     });
 
     if (!res.ok) {
-      throw new Error(`Deezer API Error: ${res.status} ${res.statusText}`);
+      console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
+      return null;
     }
 
     const data = await res.json();
+
     return {
       id: data.id,
       title: data.title,
@@ -29,10 +31,11 @@ export async function getAlbumDezzerApi(id: number): Promise<AlbumType> {
       },
     };
   } catch (error) {
-    console.error("Error fetching Album", error);
-    throw new Error("Failed to fetch Album , Please try again.");
+    console.error("Error fetching album:", error);
+    return null;
   }
 }
+
 //
 //
 // get Album Tracks as a separated from DezzerApi
@@ -41,11 +44,12 @@ export async function getAlbumTracksDezzerApi(
 ): Promise<SongDezzer[]> {
   try {
     const res = await fetch(`https://api.deezer.com/album/${id}`, {
-      next: { revalidate: 604800 }, // Refresh data once every 7 days (604800 sec)
+      next: { revalidate: 604800 },
     });
 
     if (!res.ok) {
-      throw new Error(`Deezer API Error: ${res.status} ${res.statusText}`);
+      console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
+      return [];
     }
 
     const data = await res.json();
@@ -69,6 +73,6 @@ export async function getAlbumTracksDezzerApi(
     })); // Return only the track list
   } catch (error) {
     console.error("Error fetching Tracks Album", error);
-    throw new Error("Failed to fetch Tracks Album , Please try again.");
+    return [];
   }
 }

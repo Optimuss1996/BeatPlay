@@ -14,6 +14,8 @@ import LoginNotice from "./LoginNotice";
 import useIsOpenSidebar from "@/hooks/useIsOpenSidebar";
 import { AiOutlineClose } from "react-icons/ai";
 import ThemeToggle from "./ThemeToggle";
+import Header from "./Header";
+import Footer from "./Footer";
 
 interface SidebarProps {
   children: React.ReactNode;
@@ -65,7 +67,13 @@ export default function Sidebar({ children, playlists }: SidebarProps) {
         </Box>
       </div>
 
-      <main className=" flex-1 h-full overflow-y-auto p-1 ">{children}</main>
+      <main className=" flex-1 h-full overflow-y-auto p-1 ">
+        <div>
+          <Header />
+          {children}
+          <Footer />
+        </div>
+      </main>
     </div>
   );
 }

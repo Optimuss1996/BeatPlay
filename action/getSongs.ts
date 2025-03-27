@@ -1,22 +1,22 @@
-import { Song } from "@/types";
+// import { Song } from "@/types";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
-async function getSongs(): Promise<Song[]> {
-  const supabase = createServerComponentClient({
-    cookies: cookies,
-  });
+// async function getSongs(): Promise<Song[]> {
+//   const supabase = createServerComponentClient({
+//     cookies: cookies,
+//   });
 
-  const { data, error } = await supabase
-    .from("songs")
-    .select("*")
-    .order("created_at", { ascending: false });
+//   const { data, error } = await supabase
+//     .from("songs")
+//     .select("*")
+//     .order("created_at", { ascending: false });
 
-  if (error) {
-    console.log("Fetching Songs is Failed");
-  }
-  return (data as any) || [];
-}
+//   if (error) {
+//     console.log("Fetching Songs is Failed");
+//   }
+//   return (data as any) || [];
+// }
 //
 //
 //
@@ -24,7 +24,7 @@ async function getSongs(): Promise<Song[]> {
 //
 //
 //
-export default getSongs;
+// export default getSongs;
 
 export async function getArtist(artistName: string) {
   try {
@@ -35,7 +35,6 @@ export async function getArtist(artistName: string) {
     }
 
     const data = await response.json();
-    // console.log(data);
     return data;
   } catch (error) {
     console.error("Error fetching artist:", error);

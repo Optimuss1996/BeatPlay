@@ -110,7 +110,7 @@ export default function ListOfGenre() {
               <div
                 onMouseEnter={() => setHoveredId(id)} // Set the hovered ID
                 onMouseLeave={() => setHoveredId(null)} // Reset the hovered ID
-                className={`w-28 h-28 rounded-full flex justify-center items-center transition duration-300 ease-in-out  cursor-pointer
+                className={` w-20 h-20 md:w-28 md:h-28 rounded-full flex justify-center items-center transition duration-300 ease-in-out  cursor-pointer
                   ${
                     hoveredId === id
                       ? bgOnHover

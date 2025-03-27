@@ -1,16 +1,19 @@
 "use client";
 
 import { SongDezzer } from "@/types";
-import { FaMusic, FaPlus } from "react-icons/fa";
+import { FaMusic } from "react-icons/fa";
 import { MdOutlineWatchLater } from "react-icons/md";
 import { formatDuration } from "@/utilities/commonFunction";
 import LikeButton from "@/app/search/components/LikeButton";
 import AddToPlaylist from "./AddToPlaylist";
+import useOnPlay from "@/hooks/useOnPlay";
 interface TracksBySearchProps {
   tracks: SongDezzer[];
 }
 
 export default function TracksBySearch({ tracks }: TracksBySearchProps) {
+  // const onPlay = useOnPlay(tracks);
+
   if (tracks.length === 0) {
     return null;
   }
@@ -39,7 +42,7 @@ export default function TracksBySearch({ tracks }: TracksBySearchProps) {
           >
             <div className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white">
               <FaMusic size={20} className="text-purple-600 rounded-md" />
-              <p className=" md:text-sm text-xs font-semibold">
+              <p className=" md:text-sm text-xs font-semibold overflow-hidden text-ellipsis">
                 {song.song_titleShort}
               </p>
             </div>

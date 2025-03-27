@@ -5,18 +5,20 @@ export async function getTrendingTracks(number: number): Promise<SongDezzer[]> {
     const res = await fetch(
       `https://api.deezer.com/chart/0/tracks?limit=${number}`,
       {
-        next: { revalidate: 604800 }, // Refresh data once every 7 days (604800 sec)
+        next: { revalidate: 604800 },
       }
     );
 
     if (!res.ok) {
-      throw new Error(`Deezer API Error: ${res.status} ${res.statusText}`);
+      console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
+      return [];
     }
 
     const data = await res.json();
 
     if (data.error) {
-      throw new Error(`Deezer API Error: ${data.error.message}`);
+      console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
+      return [];
     }
 
     return data.data.map((song: any) => ({
@@ -39,7 +41,7 @@ export async function getTrendingTracks(number: number): Promise<SongDezzer[]> {
     }));
   } catch (error) {
     console.error("Error fetching trending tracks:", error);
-    throw new Error("Failed to fetch trending tracks. Please try again.");
+    return [];
   }
 }
 
@@ -50,12 +52,13 @@ export async function getPopularArtist(number: number): Promise<Artist[]> {
     const res = await fetch(
       `https://api.deezer.com/chart/0/artists?limit=${number}`,
       {
-        next: { revalidate: 604800 }, // Refresh data once every 7 days (604800 sec)
+        next: { revalidate: 604800 },
       }
     );
 
     if (!res.ok) {
-      throw new Error(`Deezer API Error: ${res.status} ${res.statusText}`);
+      console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
+      return [];
     }
 
     const data = await res.json();
@@ -68,7 +71,7 @@ export async function getPopularArtist(number: number): Promise<Artist[]> {
     }));
   } catch (error) {
     console.error("Error fetching trending tracks:", error);
-    throw new Error("Failed to fetch trending tracks. Please try again.");
+    return [];
   }
 }
 //
@@ -81,12 +84,13 @@ export async function getArtistTopTracks(
     const res = await fetch(
       `https://api.deezer.com/artist/${artistId}/top?limit=${limit}`,
       {
-        next: { revalidate: 604800 }, // Refresh data once every 7 days (604800 sec)
+        next: { revalidate: 604800 },
       }
     );
 
     if (!res.ok) {
-      throw new Error(`Deezer API Error: ${res.status} ${res.statusText}`);
+      console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
+      return [];
     }
 
     const data = await res.json();
@@ -110,7 +114,7 @@ export async function getArtistTopTracks(
     }));
   } catch (error) {
     console.error("Error fetching Artist Top Tracks:", error);
-    throw new Error("Failed to fetch Artist Top Tracks. Please try again.");
+    return [];
   }
 }
 //
@@ -123,12 +127,13 @@ export async function getArtistAlbums(
     const res = await fetch(
       `https://api.deezer.com/artist/${artistId}/albums?limit=${limit}`,
       {
-        next: { revalidate: 604800 }, // Refresh data once every 7 days (604800 sec)
+        next: { revalidate: 604800 },
       }
     );
 
     if (!res.ok) {
-      throw new Error(`Deezer API Error: ${res.status} ${res.statusText}`);
+      console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
+      return [];
     }
 
     const data = await res.json();
@@ -150,14 +155,15 @@ export async function getArtistAlbums(
 //
 export async function getArtistInformation(
   artistId: number | string
-): Promise<Artist> {
+): Promise<Artist | null> {
   try {
     const res = await fetch(`https://api.deezer.com/artist/${artistId}`, {
-      next: { revalidate: 604800 }, // Refresh data once every 7 days (604800 sec)
+      next: { revalidate: 604800 },
     });
 
     if (!res.ok) {
-      throw new Error(`Deezer API Error: ${res.status} ${res.statusText}`);
+      console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
+      return null;
     }
 
     const data = await res.json();
@@ -174,6 +180,6 @@ export async function getArtistInformation(
     };
   } catch (error) {
     console.error("Error fetching Artist Information:", error);
-    throw new Error("Failed to fetch Artist Information. Please try again.");
+    return null;
   }
 }

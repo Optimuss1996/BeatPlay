@@ -5,6 +5,7 @@ import {
 } from "@/action/getSongBySearch";
 import Header from "../components/Header";
 import SearchContent from "./components/SearchContent";
+import Footer from "../components/Footer";
 
 interface SearchProps {
   searchParams: {
@@ -28,21 +29,22 @@ export default async function Page({ searchParams }: SearchProps) {
     tracksBySearch.length === 0
   ) {
     return (
-      <div className="  bg-white dark:bg-slate-800/30 w-full h-full ">
-        <Header />
-        <div className=" ">
-          <h1 className="  font-ClashGrotesk px-6 text-black dark:text-white text-2xl md:text-3xl text-center mt-14">
-            No Songs With this title :(
-          </h1>
+      <>
+        <div className="  bg-white dark:bg-slate-800/30 w-full h-full ">
+          <Header />
+          <div className=" ">
+            <h1 className="  font-ClashGrotesk px-6 text-black dark:text-white text-2xl md:text-3xl text-center mt-14">
+              No Songs With this title :(
+            </h1>
+          </div>
         </div>
-      </div>
+        <Footer />
+      </>
     );
   }
 
   return (
     <div className=" bg-white dark:bg-slate-800/30 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
-      <Header />
-
       <SearchContent
         artists={artistBySearch}
         albums={albumBySearch}

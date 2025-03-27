@@ -28,7 +28,7 @@ async function getSongsLiked(): Promise<likedTracks[]> {
     return [];
   }
 
-  return data; // ✅ Data already contains all necessary fields
+  return data;
 }
 
 export default getSongsLiked;

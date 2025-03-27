@@ -12,13 +12,15 @@ export async function getArtistBySearch(
     );
 
     if (!res.ok) {
-      throw new Error(`Deezer API Error: ${res.status} ${res.statusText}`);
+      console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
+      return [];
     }
 
     const data = await res.json();
 
     if (data.error) {
-      throw new Error(`Deezer API Error: ${data.error.message}`);
+      console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
+      return [];
     }
 
     return data.data.map((artist: any) => ({
@@ -29,7 +31,7 @@ export async function getArtistBySearch(
     }));
   } catch (error) {
     console.error("Error fetching artist search:", error);
-    throw new Error("Failed to fetch artist search. Please try again.");
+    return [];
   }
 }
 //
@@ -48,7 +50,8 @@ export async function getAlbumBySearch(
     );
 
     if (!res.ok) {
-      throw new Error(`Deezer API Error: ${res.status} ${res.statusText}`);
+      console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
+      return [];
     }
 
     const data = await res.json();
@@ -60,8 +63,8 @@ export async function getAlbumBySearch(
       artist: { name: album.artist.name, id: album.artist.id },
     }));
   } catch (error) {
-    console.error("Error fetching album by search:", error);
-    throw new Error("Failed to fetch album by search. Please try again.");
+    console.error("Error fetching albums by search:", error);
+    return [];
   }
 }
 //
@@ -80,7 +83,8 @@ export async function getTracksBySearch(
     );
 
     if (!res.ok) {
-      throw new Error(`Deezer API Error: ${res.status} ${res.statusText}`);
+      console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
+      return [];
     }
 
     const data = await res.json();
@@ -104,7 +108,7 @@ export async function getTracksBySearch(
     }));
   } catch (error) {
     console.error("Error fetching tracks by search", error);
-    throw new Error("Failed to fetch tracks by search. Please try again.");
+    return [];
   }
 }
 //

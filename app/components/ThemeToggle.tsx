@@ -19,7 +19,7 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={() => setTheme(isDarkMode ? "light" : "dark")}
-      className="relative w-7 h-7 flex items-center justify-center rounded-md hover:bg-purple-200   transition-colors duration-300"
+      className="relative w-7 h-7 flex items-center justify-center rounded-md hover:opacity-70  transition-colors duration-300"
     >
       {/* Light Mode Icon */}
       <MdLightMode

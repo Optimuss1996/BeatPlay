@@ -17,7 +17,6 @@ export default function AddToPlaylist({ track }: AddToPlaylistProps) {
   const [isAdding, setIsAdding] = useState(false); // Prevent multiple clicks
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
-  console.log("album track", track);
   // Fetch playlists from Supabase
   useEffect(() => {
     async function getPlaylists() {

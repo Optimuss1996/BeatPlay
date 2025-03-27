@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import BannerSlider from "./components/BannerSlider";
 import ListOfGenre from "./components/ListOfGenre";
@@ -15,8 +16,7 @@ export default async function Home() {
   const artists = await getPopularArtist(10);
   console.log(songs);
   return (
-    <main className=" bg-white dark:bg-slate-800/30  w-full  h-full overflow-hidden overflow-y-auto ">
-      <Header />
+    <main className=" bg-white dark:bg-slate-800/60  w-full  h-full overflow-hidden overflow-y-auto ">
       <div className=" px-1 md:px-4  mb-7 z-0">
         <BannerSlider />
         <ListOfGenre />

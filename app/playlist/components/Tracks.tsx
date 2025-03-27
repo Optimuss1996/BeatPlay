@@ -43,7 +43,7 @@ export default function Tracks({ playlistTracks }: playlistTracksProps) {
           >
             <div className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white">
               <FaMusic size={20} className="text-purple-600 rounded-md" />
-              <p className=" md:text-sm text-xs font-semibold">
+              <p className=" md:text-sm text-xs font-semibold truncate">
                 {song.song_title}
               </p>
             </div>

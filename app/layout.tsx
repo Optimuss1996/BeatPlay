@@ -33,7 +33,7 @@ export default async function RootLayout({
             <UserProvider>
               <ModalProvider />
               <Sidebar playlists={userPlaylists}>{children}</Sidebar>
-              <Player />
+              {/* <Player /> */}
             </UserProvider>
           </SupabaseProvider>
         </ThemeProvider>

@@ -1,11 +1,11 @@
-import { Song } from "@/types";
+import { likedTracks, SongDezzer } from "@/types";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 
 const useGetSongById = (id?: string) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [song, setSong] = useState<Song | undefined>(undefined);
+  const [song, setSong] = useState<SongDezzer | undefined>(undefined);
   const { supabaseClient } = useSessionContext();
 
   useEffect(() => {
@@ -15,9 +15,9 @@ const useGetSongById = (id?: string) => {
     setIsLoading(true);
     async function getSong() {
       const { data, error } = await supabaseClient
-        .from("songs")
+        .from("liked_songs")
         .select("*")
-        .eq("id", id)
+        .eq("song_id", id)
         .single();
 
       if (error) {
@@ -25,7 +25,7 @@ const useGetSongById = (id?: string) => {
         setIsLoading(false);
       }
 
-      setSong(data as Song);
+      setSong(data as SongDezzer);
       setIsLoading(false);
     }
 
