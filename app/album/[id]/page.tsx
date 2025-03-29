@@ -5,14 +5,15 @@ import {
   getAlbumDeezerApi,
   getAlbumTracksDezzerApi,
 } from "@/action/getAlbumDezzerApi";
-import Footer from "@/app/components/Footer";
 import { AlbumType } from "@/types";
 
-export default async function PlaylistPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default async function PlaylistPage({ params }: PageProps) {
   const numberId = Number(params.id);
   const [albumInfo, albumTracks] = await Promise.all([
     getAlbumDeezerApi(numberId),

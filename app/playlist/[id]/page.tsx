@@ -1,15 +1,15 @@
 import { getPlaylistById } from "@/action/getPlaylists";
 import getTracksByPlaylistId from "@/action/getTracksByPlaylistId";
-import Header from "@/app/components/Header";
 import Information from "../components/Information";
 import Tracks from "../components/Tracks";
-import Footer from "@/app/components/Footer";
 
-export default async function PlaylistPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default async function PlaylistPage({ params }: PageProps) {
   const [playlist, playlistTrack] = await Promise.all([
     getPlaylistById(params.id),
     getTracksByPlaylistId(params.id),

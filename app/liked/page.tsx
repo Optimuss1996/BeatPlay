@@ -1,7 +1,5 @@
 import getSongsLiked from "@/action/getSongsLiked";
-import Header from "../components/Header";
 import LikedContent from "./components/LikedContent";
-import Footer from "../components/Footer";
 
 export const revalidate = 0;
 

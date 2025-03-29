@@ -1,8 +1,11 @@
-import Header from "../components/Header";
-
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
 export const revalidate = 0;
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function Page({ params }: PageProps) {
   const artistId = params.id;
 
   return (
