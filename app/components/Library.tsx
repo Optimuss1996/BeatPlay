@@ -8,6 +8,7 @@ import useOnPlay from "@/hooks/useOnPlay";
 import { HiHeart, HiOutlinePlusSm } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 import usePlayListModal from "@/hooks/usePlayListModal";
+import PlaylistItem from "./PlayListItem";
 import Link from "next/link";
 import useIsOpenSidebar from "@/hooks/useIsOpenSidebar";
 //

@@ -5,7 +5,7 @@ interface MediaItemProps {
   data: Playlist;
   onClick: (id: string) => void;
 }
-export default function MediaItem({ data, onClick }: MediaItemProps) {
+export default function PlaylistItem({ data, onClick }: MediaItemProps) {
   return (
     <div
       onClick={() => onClick(data.id)}
