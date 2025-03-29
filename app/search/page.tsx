@@ -7,10 +7,8 @@ import Header from "../components/Header";
 import SearchContent from "./components/SearchContent";
 import Footer from "../components/Footer";
 
-interface SearchProps {
-  searchParams: {
-    title: string;
-  };
+interface PageProps {
+  params: Record<string, string>; // Ensures `params` is always a string key-value pair
 }
 export const revalidate = 0;
 

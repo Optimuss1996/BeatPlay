@@ -1,4 +1,3 @@
-import Header from "@/app/components/Header";
 import Information from "../components/Information";
 import Tracks from "../components/Tracks";
 import {
@@ -8,9 +7,7 @@ import {
 import { AlbumType } from "@/types";
 
 interface PageProps {
-  params: {
-    id: string;
-  };
+  params: Record<string, string>; // Ensures `params` is always a string key-value pair
 }
 
 export default async function PlaylistPage({ params }: PageProps) {
