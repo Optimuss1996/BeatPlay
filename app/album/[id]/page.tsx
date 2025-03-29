@@ -7,7 +7,7 @@ import {
 import { AlbumType } from "@/types";
 
 interface PageProps {
-  params: Record<string, string>; // Ensures `params` is always a string key-value pair
+  params: { id: string };
 }
 
 export default async function PlaylistPage({ params }: PageProps) {

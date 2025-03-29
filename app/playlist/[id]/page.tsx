@@ -4,7 +4,7 @@ import Information from "../components/Information";
 import Tracks from "../components/Tracks";
 
 interface PageProps {
-  params: Record<string, string>; // Ensures `params` is always a string key-value pair
+  params: { id: string };
 }
 
 export default async function PlaylistPage({ params }: PageProps) {

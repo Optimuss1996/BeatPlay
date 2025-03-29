@@ -1,5 +1,5 @@
 interface PageProps {
-  params: Record<string, string>; // Ensures `params` is always a string key-value pair
+  params: { id: string }; // ✅ Explicitly defining `params` structure
 }
 export const revalidate = 0;
 
