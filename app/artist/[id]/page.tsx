@@ -11,9 +11,13 @@ import Tracks from "../components/Tracks";
 import Footer from "@/app/components/Footer";
 
 export const revalidate = 0;
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const artistId = Number(params.id);
+export default async function Page({ params }: PageProps) {
+  const { id } = await params;
+  const artistId = id;
 
   const [artistInformation, artistAlbums, artistTopTracks] = await Promise.all([
     getArtistInformation(artistId),

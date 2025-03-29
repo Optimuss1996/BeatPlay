@@ -1,4 +1,3 @@
-import useLoadImage from "@/hooks/useLoadImage";
 import { Playlist } from "@/types";
 import Image from "next/image";
 
@@ -7,7 +6,6 @@ interface MediaItemProps {
   onClick: (id: string) => void;
 }
 export default function MediaItem({ data, onClick }: MediaItemProps) {
-  const imageUrl = useLoadImage(data);
   return (
     <div
       onClick={() => onClick(data.id)}
@@ -16,7 +14,7 @@ export default function MediaItem({ data, onClick }: MediaItemProps) {
       <div className=" relative rounded-md min-h-[48px] min-w-[48px] overflow-hidden">
         {" "}
         <Image
-          src={imageUrl || "../../../public/Default-icon-music.png"}
+          src={data.image_url || "../../../public/Default-icon-music.png"}
           fill
           alt="Music"
           className=" object-cover"

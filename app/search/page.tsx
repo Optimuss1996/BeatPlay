@@ -7,16 +7,19 @@ import Header from "../components/Header";
 import SearchContent from "./components/SearchContent";
 import Footer from "../components/Footer";
 
-interface PageProps {
-  params: Record<string, string>; // Ensures `params` is always a string key-value pair
+interface SearchProps {
+  searchParams: Promise<{ title: string }>;
 }
+
 export const revalidate = 0;
 
 export default async function Page({ searchParams }: SearchProps) {
+  const { title } = await searchParams;
+
   const [artistBySearch, albumBySearch, tracksBySearch] = await Promise.all([
-    getArtistBySearch(searchParams.title),
-    getAlbumBySearch(searchParams.title),
-    getTracksBySearch(searchParams.title, 20),
+    getArtistBySearch(title),
+    getAlbumBySearch(title),
+    getTracksBySearch(title, 20),
   ]);
 
   console.log(artistBySearch, albumBySearch, tracksBySearch);

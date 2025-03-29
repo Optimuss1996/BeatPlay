@@ -1,10 +1,11 @@
 interface PageProps {
-  params: { id: string }; // ✅ Explicitly defining `params` structure
+  params: Promise<{ id: string }>;
 }
 export const revalidate = 0;
 
 export default async function Page({ params }: PageProps) {
-  const artistId = params.id;
+  const { id } = await params;
+  const artistId = id;
 
   return (
     <div className=" bg-white dark:bg-slate-800/30 rounded-lg w-full h-full overflow-hidden overflow-y-auto">

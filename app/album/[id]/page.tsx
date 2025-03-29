@@ -7,11 +7,12 @@ import {
 import { AlbumType } from "@/types";
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function PlaylistPage({ params }: PageProps) {
-  const numberId = Number(params.id);
+  const { id } = await params;
+  const numberId = Number(id);
   const [albumInfo, albumTracks] = await Promise.all([
     getAlbumDeezerApi(numberId),
     getAlbumTracksDezzerApi(numberId),

@@ -4,13 +4,14 @@ import Information from "../components/Information";
 import Tracks from "../components/Tracks";
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function PlaylistPage({ params }: PageProps) {
+  const { id } = await params;
   const [playlist, playlistTrack] = await Promise.all([
-    getPlaylistById(params.id),
-    getTracksByPlaylistId(params.id),
+    getPlaylistById(id),
+    getTracksByPlaylistId(id),
   ]);
 
   console.log("playlist : ", playlist, "playlistTrack :", playlistTrack);
