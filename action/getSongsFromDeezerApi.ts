@@ -172,7 +172,6 @@ export async function getArtistInformation(
     return {
       id: data.id,
       name: data.name,
-      picture_small: data.picture_small,
       picture_medium: data.picture_medium,
       picture_big: data.picture_big,
       number_album: data.nb_album,
