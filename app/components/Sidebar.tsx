@@ -67,12 +67,10 @@ export default function Sidebar({ children, playlists }: SidebarProps) {
         </Box>
       </div>
 
-      <main className=" flex-1 h-full overflow-y-auto p-1 ">
-        <div>
-          <Header />
-          {children}
-          <Footer />
-        </div>
+      <main className=" flex-1 h-full overflow-y-auto p-1 flex flex-col">
+        <Header />
+        <div className="  h-screen">{children}</div>
+        <Footer />
       </main>
     </div>
   );

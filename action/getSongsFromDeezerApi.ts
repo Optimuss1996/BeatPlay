@@ -183,3 +183,39 @@ export async function getArtistInformation(
     return null;
   }
 }
+export async function getDeezerTrackById(
+  trackId: number
+): Promise<SongDezzer | null> {
+  try {
+    const res = await fetch(`https://api.deezer.com/track/${trackId}`);
+
+    if (!res.ok) {
+      console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
+      return null;
+    }
+
+    const data = await res.json();
+
+    if (data.error) {
+      console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
+      return null;
+    }
+
+    return {
+      song_id: data.id,
+      song_title: data.title,
+      song_titleShort: data.title_short,
+      song_url: data.preview,
+      duration: data.duration,
+      artist: {
+        name: data.artist.name,
+        id: data.artist.id,
+        picture: data.artist.picture,
+        picture_medium: data.artist.picture_medium,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching trending tracks:", error);
+    return null;
+  }
+}

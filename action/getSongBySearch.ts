@@ -26,8 +26,8 @@ export async function getArtistBySearch(
     return data.data.map((artist: any) => ({
       id: artist.id,
       name: artist.name,
-      picture_small: artist.picture_small,
       picture_medium: artist.picture_medium,
+      picture_big: artist.picture_big,
     }));
   } catch (error) {
     console.error("Error fetching artist search:", error);

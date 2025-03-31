@@ -61,7 +61,6 @@ export type SongDezzer = {
 export type Artist = {
   id: number | string;
   name: string;
-  picture_small: string;
   picture_medium: string;
   picture_big: string;
   number_album?: number;

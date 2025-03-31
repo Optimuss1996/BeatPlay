@@ -39,7 +39,7 @@ export default function SearchInput() {
         placeholder="artists, tracks, albums..."
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className=" text-lg pl-12 bg-purple-200"
+        className=" text-lg pl-12 bg-purple-200/50"
       />
     </div>
   );

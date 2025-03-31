@@ -12,7 +12,7 @@ interface TracksBySearchProps {
 }
 
 export default function TracksBySearch({ tracks }: TracksBySearchProps) {
-  // const onPlay = useOnPlay(tracks);
+  const onPlay = useOnPlay(tracks);
 
   if (tracks.length === 0) {
     return null;
@@ -37,12 +37,13 @@ export default function TracksBySearch({ tracks }: TracksBySearchProps) {
       <main className=" w-11/12 mx-auto flex flex-col gap-y-3    py-2 dark:border-b-gray-500 ">
         {tracks.map((song) => (
           <div
+            onClick={() => onPlay(song.song_id)}
             key={song.song_id}
             className="w-full  flex justify-between items-center gap-x-3 px-3 py-3 cursor-pointer hover:bg-purple-200 dark:hover:bg-slate-800 transition  rounded-md"
           >
             <div className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white">
               <FaMusic size={20} className="text-purple-600 rounded-md" />
-              <p className=" md:text-sm text-xs font-semibold overflow-hidden text-ellipsis">
+              <p className=" md:text-sm text-xs font-semibold truncate">
                 {song.song_titleShort}
               </p>
             </div>

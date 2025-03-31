@@ -23,6 +23,7 @@ export default function AddToPlaylist({ track }: AddToPlaylistProps) {
       const { data, error } = await supabaseClient
         .from("playlists")
         .select("*")
+        .eq("user_id", user.id)
         .order("created_at", { ascending: false });
 
       if (error) {

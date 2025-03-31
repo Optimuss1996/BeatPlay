@@ -5,13 +5,13 @@ import usePlayer from "./usePlayer";
 
 const useOnPlay = (songs: SongDezzer[]) => {
   const { user } = useUser();
-  const authModal = useAuthModal();
+  // const authModal = useAuthModal();
   const player = usePlayer();
 
   const onPlay = (id: number) => {
-    if (!user) {
-      return authModal.onOpen();
-    }
+    // if (!user) {
+    //   return authModal.onOpen();
+    // }
 
     player.setId(id);
     if (player.ids.length === 0) {

@@ -11,6 +11,7 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useUser } from "@/hooks/useUser";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { ScaleLoader } from "react-spinners";
 
 export default function PlayListModal() {
   const { onClose, isOpen } = usePlayListModal();
@@ -209,7 +210,11 @@ export default function PlayListModal() {
           type="submit"
           className="bg-purple-400 mt-4 hover:opacity-65 hover:bg-purple-400"
         >
-          Create Playlist
+          {isLoading ? (
+            <ScaleLoader width={2} height={15} />
+          ) : (
+            "Create Playlist"
+          )}
         </Button>
       </form>
     </Modal>

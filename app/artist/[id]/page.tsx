@@ -30,13 +30,11 @@ export default async function Page({ params }: PageProps) {
   return (
     <>
       <div className=" bg-white dark:bg-slate-800/30 rounded-lg w-full h-full overflow-hidden overflow-y-auto">
-        <Header />
         <div className=" flex flex-col gap-x-12 md:gap-x-28 justify-center items-center"></div>
         <Information artistInfo={artistInformation} />
         <Album artistAlbums={artistAlbums} />
         <Tracks artistTopTracks={artistTopTracks} />
       </div>
-      <Footer />
     </>
   );
 }

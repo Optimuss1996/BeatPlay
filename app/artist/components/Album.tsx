@@ -26,7 +26,7 @@ export default function Album({ artistAlbums }: AlbumProps) {
                 />
               </div>
 
-              <p className=" h-1/6 text-sm text-black  dark:text-white px-1 ">
+              <p className=" h-1/6 text-sm text-black  dark:text-white px-1  truncate">
                 {album.title}
               </p>
             </div>

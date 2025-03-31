@@ -18,7 +18,7 @@ export default async function PlaylistPage({ params }: PageProps) {
     getAlbumTracksDezzerApi(numberId),
   ]);
 
-  console.log("albumInfo : ", albumInfo, "albumTracks :", albumTracks);
+  // console.log("albumInfo : ", albumInfo, "albumTracks :", albumTracks);
 
   return (
     <div className=" bg-white dark:bg-slate-800/30 rounded-lg w-full h-full overflow-hidden overflow-y-auto">

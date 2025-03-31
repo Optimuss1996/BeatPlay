@@ -9,6 +9,8 @@ import ToasterProvider from "@/providers/ToasterProvider";
 import Player from "./components/Player";
 import { ThemeProvider } from "next-themes";
 import { getPlaylists } from "@/action/getPlaylists";
+import { Suspense } from "react";
+import { ScaleLoader } from "react-spinners";
 
 const inter = Figtree({ subsets: ["latin"] });
 
@@ -23,7 +25,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const userPlaylists = await getPlaylists();
-  // console.log(userPlaylists);
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body className={`${inter.className} `}>
@@ -32,8 +33,10 @@ export default async function RootLayout({
           <SupabaseProvider>
             <UserProvider>
               <ModalProvider />
-              <Sidebar playlists={userPlaylists}>{children}</Sidebar>
-              {/* <Player /> */}
+              <Suspense fallback={<ScaleLoader />}>
+                <Sidebar playlists={userPlaylists}>{children}</Sidebar>
+              </Suspense>
+              <Player />
             </UserProvider>
           </SupabaseProvider>
         </ThemeProvider>
