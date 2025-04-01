@@ -6,11 +6,13 @@ import { MdOutlineWatchLater } from "react-icons/md";
 import LikeButton from "@/app/album/components/LikedButton";
 import AddToPlaylist from "@/app/album/components/AddToPlaylist";
 import { formatDuration } from "@/utilities/commonFunction";
+import useOnPlay from "@/hooks/useOnPlay";
 interface AlbumTracksProps {
   albumTracks: SongDezzer[];
 }
 
 export default function Tracks({ albumTracks }: AlbumTracksProps) {
+  const onPlay = useOnPlay(albumTracks);
   console.log("album tracks", albumTracks);
 
   if (albumTracks.length === 0) {
@@ -40,6 +42,7 @@ export default function Tracks({ albumTracks }: AlbumTracksProps) {
       <main className=" w-11/12 mx-auto flex flex-col gap-y-3    py-2 dark:border-b-gray-500 ">
         {albumTracks.map((song) => (
           <div
+            onClick={() => onPlay(song.song_id)}
             key={song.song_id}
             className="w-full  flex justify-between items-center gap-x-3 px-3 py-3 cursor-pointer hover:bg-purple-200 dark:hover:bg-slate-800 transition  rounded-md"
           >

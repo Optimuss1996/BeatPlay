@@ -28,17 +28,15 @@ export default function Sidebar({ children, playlists }: SidebarProps) {
   const isOpenSidebar = useIsOpenSidebar();
 
   return (
-    <div
-      className={twMerge(
-        `flex mx-auto h-screen max-w-[1536px] `,
-        activeId && "h-[calc(100%-80px)]"
-      )}
-    >
+    <div className={twMerge(`flex mx-auto h-screen max-w-[1536px] `)}>
       <div
-        className={`flex flex-col gap-y-2 bg-white dark:bg-slate-950 z-40 fixed top-0 left-0 h-full w-[240px]  lg:w-[280px] p-2 shadow-lg transition-transform duration-500 ease-in-out
-          ${
-            isOpenSidebar.isOpen ? "translate-x-0" : "-translate-x-full"
-          } md:translate-x-0 md:relative `}
+        className={twMerge(
+          `flex flex-col gap-y-2 bg-white dark:bg-slate-950 z-40 fixed top-0 left-0 h-screen 
+          w-[240px] lg:w-[280px] p-2 shadow-lg transition-transform duration-500 ease-in-out
+      ${
+        isOpenSidebar.isOpen ? "translate-x-0" : "-translate-x-full"
+      } md:translate-x-0 md:relative`
+        )}
       >
         <Box>
           <div className=" flex justify-between md:justify-center items-center my-3 px-3">
@@ -69,7 +67,7 @@ export default function Sidebar({ children, playlists }: SidebarProps) {
 
       <main className=" flex-1 h-full overflow-y-auto p-1 flex flex-col">
         <Header />
-        <div className="  h-screen">{children}</div>
+        <div className="  h-full ">{children}</div>
         <Footer />
       </main>
     </div>

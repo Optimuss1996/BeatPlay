@@ -58,7 +58,7 @@ export default function Header({ className }: HeaderPropType) {
                 onClick={handleLogOut}
                 className="bg-purple-700 text-white text-base  py-2 px-4 md:px-6 "
               >
-                LogeOut
+                LogOut
               </Button>
 
               <Button

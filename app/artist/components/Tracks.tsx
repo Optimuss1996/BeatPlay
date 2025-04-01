@@ -6,11 +6,14 @@ import { MdOutlineWatchLater } from "react-icons/md";
 import { formatDuration } from "@/utilities/commonFunction";
 import LikeButton from "@/app/artist/components/LikeButton";
 import AddToPlaylist from "@/app/artist/components/AddToPlaylist";
+import useOnPlay from "@/hooks/useOnPlay";
 interface AlbumProps {
   artistTopTracks: SongDezzer[];
 }
 
 export default function Tracks({ artistTopTracks }: AlbumProps) {
+  const onPlay = useOnPlay(artistTopTracks);
+
   if (artistTopTracks.length === 0) {
     return (
       <div className="flex justify-center items-center px-3 py-2  text-black dark:text-white md:text-xl mt-32 md:mt-56  ">
@@ -38,6 +41,7 @@ export default function Tracks({ artistTopTracks }: AlbumProps) {
       <main className=" w-11/12 mx-auto flex flex-col gap-y-3    py-2 dark:border-b-gray-500 ">
         {artistTopTracks.map((song) => (
           <div
+            onClick={() => onPlay(song.song_id)}
             key={song.song_id}
             className="w-full  flex justify-between items-center gap-x-3 px-3 py-3 cursor-pointer hover:bg-purple-200 dark:hover:bg-slate-800 transition  rounded-md"
           >

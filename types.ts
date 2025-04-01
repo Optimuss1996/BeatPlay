@@ -83,3 +83,33 @@ export type AlbumType = {
     picture_big: string;
   };
 };
+export type Tracks = {
+  user_id?: string; // Optional (Not in SongDezzer)
+  song_id: number;
+  song_title: string;
+  song_titleShort?: string; // Only in SongDezzer
+  song_url: string;
+  duration: number;
+  playlist_id?: string; // Only in PlaylistTracks
+  song_artist?: string; // In PlaylistTracks & likedTracks
+  image_url?: string; // In PlaylistTracks & likedTracks
+
+  // Artist details (only from SongDezzer)
+  artist?: {
+    name: string;
+    id?: string;
+    picture?: string;
+    picture_medium?: string;
+  };
+
+  // Album details (only from SongDezzer)
+  album?: {
+    id: string;
+    title: string;
+    cover: string;
+    cover_medium?: string;
+    cover_big?: string;
+  };
+
+  type: "playlist" | "liked" | "deezer"; // ✅ Identifies the track source
+};

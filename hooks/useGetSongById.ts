@@ -47,7 +47,7 @@ export function useGetDeezerTrackById(id?: number) {
     async function getTrack() {
       setIsLoading(true);
       try {
-        const res = await fetch(`https://api.deezer.com/track/${id}`);
+        const res = await fetch(`/api/getDeezerTrack?id=${id}`);
 
         if (!res.ok) {
           console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
