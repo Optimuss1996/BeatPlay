@@ -7,11 +7,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import { SongDezzer } from "@/types";
+import { type Tracks } from "@/types";
 import { IoMdPlay } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 interface SongsProps {
-  songs: SongDezzer[];
+  songs: Tracks[];
 }
 
 export default function TrendMusic({ songs }: SongsProps) {

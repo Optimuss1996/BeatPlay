@@ -1,6 +1,6 @@
 "use client";
 
-import { SongDezzer, Tracks } from "@/types";
+import { type Tracks } from "@/types";
 import { FaMusic } from "react-icons/fa";
 import { MdOutlineWatchLater } from "react-icons/md";
 import { formatDuration } from "@/utilities/commonFunction";

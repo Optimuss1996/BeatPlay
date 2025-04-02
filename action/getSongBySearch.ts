@@ -1,4 +1,4 @@
-import { AlbumType, Artist, SongDezzer } from "@/types";
+import { AlbumType, Artist, Tracks } from "@/types";
 //get list of artist by searching in input
 export async function getArtistBySearch(
   searchQuery: string
@@ -73,7 +73,7 @@ export async function getAlbumBySearch(
 export async function getTracksBySearch(
   searchQuery: string,
   limit: number
-): Promise<SongDezzer[]> {
+): Promise<Tracks[]> {
   try {
     const res = await fetch(
       `https://api.deezer.com/search/track?q=${searchQuery}&limit=${limit}&order=RANKING`,

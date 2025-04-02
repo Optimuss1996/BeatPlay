@@ -1,4 +1,4 @@
-import { AlbumType, SongDezzer } from "@/types";
+import { AlbumType, Tracks } from "@/types";
 
 export async function getAlbumDeezerApi(id: number): Promise<AlbumType | null> {
   try {
@@ -39,9 +39,7 @@ export async function getAlbumDeezerApi(id: number): Promise<AlbumType | null> {
 //
 //
 // get Album Tracks as a separated from DezzerApi
-export async function getAlbumTracksDezzerApi(
-  id: number
-): Promise<SongDezzer[]> {
+export async function getAlbumTracksDezzerApi(id: number): Promise<Tracks[]> {
   try {
     const res = await fetch(`https://api.deezer.com/album/${id}`, {
       next: { revalidate: 604800 },

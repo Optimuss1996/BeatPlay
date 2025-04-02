@@ -1,13 +1,12 @@
 "use client";
 
-import { PlaylistTracks, SongDezzer } from "@/types";
-import { FaMusic, FaPlus } from "react-icons/fa";
+import { type Tracks } from "@/types";
+import { FaMusic } from "react-icons/fa";
 import { MdOutlineWatchLater } from "react-icons/md";
-import { AiOutlineHeart } from "react-icons/ai";
 import LikeButton from "@/app/liked/components/LikeButton";
 import AddToPlaylist from "./AddToPlaylist";
 interface playlistTracksProps {
-  playlistTracks: PlaylistTracks[];
+  playlistTracks: Tracks[];
 }
 
 export default function Tracks({ playlistTracks }: playlistTracksProps) {

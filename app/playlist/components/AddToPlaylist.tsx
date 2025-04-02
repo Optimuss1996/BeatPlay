@@ -1,7 +1,7 @@
 "use client";
 
 import { useUser } from "@/hooks/useUser";
-import { likedTracks, Playlist, PlaylistTracks, SongDezzer } from "@/types";
+import { Playlist, type Tracks } from "@/types";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import { FaPlus } from "react-icons/fa";
 
 interface AddToPlaylistProps {
-  track: PlaylistTracks;
+  track: Tracks;
 }
 
 export default function AddToPlaylist({ track }: AddToPlaylistProps) {

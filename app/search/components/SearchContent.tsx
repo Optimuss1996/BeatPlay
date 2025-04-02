@@ -2,14 +2,14 @@
 
 import LikeButton from "@/app/liked/components/LikeButton";
 import useOnPlay from "@/hooks/useOnPlay";
-import { AlbumType, Artist, SongDezzer } from "@/types";
+import { AlbumType, Artist, type Tracks } from "@/types";
 import ArtistSearch from "@/app/search/components/ArtistSearch";
 import AlbumsSearch from "./AlbumsSearch";
 import TracksBySearch from "./TracksBySearch";
 interface SearchContentProps {
   artists: Artist[];
   albums: AlbumType[];
-  tracks: SongDezzer[];
+  tracks: Tracks[];
 }
 
 export default function SearchContent({

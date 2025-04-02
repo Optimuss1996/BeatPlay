@@ -1,6 +1,6 @@
-import { AlbumType, Artist, SongDezzer } from "@/types";
+import { AlbumType, Artist, Tracks } from "@/types";
 
-export async function getTrendingTracks(number: number): Promise<SongDezzer[]> {
+export async function getTrendingTracks(number: number): Promise<Tracks[]> {
   try {
     const res = await fetch(
       `https://api.deezer.com/chart/0/tracks?limit=${number}`,
@@ -79,7 +79,7 @@ export async function getPopularArtist(number: number): Promise<Artist[]> {
 export async function getArtistTopTracks(
   artistId: number | string,
   limit: number
-): Promise<SongDezzer[]> {
+): Promise<Tracks[]> {
   try {
     const res = await fetch(
       `https://api.deezer.com/artist/${artistId}/top?limit=${limit}`,
@@ -184,7 +184,7 @@ export async function getArtistInformation(
 }
 export async function getDeezerTrackById(
   trackId: number
-): Promise<SongDezzer | null> {
+): Promise<Tracks | null> {
   try {
     const res = await fetch(`https://api.deezer.com/track/${trackId}`);
 
@@ -212,6 +212,7 @@ export async function getDeezerTrackById(
         picture: data.artist.picture,
         picture_medium: data.artist.picture_medium,
       },
+      type: "deezer",
     };
   } catch (error) {
     console.error("Error fetching trending tracks:", error);
