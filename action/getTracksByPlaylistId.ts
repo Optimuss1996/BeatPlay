@@ -6,7 +6,7 @@ async function getTracksByPlaylistId(
   playlistId: string
 ): Promise<PlaylistTracks[]> {
   const supabase = createServerComponentClient({
-    cookies: cookies,
+    cookies: () => cookies(),
   });
 
   const { data, error } = await supabase

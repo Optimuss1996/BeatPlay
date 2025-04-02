@@ -1,10 +1,11 @@
+"use client";
+
 import { TbPlaylist } from "react-icons/tb";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useUser } from "@/hooks/useUser";
 import useAuthModal from "@/hooks/useAuthModal";
 import useUploadModal from "@/hooks/useUploadModal";
 import { Playlist } from "@/types";
-import useOnPlay from "@/hooks/useOnPlay";
 import { HiHeart, HiOutlinePlusSm } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 import usePlayListModal from "@/hooks/usePlayListModal";
@@ -24,7 +25,6 @@ export default function Library({ playlists }: PropsLibrary) {
 
   const uploadModal = useUploadModal();
   const route = useRouter();
-  // const onPlay = useOnPlay(songs);
 
   function handleClick() {
     if (!user) {

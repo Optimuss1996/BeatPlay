@@ -1,12 +1,10 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { HiHome } from "react-icons/hi";
 import Box from "./Box";
 import SidebarItem from "./SidebarItem";
 import Library from "./Library";
 import { Playlist } from "@/types";
-import usePlayer from "@/hooks/usePlayer";
 import { twMerge } from "tailwind-merge";
 import Logo from "./Logo";
 import { useUser } from "@/hooks/useUser";
@@ -23,7 +21,6 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ children, playlists }: SidebarProps) {
-  const { activeId } = usePlayer();
   const { user } = useUser();
   const isOpenSidebar = useIsOpenSidebar();
 
@@ -65,9 +62,9 @@ export default function Sidebar({ children, playlists }: SidebarProps) {
         </Box>
       </div>
 
-      <main className=" flex-1 h-full overflow-y-auto p-1 flex flex-col">
+      <main className="flex-1  flex flex-col">
         <Header />
-        <div className="  h-full ">{children}</div>
+        <div className="">{children}</div>
         <Footer />
       </main>
     </div>

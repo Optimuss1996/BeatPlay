@@ -1,13 +1,12 @@
 "use client";
 
-import { useGetSongDeezerById } from "@/hooks/useGetSongById";
+import { useGetPlaylistSongById } from "@/hooks/useGetSongById";
 import usePlayer from "@/hooks/usePlayer";
-import PlayerContent from "./PlayerContent";
+import PlayerContent from "@/app/components/PlayerContent";
 
 export default function Player() {
   const { activeId } = usePlayer();
-  // const { song } = useGetSongDeezerById(activeId);
-  const { song } = useGetSongDeezerById(activeId);
+  const { song } = useGetPlaylistSongById(activeId);
   console.log("🚨track by id :", song);
   if (!song || !activeId) {
     return null;

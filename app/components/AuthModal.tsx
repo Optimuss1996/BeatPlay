@@ -7,7 +7,7 @@ import {
   useSupabaseClient,
 } from "@supabase/auth-helpers-react";
 import { Auth } from "@supabase/auth-ui-react";
-import { ThemeMinimal, ThemeSupa } from "@supabase/auth-ui-shared";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useEffect } from "react";
 import useAuthModal from "@/hooks/useAuthModal";
 

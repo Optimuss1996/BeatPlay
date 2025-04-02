@@ -8,22 +8,6 @@ import { Autoplay, Pagination } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
 
-// {/* <picture>
-// {/* Image for screens smaller than 768px */}
-// <source
-//   srcSet="/small-image.jpg"
-//   media="(max-width: 767px)"
-// />
-// {/* Default image for larger screens */}
-// <Image
-//   src="/large-image.jpg"
-//   alt="Responsive Image"
-//   width={800}
-//   height={600}
-//   priority
-// />
-// </picture> */}
-
 export default function BannerSlider() {
   return (
     <div className="w-full px-2 md:px-1 py-1 mx-auto z-0 mb-8 mt-4 md:mb-10 cursor-pointer">
@@ -42,7 +26,7 @@ export default function BannerSlider() {
         <SwiperSlide>
           <Link href={"/artist/4050205"}>
             <div className=" relative w-full h-[300px] md:h-[350px]">
-              <picture>
+              <picture className=" relative">
                 <source
                   srcSet="/slider-images/weekend-mobile.jpg"
                   media="(max-width: 950px)"
@@ -51,6 +35,7 @@ export default function BannerSlider() {
                   src={"/slider-images/Weekend2400.jpg"}
                   alt="Weekend"
                   fill
+                  sizes="full"
                   className=" object-cover"
                 />
               </picture>
@@ -61,7 +46,7 @@ export default function BannerSlider() {
         <SwiperSlide>
           <Link href={"/artist/12246"}>
             <div className=" relative w-full h-[300px] md:h-[350px]">
-              <picture>
+              <picture className=" relative">
                 <source
                   srcSet="/slider-images/taylor-mobile.jpg"
                   media="(max-width: 950px)"
@@ -70,6 +55,7 @@ export default function BannerSlider() {
                   src={"/slider-images/Taylor-lg.jpg"}
                   alt="Taylor"
                   fill
+                  sizes="full"
                   className=" object-cover"
                 />
               </picture>
@@ -80,7 +66,7 @@ export default function BannerSlider() {
         <SwiperSlide>
           <Link href={"/artist/1562681"}>
             <div className=" relative w-full h-[300px] md:h-[350px]">
-              <picture>
+              <picture className=" relative">
                 <source
                   srcSet="/slider-images/ariana-mobile.jpg"
                   media="(max-width: 950px)"
@@ -89,6 +75,7 @@ export default function BannerSlider() {
                   src={"/slider-images/Ariana-lg.jpg"}
                   alt="Ariana"
                   fill
+                  sizes="full"
                   className=" object-cover"
                 />
               </picture>

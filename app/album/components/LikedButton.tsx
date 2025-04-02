@@ -2,7 +2,7 @@
 
 import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
-import { SongDezzer } from "@/types";
+import { SongDezzer, Tracks } from "@/types";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 interface LikeButton {
-  track: SongDezzer;
+  track: Tracks;
 }
 
 export default function LikeButton({ track }: LikeButton) {

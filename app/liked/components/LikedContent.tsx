@@ -4,7 +4,7 @@ import AddToPlaylist from "@/app/liked/components/AddToPlaylist";
 import LikeButton from "@/app/liked/components/LikeButton";
 import useOnPlay from "@/hooks/useOnPlay";
 import { useUser } from "@/hooks/useUser";
-import { likedTracks, SongDezzer } from "@/types";
+import { likedTracks, SongDezzer, Tracks } from "@/types";
 import { formatDuration } from "@/utilities/commonFunction";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -12,14 +12,14 @@ import { FaMusic } from "react-icons/fa";
 import { MdOutlineWatchLater } from "react-icons/md";
 
 interface LikedContentProps {
-  songs: likedTracks[];
+  songs: Tracks[];
 }
 
 export default function LikedContent({ songs }: LikedContentProps) {
   const router = useRouter();
   const { user, isLoading } = useUser();
+  const onPlay = useOnPlay(songs);
 
-  // const onPlay = useOnPlay(songs);
   useEffect(() => {
     if (!isLoading && !user) {
       router.replace("/");
@@ -49,7 +49,7 @@ export default function LikedContent({ songs }: LikedContentProps) {
       <main className=" w-11/12 mx-auto flex flex-col gap-y-3    py-2 dark:border-b-gray-500 ">
         {songs.map((song) => (
           <div
-            // onClick={() => onPlay(song.song_id)}
+            onClick={() => onPlay(song.song_id)}
             key={song.song_id}
             className="w-full  flex justify-between items-center gap-x-3 px-3 py-3 cursor-pointer hover:bg-purple-200 dark:hover:bg-slate-800 transition  rounded-md"
           >

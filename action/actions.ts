@@ -1,25 +1,25 @@
-"use server";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+// "use server";
+// import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+// import { cookies } from "next/headers";
 
-interface FormDataType {
-  image: string;
-  title: string;
-  Singer: string;
-  song: string;
-}
+// interface FormDataType {
+//   image: string;
+//   title: string;
+//   Singer: string;
+//   song: string;
+// }
 
-export async function uploadSong(formData: FormData) {
-  const supabase = createServerComponentClient({
-    cookies: cookies,
-  });
+// export async function uploadSong(formData: FormData) {
+//   const supabase = createServerComponentClient({
+//     cookies: cookies,
+//   });
 
-  console.log(formData);
+//   console.log(formData);
 
-  const { data: sessionData, error: sessionError } =
-    await supabase.auth.getSession();
-  console.log(sessionData);
-  if (sessionError) {
-    console.log(sessionError.message);
-  }
-}
+//   const { data: sessionData, error: sessionError } =
+//     await supabase.auth.getSession();
+//   console.log(sessionData);
+//   if (sessionError) {
+//     console.log(sessionError.message);
+//   }
+// }

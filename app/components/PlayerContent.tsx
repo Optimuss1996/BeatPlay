@@ -1,13 +1,9 @@
 "use client";
 
-import { SongDezzer } from "@/types";
+import { Tracks } from "@/types";
 import LikeButton from "@/app/liked/components/LikeButton";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
-import {
-  AiFillStepBackward,
-  AiFillStepForward,
-  AiOutlineClose,
-} from "react-icons/ai";
+import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
 import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
 import Slider from "./Slider";
 import ProgressBar from "@/app/components/ProgressBarTime"; // Import ProgressBar
@@ -18,7 +14,7 @@ import { FaMusic } from "react-icons/fa";
 import AddToPlaylist from "../liked/components/AddToPlaylist";
 
 interface PlayerContentProps {
-  song: SongDezzer;
+  song: Tracks;
 }
 
 export default function PlayerContent({ song }: PlayerContentProps) {

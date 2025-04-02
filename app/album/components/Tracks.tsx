@@ -1,6 +1,6 @@
 "use client";
 
-import { SongDezzer } from "@/types";
+import { type Tracks } from "@/types";
 import { FaMusic } from "react-icons/fa";
 import { MdOutlineWatchLater } from "react-icons/md";
 import LikeButton from "@/app/album/components/LikedButton";
@@ -8,7 +8,7 @@ import AddToPlaylist from "@/app/album/components/AddToPlaylist";
 import { formatDuration } from "@/utilities/commonFunction";
 import useOnPlay from "@/hooks/useOnPlay";
 interface AlbumTracksProps {
-  albumTracks: SongDezzer[];
+  albumTracks: Tracks[];
 }
 
 export default function Tracks({ albumTracks }: AlbumTracksProps) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { SongDezzer } from "@/types";
+import { SongDezzer, Tracks } from "@/types";
 import { FaMusic } from "react-icons/fa";
 import { MdOutlineWatchLater } from "react-icons/md";
 import { formatDuration } from "@/utilities/commonFunction";
@@ -8,7 +8,7 @@ import LikeButton from "@/app/search/components/LikeButton";
 import AddToPlaylist from "./AddToPlaylist";
 import useOnPlay from "@/hooks/useOnPlay";
 interface TracksBySearchProps {
-  tracks: SongDezzer[];
+  tracks: Tracks[];
 }
 
 export default function TracksBySearch({ tracks }: TracksBySearchProps) {

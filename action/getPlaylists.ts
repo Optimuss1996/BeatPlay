@@ -4,13 +4,13 @@ import { cookies } from "next/headers";
 
 export async function getPlaylists(): Promise<Playlist[]> {
   const supabase = createServerComponentClient({
-    cookies: cookies,
+    cookies: () => cookies(),
   });
 
   const { data: sessionData, error: sessionError } =
-    await supabase.auth.getSession();
+    await supabase.auth.getUser();
 
-  if (sessionError || !sessionData.session) {
+  if (sessionError || !sessionData.user.id) {
     console.log(
       "Error fetching session or no active session:",
       sessionError?.message
@@ -21,7 +21,7 @@ export async function getPlaylists(): Promise<Playlist[]> {
   const { data, error } = await supabase
     .from("playlists")
     .select("*")
-    .eq("user_id", sessionData.session.user.id)
+    .eq("user_id", sessionData.user.id)
     .order("created_at", { ascending: false });
 
   if (error) {
