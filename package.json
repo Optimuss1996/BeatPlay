@@ -27,6 +27,7 @@
     "eslint-config-next": "15.2.1",
     "howler": "^2.2.4",
     "next": "15.2.1",
+    "next-pwa": "^5.6.0",
     "next-themes": "^0.4.4",
     "postcss": "8.4.49",
     "query-string": "^9.1.1",
@@ -55,7 +56,7 @@
     "@types/react-dom": "19.0.4"
   },
   "optionalDependencies": {
-    "@next/swc-win32-x64-msvc": "^15.2.4",
-    "@next/swc-linux-x64-gnu": "^15.2.4"
+    "@next/swc-linux-x64-gnu": "^15.2.4",
+    "@next/swc-win32-x64-msvc": "^15.2.4"
   }
 }

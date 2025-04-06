@@ -3,9 +3,7 @@ import {
   getArtistBySearch,
   getTracksBySearch,
 } from "@/action/getSongBySearch";
-import Header from "../components/Header";
 import SearchContent from "./components/SearchContent";
-import Footer from "../components/Footer";
 
 interface SearchProps {
   searchParams: Promise<{ title: string }>;

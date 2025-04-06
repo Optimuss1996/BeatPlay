@@ -1,21 +1,21 @@
 "use client";
 
-import AddToPlaylist from "@/app/liked/components/AddToPlaylist";
-import LikeButton from "@/app/liked/components/LikeButton";
+import AddToPlaylist from "@/app/components/AddToPlaylist";
+import LikeButton from "@/app/components/LikeButton";
 import useOnPlay from "@/hooks/useOnPlay";
 import { useUser } from "@/hooks/useUser";
-import { likedTracks, SongDezzer, Tracks } from "@/types";
+import { type Tracks } from "@/types";
 import { formatDuration } from "@/utilities/commonFunction";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FaMusic } from "react-icons/fa";
 import { MdOutlineWatchLater } from "react-icons/md";
 
-interface LikedContentProps {
+interface TracksProps {
   songs: Tracks[];
 }
 
-export default function LikedContent({ songs }: LikedContentProps) {
+export default function Tracks({ songs }: TracksProps) {
   const router = useRouter();
   const { user, isLoading } = useUser();
   const onPlay = useOnPlay(songs);
@@ -49,11 +49,13 @@ export default function LikedContent({ songs }: LikedContentProps) {
       <main className=" w-11/12 mx-auto flex flex-col gap-y-3    py-2 dark:border-b-gray-500 ">
         {songs.map((song) => (
           <div
-            onClick={() => onPlay(song.song_id)}
             key={song.song_id}
             className="w-full  flex justify-between items-center gap-x-3 px-3 py-3 cursor-pointer hover:bg-purple-200 dark:hover:bg-slate-800 transition  rounded-md"
           >
-            <div className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white">
+            <div
+              onClick={() => onPlay(song.song_id)}
+              className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white"
+            >
               <FaMusic size={20} className="text-purple-600 rounded-md" />
               <p className=" md:text-sm text-xs font-semibold truncate">
                 {song.song_title}
@@ -74,13 +76,4 @@ export default function LikedContent({ songs }: LikedContentProps) {
       </main>
     </section>
   );
-}
-
-// this for play music
-{
-  /* <MediaItem
-  onClick={(id: string) => {
-    onPlay(id);
-  }}
-  data={song} */
 }

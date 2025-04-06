@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
-import Sidebar from "./components/Sidebar";
 import SupabaseProvider from "@/providers/SupabaseProviders";
 import UserProvider from "@/providers/UserProvider";
 import ModalProvider from "@/providers/ModalProvider";
@@ -9,14 +8,21 @@ import ToasterProvider from "@/providers/ToasterProvider";
 import Player from "./components/Player";
 import { ThemeProvider } from "next-themes";
 import { getPlaylists } from "@/action/getPlaylists";
-import { Suspense } from "react";
-import { ScaleLoader } from "react-spinners";
+import App from "./components/App";
 
 const inter = Figtree({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Spotify Music",
+  title: "BeatPlay Music",
   description: "Listen and Enjoy to music",
+  icons: {
+    icon: [
+      {
+        url: "/favoicon.png",
+        type: "image/png",
+      },
+    ],
+  },
 };
 export const revalidate = 0;
 export default async function RootLayout({
@@ -28,14 +34,18 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body className={`${inter.className} `}>
+        <link
+          rel="icon"
+          href="/icon?<generated>"
+          type="image/<generated>"
+          sizes="<generated>"
+        />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ToasterProvider />
           <SupabaseProvider>
             <UserProvider>
               <ModalProvider />
-              <Suspense fallback={<ScaleLoader />}>
-                <Sidebar playlists={userPlaylists}>{children}</Sidebar>
-              </Suspense>
+              <App playlists={userPlaylists}>{children}</App>
               <Player />
             </UserProvider>
           </SupabaseProvider>

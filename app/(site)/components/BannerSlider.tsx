@@ -31,10 +31,9 @@ export default function BannerSlider() {
                   srcSet="/slider-images/weekend-mobile.jpg"
                   media="(max-width: 950px)"
                 />
-                <Image
+                <img
                   src={"/slider-images/Weekend2400.jpg"}
                   alt="Weekend"
-                  fill
                   sizes="full"
                   className=" object-cover"
                 />
@@ -51,10 +50,9 @@ export default function BannerSlider() {
                   srcSet="/slider-images/taylor-mobile.jpg"
                   media="(max-width: 950px)"
                 />
-                <Image
+                <img
                   src={"/slider-images/Taylor-lg.jpg"}
                   alt="Taylor"
-                  fill
                   sizes="full"
                   className=" object-cover"
                 />
@@ -71,10 +69,9 @@ export default function BannerSlider() {
                   srcSet="/slider-images/ariana-mobile.jpg"
                   media="(max-width: 950px)"
                 />
-                <Image
+                <img
                   src={"/slider-images/Ariana-lg.jpg"}
                   alt="Ariana"
-                  fill
                   sizes="full"
                   className=" object-cover"
                 />

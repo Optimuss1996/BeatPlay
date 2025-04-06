@@ -8,7 +8,6 @@ import { useUser } from "@/hooks/useUser";
 import { FaUserAlt } from "react-icons/fa";
 import toast from "react-hot-toast";
 import useAuthModal from "@/hooks/useAuthModal";
-import ThemeToggle from "./ThemeToggle";
 import { AiOutlineMenu } from "react-icons/ai";
 import useIsOpenSidebar from "@/hooks/useIsOpenSidebar";
 import SearchInput from "./SearchInput";
@@ -37,14 +36,14 @@ export default function Header({ className }: HeaderPropType) {
   return (
     <div
       className={twMerge(
-        `h-fit bg-white dark:bg-slate-800/30  p-3 mt-2 md:mt-0 border-b border-gray-300 dark:border-gray-700  flex flex-col md:flex-row justify-between items-center`,
+        `h-fit bg-white dark:bg-slate-800/30  p-3 mt-2 md:mt-0 border-b border-gray-300 dark:border-gray-700  flex flex-col md:flex-row justify-between items-center `,
         className
       )}
     >
       <div className=" hidden md:block md:w-[500px]  ">
         <SearchInput />
       </div>
-      <div className="w-full flex justify-between md:justify-end items-center mb-4">
+      <div className="w-full flex justify-between md:justify-end items-center ">
         <button
           onClick={isOpenSidebar.toggleSidebar}
           className="md:hidden  bg-purple-700 text-white p-2 rounded-full"

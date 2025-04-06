@@ -1,7 +1,5 @@
 "use client";
 
-import LikeButton from "@/app/liked/components/LikeButton";
-import useOnPlay from "@/hooks/useOnPlay";
 import { AlbumType, Artist, type Tracks } from "@/types";
 import ArtistSearch from "@/app/search/components/ArtistSearch";
 import AlbumsSearch from "./AlbumsSearch";

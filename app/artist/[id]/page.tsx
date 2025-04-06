@@ -3,12 +3,9 @@ import {
   getArtistTopTracks,
   getArtistAlbums,
 } from "@/action/getSongsFromDeezerApi";
-import Box from "@/app/components/Box";
-import Header from "@/app/components/Header";
 import Information from "../components/Information";
 import Album from "../components/Album";
 import Tracks from "../components/Tracks";
-import Footer from "@/app/components/Footer";
 
 export const revalidate = 0;
 interface PageProps {

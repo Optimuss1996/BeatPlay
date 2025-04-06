@@ -3,8 +3,8 @@
 import { type Tracks } from "@/types";
 import { FaMusic } from "react-icons/fa";
 import { MdOutlineWatchLater } from "react-icons/md";
-import LikeButton from "@/app/album/components/LikedButton";
-import AddToPlaylist from "@/app/album/components/AddToPlaylist";
+import LikeButton from "@/app/components/LikeButton";
+import AddToPlaylist from "@/app/components/AddToPlaylist";
 import { formatDuration } from "@/utilities/commonFunction";
 import useOnPlay from "@/hooks/useOnPlay";
 interface AlbumTracksProps {
@@ -42,12 +42,14 @@ export default function Tracks({ albumTracks }: AlbumTracksProps) {
       <main className=" w-11/12 mx-auto flex flex-col gap-y-3    py-2 dark:border-b-gray-500 ">
         {albumTracks.map((song) => (
           <div
-            onClick={() => onPlay(song.song_id)}
             key={song.song_id}
             className="w-full  flex justify-between items-center gap-x-3 px-3 py-3 cursor-pointer hover:bg-purple-200 dark:hover:bg-slate-800 transition  rounded-md"
           >
-            <div className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white">
-              <FaMusic size={20} className="text-purple-600 rounded-md" />
+            <div
+              onClick={() => onPlay(song.song_id)}
+              className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white"
+            >
+              <FaMusic size={20} className="text-purple-600 rounded-md " />
               <p className=" md:text-sm text-xs font-semibold truncate">
                 {song.song_titleShort}
               </p>

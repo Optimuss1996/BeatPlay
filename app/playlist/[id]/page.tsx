@@ -17,7 +17,7 @@ export default async function PlaylistPage({ params }: PageProps) {
   console.log("playlist : ", playlist, "playlistTrack :", playlistTrack);
 
   return (
-    <div className=" bg-white dark:bg-slate-800/30 rounded-lg w-full h-full overflow-hidden overflow-y-auto">
+    <div className=" bg-white dark:bg-slate-800/30  w-full h-full overflow-hidden overflow-y-auto">
       <div className=" flex flex-col gap-x-12 md:gap-x-28 justify-center items-center">
         <Information playlistInfo={playlist} />
         <Tracks playlistTracks={playlistTrack} />

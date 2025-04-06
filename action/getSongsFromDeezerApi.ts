@@ -6,6 +6,10 @@ export async function getTrendingTracks(number: number): Promise<Tracks[]> {
       `https://api.deezer.com/chart/0/tracks?limit=${number}`,
       {
         next: { revalidate: 604800 },
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
       }
     );
 
@@ -217,5 +221,55 @@ export async function getDeezerTrackById(
   } catch (error) {
     console.error("Error fetching trending tracks:", error);
     return null;
+  }
+}
+//
+//
+export async function getTracksByGenre(id: number): Promise<Tracks[]> {
+  try {
+    const res = await fetch(
+      `https://api.deezer.com/chart/${id}/tracks?limit=20`,
+      {
+        next: { revalidate: 604800 },
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!res.ok) {
+      console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
+      return [];
+    }
+
+    const data = await res.json();
+
+    if (data.error) {
+      console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
+      return [];
+    }
+
+    return data.data.map((song: any) => ({
+      song_id: song.id,
+      song_title: song.title,
+      song_titleShort: song.title_short,
+      song_url: song.preview,
+      duration: song.duration,
+      artist: {
+        name: song.artist.name,
+        id: song.artist.id,
+        picture: song.artist.picture,
+        picture_medium: song.artist.picture_medium,
+      },
+      album: {
+        id: song.album.id,
+        title: song.album.title,
+        cover: song.album.cover,
+      },
+    }));
+  } catch (error) {
+    console.error("Error fetching trending tracks:", error);
+    return [];
   }
 }

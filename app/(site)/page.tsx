@@ -1,23 +1,25 @@
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import BannerSlider from "./components/BannerSlider";
 import ListOfGenre from "./components/ListOfGenre";
 import PopularArtist from "./components/PopularArtist";
 import TrendMusic from "./components/TrendMusic";
 import {
   getPopularArtist,
+  getTracksByGenre,
   getTrendingTracks,
 } from "@/action/getSongsFromDeezerApi";
 
 export const revalidate = 0;
 
 export default async function Home() {
-  const songs = await getTrendingTracks(10);
-  const artists = await getPopularArtist(10);
-  // console.log(songs);
+  const [songs, artists, tracksByGenre] = await Promise.all([
+    getTrendingTracks(10),
+    getPopularArtist(10),
+    getTracksByGenre(10),
+  ]);
+
   return (
-    <main className=" bg-white dark:bg-slate-800/60  w-full  h-full overflow-hidden overflow-y-auto ">
-      <div className=" px-1 md:px-4  mb-7 z-0">
+    <main className=" outline-8 outline-red-400 bg-white dark:bg-slate-800/60  w-full overflow-x-hidden  overflow-y-auto">
+      <div className=" px-1 md:px-4  mb-5 ">
         <BannerSlider />
         <ListOfGenre />
         <TrendMusic songs={songs} />

@@ -12,6 +12,9 @@ const config: Config = {
       fontFamily: {
         ClashGrotesk: ["ClashGrotesk", "cursive"],
       },
+      animation: {
+        "spin-slow": "spin 4s linear infinite",
+      },
     },
   },
   plugins: [],

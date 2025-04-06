@@ -26,6 +26,7 @@ export async function getPlaylists(): Promise<Playlist[]> {
 
   if (error) {
     console.log("Something wrong about Fetching Playlist ");
+    return [];
   }
   return (data as any) || [];
 }

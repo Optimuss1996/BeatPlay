@@ -15,18 +15,22 @@ import ThemeToggle from "./ThemeToggle";
 import Header from "./Header";
 import Footer from "./Footer";
 
-interface SidebarProps {
+interface AppProps {
   children: React.ReactNode;
   playlists: Playlist[];
 }
 
-export default function Sidebar({ children, playlists }: SidebarProps) {
+export default function App({ children, playlists }: AppProps) {
   const { user } = useUser();
   const isOpenSidebar = useIsOpenSidebar();
 
   return (
-    <div className={twMerge(`flex mx-auto h-screen max-w-[1536px] `)}>
-      <div
+    <div
+      className={twMerge(
+        `flex mx-auto h-screen max-w-[1536px] owerflow-hidden `
+      )}
+    >
+      <aside
         className={twMerge(
           `flex flex-col gap-y-2 bg-white dark:bg-slate-950 z-40 fixed top-0 left-0 h-screen 
           w-[240px] lg:w-[280px] p-2 shadow-lg transition-transform duration-500 ease-in-out
@@ -60,11 +64,11 @@ export default function Sidebar({ children, playlists }: SidebarProps) {
         <Box className="overflow-y-auto h-full">
           {!user ? <LoginNotice /> : <Library playlists={playlists} />}
         </Box>
-      </div>
+      </aside>
 
-      <main className="flex-1  flex flex-col">
+      <main className="flex-1  min-h-screen  overflow-x-hidden overflow-y-auto">
         <Header />
-        <div className="">{children}</div>
+        <div className="min-h-screen">{children}</div>
         <Footer />
       </main>
     </div>

@@ -8,11 +8,13 @@ const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
+  // Only run on client-side to avoid hydration issues
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null; // Prevent hydration mismatch
+  // Return null until mounted to avoid rendering before theme is available
+  if (!mounted) return null;
 
   const isDarkMode = theme === "dark";
 

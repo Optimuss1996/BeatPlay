@@ -3,13 +3,16 @@
 import { type Tracks } from "@/types";
 import { FaMusic } from "react-icons/fa";
 import { MdOutlineWatchLater } from "react-icons/md";
-import LikeButton from "@/app/liked/components/LikeButton";
-import AddToPlaylist from "./AddToPlaylist";
+import LikeButton from "@/app/components/LikeButton";
+import AddToPlaylist from "@/app/components/AddToPlaylist";
+import useOnPlay from "@/hooks/useOnPlay";
 interface playlistTracksProps {
   playlistTracks: Tracks[];
 }
 
 export default function Tracks({ playlistTracks }: playlistTracksProps) {
+  const onPlay = useOnPlay(playlistTracks);
+
   if (playlistTracks.length === 0) {
     return (
       <div className="flex justify-center items-center px-3 py-2  text-black dark:text-white md:text-xl mt-32 md:mt-56  ">
@@ -40,7 +43,10 @@ export default function Tracks({ playlistTracks }: playlistTracksProps) {
             key={song.song_id}
             className="w-full  flex justify-between items-center gap-x-3 px-3 py-3 cursor-pointer hover:bg-purple-200 dark:hover:bg-slate-800 transition  rounded-md"
           >
-            <div className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white">
+            <div
+              onClick={() => onPlay(song.song_id)}
+              className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white"
+            >
               <FaMusic size={20} className="text-purple-600 rounded-md" />
               <p className=" md:text-sm text-xs font-semibold truncate">
                 {song.song_title}

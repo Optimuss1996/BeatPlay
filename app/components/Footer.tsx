@@ -5,9 +5,8 @@ import { FaTwitter, FaYoutube, FaFacebookF } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="  dark:bg-slate-800/30 text-purple-300 py-6  border-t border-gray-400/50">
+    <footer className="  dark:bg-slate-800/30 text-purple-300 py-6  border-t border-gray-300 dark:border-gray-700">
       <div className="max-w-5xl mx-auto text-center px-4 md:px-10">
-        {/* Site Name */}
         <Link
           href="/"
           className="text-lg md:text-xl font-semibold hover:opacity-65 transition font-ClashGrotesk"
