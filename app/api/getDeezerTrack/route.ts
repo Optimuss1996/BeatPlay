@@ -35,21 +35,21 @@ export async function GET(req: Request) {
 //
 // pages/api/deezer/genre.js
 
-export async function handler(req, res) {
-  const { genreId } = req.query;
+// export async function handler(req, res) {
+//   const { genreId } = req.query;
 
-  if (!genreId) {
-    return res.status(400).json({ error: "Genre ID is required" });
-  }
+//   if (!genreId) {
+//     return res.status(400).json({ error: "Genre ID is required" });
+//   }
 
-  try {
-    const response = await fetch(
-      `https://api.deezer.com/chart/${genreId}/tracks?limit=10`
-    );
-    const data = await response.json();
+//   try {
+//     const response = await fetch(
+//       `https://api.deezer.com/chart/${genreId}/tracks?limit=10`
+//     );
+//     const data = await response.json();
 
-    return res.status(200).json(data);
-  } catch (error) {
-    return res.status(500).json({ error: "Failed to fetch from Deezer" });
-  }
-}
+//     return res.status(200).json(data);
+//   } catch (error) {
+//     return res.status(500).json({ error: "Failed to fetch from Deezer" });
+//   }
+// }
