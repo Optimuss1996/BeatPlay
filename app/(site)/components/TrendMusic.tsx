@@ -59,12 +59,12 @@ export default function TrendMusic({ songs }: SongsProps) {
               </div>
 
               <div className="pl-1 flex flex-col gap-y-1 text-start cursor-pointer">
-                <span className="text-base truncate">
+                <p className="text-base truncate w-36 ">
                   {song.song_titleShort}
-                </span>
-                <span className="text-sm opacity-65 truncate">
+                </p>
+                <p className="text-sm opacity-65 truncate">
                   {song.artist.name}
-                </span>
+                </p>
               </div>
             </div>
           </SwiperSlide>

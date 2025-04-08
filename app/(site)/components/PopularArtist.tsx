@@ -60,9 +60,9 @@ export default function PopularArtist({ artists }: ArtistProp) {
                       />
                     </div>
                   </div>
-                  <h1 className="text-center cursor-pointer md:text-lg font-semibold opacity-75 truncate">
+                  <span className="text-center cursor-pointer md:text-lg font-semibold opacity-75 truncate w-36">
                     {artist.name}
-                  </h1>
+                  </span>
                 </div>
               </Link>
             </SwiperSlide>

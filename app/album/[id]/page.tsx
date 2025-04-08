@@ -10,6 +10,10 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
+export const metadata = {
+  title: " Album Page",
+};
+
 export default async function PlaylistPage({ params }: PageProps) {
   const { id } = await params;
   const numberId = Number(id);

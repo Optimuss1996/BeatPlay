@@ -107,7 +107,7 @@ export default function PlayerContent({ song }: PlayerContentProps) {
       <div className="flex justify-start items-center gap-x-3">
         {/* Album image or fallback icon */}
         {song.album.cover_medium ? (
-          <div className="w-10 h-10 md:w-12  md:h-12  rounded-full overflow-hidden">
+          <div className="w-16 h-w-16   rounded-full overflow-hidden">
             <img
               src={song.album.cover_medium}
               alt="Album Cover"
@@ -129,10 +129,12 @@ export default function PlayerContent({ song }: PlayerContentProps) {
 
         {/* Song info */}
         <div className="flex flex-col gap-y-1 items-start">
-          <p className="md:text-sm text-xs font-semibold truncate">
+          <p className="md:text-sm text-xs font-semibold truncate max-w-72">
             {song.song_title}
           </p>
-          <p className="md:text-sm text-xs opacity-70">{song.artist?.name}</p>
+          <p className="md:text-sm text-xs opacity-70 truncate max-w-44">
+            {song.artist?.name}
+          </p>
         </div>
       </div>
 

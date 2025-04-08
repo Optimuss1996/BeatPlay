@@ -13,7 +13,10 @@ import App from "./components/App";
 const inter = Figtree({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "BeatPlay Music",
+  title: {
+    template: " %s / BeatPlay Music ",
+    default: " Welcome / To BeatPlay Music ",
+  },
   description: "Listen and Enjoy to music",
   icons: {
     icon: [

@@ -12,7 +12,7 @@ interface InformationProps {
 export default function Information({ artistInfo }: InformationProps) {
   return (
     <section className=" flex flex-col w-full md:flex-row md:mt-32 mt-8">
-      <div className=" flex-1 flex flex-col md:flex-row md:ml-20 justify-center md:justify-start items-center md:gap-x-4 gap-y-4 ">
+      <div className=" flex-1 flex flex-col lg:flex-row md:ml-20 justify-center md:justify-start items-center md:gap-x-4 gap-y-4 ">
         <div className=" relative w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden">
           <Image
             src={artistInfo.picture_big}
@@ -23,7 +23,7 @@ export default function Information({ artistInfo }: InformationProps) {
         </div>
 
         <div className=" flex justify-center items-center flex-col gap-y-3 ">
-          <h1 className=" font-ClashGrotesk text-4xl sm:text-2xl lg:text-6xl text-black dark:text-white">
+          <h1 className=" font-ClashGrotesk text-4xl sm:text-2xl lg:text-4xl text-black dark:text-white truncate max-w-96">
             {artistInfo.name}
           </h1>
           <div className=" flex flex-col items-center opacity-65 text-black dark:text-white">

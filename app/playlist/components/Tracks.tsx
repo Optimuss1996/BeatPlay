@@ -15,8 +15,8 @@ export default function Tracks({ playlistTracks }: playlistTracksProps) {
 
   if (playlistTracks.length === 0) {
     return (
-      <div className="flex justify-center items-center px-3 py-2  text-black dark:text-white md:text-xl mt-32 md:mt-56  ">
-        Unfortunately, no music was found by this singer.
+      <div className=" min-h-screen flex justify-center items-center px-3 py-2  text-black dark:text-white md:text-3xl my-10 md:mt-56  font-semibold ">
+        There is no songs in this playlist :(
       </div>
     );
   }
@@ -48,7 +48,7 @@ export default function Tracks({ playlistTracks }: playlistTracksProps) {
               className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white"
             >
               <FaMusic size={20} className="text-purple-600 rounded-md" />
-              <p className=" md:text-sm text-xs font-semibold truncate">
+              <p className=" md:text-sm text-xs font-semibold truncate  w-24 md:w-40 lg:w-full">
                 {song.song_title}
               </p>
             </div>

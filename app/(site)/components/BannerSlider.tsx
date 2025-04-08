@@ -26,18 +26,7 @@ export default function BannerSlider() {
         <SwiperSlide>
           <Link href={"/artist/4050205"}>
             <div className=" relative w-full h-[300px] md:h-[350px]">
-              <picture className=" relative">
-                <source
-                  srcSet="/slider-images/weekend-mobile.jpg"
-                  media="(max-width: 950px)"
-                />
-                <img
-                  src={"/slider-images/Weekend2400.jpg"}
-                  alt="Weekend"
-                  sizes="full"
-                  className=" object-cover"
-                />
-              </picture>
+              <Image src={"/slider-images/Ariana.jpg"} alt="Ariana" fill />
             </div>
           </Link>
         </SwiperSlide>
@@ -45,18 +34,7 @@ export default function BannerSlider() {
         <SwiperSlide>
           <Link href={"/artist/12246"}>
             <div className=" relative w-full h-[300px] md:h-[350px]">
-              <picture className=" relative">
-                <source
-                  srcSet="/slider-images/taylor-mobile.jpg"
-                  media="(max-width: 950px)"
-                />
-                <img
-                  src={"/slider-images/Taylor-lg.jpg"}
-                  alt="Taylor"
-                  sizes="full"
-                  className=" object-cover"
-                />
-              </picture>
+              <Image src={"/slider-images/Weekend.jpg"} alt="Weekend" fill />
             </div>
           </Link>
         </SwiperSlide>
@@ -64,18 +42,7 @@ export default function BannerSlider() {
         <SwiperSlide>
           <Link href={"/artist/1562681"}>
             <div className=" relative w-full h-[300px] md:h-[350px]">
-              <picture className=" relative">
-                <source
-                  srcSet="/slider-images/ariana-mobile.jpg"
-                  media="(max-width: 950px)"
-                />
-                <img
-                  src={"/slider-images/Ariana-lg.jpg"}
-                  alt="Ariana"
-                  sizes="full"
-                  className=" object-cover"
-                />
-              </picture>
+              <Image src={"/slider-images/Taylor.jpg"} alt="Taylor" fill />
             </div>
           </Link>
         </SwiperSlide>

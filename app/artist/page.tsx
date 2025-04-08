@@ -2,7 +2,9 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 export const revalidate = 0;
-
+export const metadata = {
+  title: " Artist Page",
+};
 export default async function Page({ params }: PageProps) {
   const { id } = await params;
   const artistId = id;

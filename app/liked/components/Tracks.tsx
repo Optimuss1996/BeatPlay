@@ -29,7 +29,7 @@ export default function Tracks({ songs }: TracksProps) {
   if (songs.length === 0) {
     return (
       <div className="flex justify-center items-center px-3 py-2  text-black dark:text-white md:text-xl mt-16 md:mt-36  ">
-        you have nothing liked songs !!
+        you haven't liked a song yet :(
       </div>
     );
   }
@@ -57,7 +57,7 @@ export default function Tracks({ songs }: TracksProps) {
               className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white"
             >
               <FaMusic size={20} className="text-purple-600 rounded-md" />
-              <p className=" md:text-sm text-xs font-semibold truncate">
+              <p className=" md:text-sm text-xs font-semibold truncate  w-24 md:w-40 lg:w-full">
                 {song.song_title}
               </p>
             </div>

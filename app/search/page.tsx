@@ -10,7 +10,9 @@ interface SearchProps {
 }
 
 export const revalidate = 0;
-
+export const metadata = {
+  title: " Search Page",
+};
 export default async function Page({ searchParams }: SearchProps) {
   const { title } = await searchParams;
 

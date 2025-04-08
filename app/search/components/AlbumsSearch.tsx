@@ -29,7 +29,7 @@ export default function AlbumsSearch({ albums }: AlbumProps) {
                 />
               </div>
 
-              <p className=" h-1/6 text-sm text-black  dark:text-white px-1  truncate">
+              <p className=" h-1/6 text-sm text-black  dark:text-white font-semibold px-1  truncate max-w-36">
                 {album.title}
               </p>
             </div>

@@ -20,10 +20,12 @@ export default function Information({ playlistInfo }: InformationProps) {
         </div>
 
         <div className=" flex justify-center items-center flex-col gap-y-3 ">
-          <h1 className=" font-ClashGrotesk text-4xl sm:text-2xl lg:text-6xl text-black dark:text-white">
+          <h1 className=" font-ClashGrotesk text-4xl sm:text-2xl lg:text-5xl text-black dark:text-white truncate max-w-72 md:max-w-96">
             {playlistInfo.title}
           </h1>
-          <p>{playlistInfo.description} fans</p>
+          <p className="truncate max-w-72 md:max-w-96">
+            {playlistInfo.description} fans
+          </p>
         </div>
       </div>
     </section>

@@ -58,7 +58,7 @@ export default function PopularArtist({ artists }: ArtistProp) {
                     />
                   </div>
                 </div>
-                <h1 className="text-center cursor-pointer md:text-lg font-semibold opacity-75">
+                <h1 className="text-center cursor-pointer md:text-lg font-semibold opacity-75 truncate max-w-36">
                   {artist.name}
                 </h1>
               </div>

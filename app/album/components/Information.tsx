@@ -20,9 +20,9 @@ export default function Information({ albumInfo }: InformationProps) {
         </div>
 
         <div className=" flex justify-center items-center flex-col gap-y-3 ">
-          <h1 className=" font-ClashGrotesk text-4xl sm:text-2xl lg:text-6xl text-black dark:text-white">
+          <p className=" font-ClashGrotesk text-4xl sm:text-2xl lg:text-5xl text-black dark:text-white  truncate  max-w-72 md:max-w-96 text-center">
             {albumInfo.title}
-          </h1>
+          </p>
           <p className="text-lg font-semibold">{albumInfo.artist?.name} </p>
           <div className=" flex justify-center items-center gap-x-2 opacity-75 p-1">
             <p className=" border-r border-gray-500 px-1">

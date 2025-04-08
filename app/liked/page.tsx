@@ -2,7 +2,9 @@ import getSongsLiked from "@/action/getSongsLiked";
 import Tracks from "./components/Tracks";
 
 export const revalidate = 0;
-
+export const metadata = {
+  title: " Liked Page",
+};
 export default async function Page() {
   const songs = await getSongsLiked();
   console.log("liked songs : ", songs);

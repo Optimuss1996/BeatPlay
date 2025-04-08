@@ -81,7 +81,7 @@ export default function Header({ className }: HeaderPropType) {
           )}
         </div>
       </div>
-      <div className=" md:hidden block w-full  ">
+      <div className=" md:hidden block w-full  mt-6">
         <SearchInput />
       </div>
     </div>

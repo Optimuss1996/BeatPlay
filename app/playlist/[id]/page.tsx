@@ -6,7 +6,9 @@ import Tracks from "../components/Tracks";
 interface PageProps {
   params: Promise<{ id: string }>;
 }
-
+export const metadata = {
+  title: " Playlist Page",
+};
 export default async function PlaylistPage({ params }: PageProps) {
   const { id } = await params;
   const [playlist, playlistTrack] = await Promise.all([
