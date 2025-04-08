@@ -97,10 +97,10 @@ export default function AddToPlaylist({ track }: AddToPlaylistProps) {
       {/* Trigger button */}
       <DropdownMenu.Trigger asChild>
         <button
-          className="p-2 rounded-full border-none outline-none bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 transition"
+          className=" rounded-full border-none outline-none  hover:bg-gray-300 transition"
           disabled={isLoading}
         >
-          <FaPlus className="text-gray-600 dark:text-gray-300" size={12} />
+          <FaPlus className="text-gray-600 dark:text-gray-300" size={15} />
         </button>
       </DropdownMenu.Trigger>
 
@@ -126,11 +126,11 @@ export default function AddToPlaylist({ track }: AddToPlaylistProps) {
                 key={playlist.id}
                 onClick={async () => await addToPlaylist(playlist.id)}
                 disabled={isAdding}
-                className={`px-4 py-2 cursor-pointer hover:bg-purple-300 dark:hover:bg-gray-700 transition ${
+                className={`px-4 py-2 cursor-pointer hover:bg-purple-300 dark:hover:bg-gray-700 transition  ${
                   isAdding ? "opacity-50 cursor-not-allowed" : ""
                 }`}
               >
-                {playlist.title}
+                <div className="truncate max-w-40">{playlist.title}</div>
               </DropdownMenu.Item>
             ))
           ) : (

@@ -36,7 +36,7 @@ export default function LikeButton({ track }: LikeButton) {
       }
     }
     fetchData();
-  }, []);
+  }, [user?.id, track?.song_id]);
 
   const Icon = isLiked ? AiFillHeart : AiOutlineHeart;
 
@@ -84,12 +84,12 @@ export default function LikeButton({ track }: LikeButton) {
 
   return (
     <div>
-      <button onClick={handleClick} className=" ">
+      <div onClick={handleClick} className=" ">
         <Icon
           className={isLiked ? " text-purple-700 " : "  text-purple-500"}
-          size={27}
+          size={20}
         />
-      </button>
+      </div>
     </div>
   );
 }

@@ -29,7 +29,7 @@ export default function Tracks({ songs }: TracksProps) {
   if (songs.length === 0) {
     return (
       <div className="flex justify-center items-center px-3 py-2  text-black dark:text-white md:text-xl mt-16 md:mt-36  ">
-        you haven't liked a song yet :(
+        <p>{"you haven't liked a song yet :("}</p>
       </div>
     );
   }

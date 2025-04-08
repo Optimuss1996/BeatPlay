@@ -104,37 +104,44 @@ export default function PlayerContent({ song }: PlayerContentProps) {
 
   return (
     <div className="h-full w-full grid grid-cols-2 lg:grid-cols-3">
-      <div className="flex justify-start items-center gap-x-3">
-        {/* Album image or fallback icon */}
-        {song.album.cover_medium ? (
-          <div className="w-16 h-w-16   rounded-full overflow-hidden">
-            <img
-              src={song.album.cover_medium}
-              alt="Album Cover"
-              className={`w-full h-full object-cover ${
-                isPlaying ? "animate-spin-slow" : ""
-              }`}
-            />
-          </div>
-        ) : (
-          <div className="w-12 h-12 md:w-14 md:h-w-14 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
-            <FaMusic
-              size={24}
-              className={`text-purple-600 p-1 ${
-                isPlaying ? "animate-spin-slow" : ""
-              }`}
-            />
-          </div>
-        )}
+      <div className="flex items-center gap-x-3">
+        <div className=" flex justify-start items-center gap-x-3">
+          {/* Album image or fallback icon */}
+          {song.album.cover_medium ? (
+            <div className=" w-12 h-12 md:w-16 md:h-16   rounded-full overflow-hidden">
+              <img
+                src={song.album.cover_medium}
+                alt="Album Cover"
+                className={`w-full h-full object-cover ${
+                  isPlaying ? "animate-spin-slow" : ""
+                }`}
+              />
+            </div>
+          ) : (
+            <div className="w-12 h-12 md:w-14 md:h-w-14 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+              <FaMusic
+                size={24}
+                className={`text-purple-600 p-1 ${
+                  isPlaying ? "animate-spin-slow" : ""
+                }`}
+              />
+            </div>
+          )}
 
-        {/* Song info */}
-        <div className="flex flex-col gap-y-1 items-start">
-          <p className="md:text-sm text-xs font-semibold truncate max-w-72">
-            {song.song_title}
-          </p>
-          <p className="md:text-sm text-xs opacity-70 truncate max-w-44">
-            {song.artist?.name}
-          </p>
+          {/* Song info */}
+          <div className="flex flex-col gap-y-1 items-start">
+            <p className="md:text-sm text-xs font-semibold truncate max-w-20 md:max-w-32 lg:max-w-52">
+              {song.song_title}
+            </p>
+            <p className="md:text-sm text-xs opacity-70 truncate max-w-44">
+              {song.artist?.name}
+            </p>
+          </div>
+        </div>
+
+        <div className=" flex items-center gap-x-2">
+          <LikeButton track={song} />
+          <AddToPlaylist track={song} />
         </div>
       </div>
 
