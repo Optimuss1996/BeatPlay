@@ -11,7 +11,7 @@ interface playlistTracksProps {
 }
 
 export default function Tracks({ playlistTracks }: playlistTracksProps) {
-  const onPlay = useOnPlay(playlistTracks);
+  const onPlay = useOnPlay(playlistTracks, "playlist");
 
   if (playlistTracks.length === 0) {
     return (

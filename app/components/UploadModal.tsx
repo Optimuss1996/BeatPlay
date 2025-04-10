@@ -1,23 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import useUploadModal from "@/hooks/useUploadModal";
 import Modal from "./Modal";
 import Input from "./Input";
 import Button from "./Button";
-import Select from "@/app/components/Select";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { ScaleLoader } from "react-spinners";
-import { Playlist } from "@/types";
 import useUploadMusic from "@/hooks/useUploadMusic";
 
 export const revalidate = 0;
 
 export default function UploadModal() {
-  const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const uploadModal = useUploadModal();
-  const supabaseClient = useSupabaseClient();
   const { isLoading, uploadMusic, cancelUpload } = useUploadMusic();
 
   const { register, reset, handleSubmit } = useForm<FieldValues>({
@@ -28,25 +22,6 @@ export default function UploadModal() {
       song: null,
     },
   });
-
-  // Fetch playlists from Supabase  for list of playlist Select component
-  useEffect(() => {
-    async function getPlaylists() {
-      const { data, error } = await supabaseClient
-        .from("playlists")
-        .select("*")
-        .order("created_at", { ascending: false });
-
-      if (error) {
-        console.error("Error fetching playlists:", error);
-        return;
-      }
-
-      setPlaylists(data || []);
-    }
-
-    getPlaylists();
-  }, []);
 
   function onChange(open: boolean) {
     if (!open) {
@@ -59,7 +34,7 @@ export default function UploadModal() {
   return (
     <Modal
       title="Upload Music"
-      description="Upload your music to a playlist or liked songs"
+      description="Upload your music to your personal library"
       isOpen={uploadModal.isOpen}
       onChange={onChange}
     >
@@ -103,12 +78,9 @@ export default function UploadModal() {
             accept="image/*"
           />
         </div>
-        <div>
-          <p>Add to Playlist or Liked Songs</p>
-          <Select playlists={playlists} isLoading={isLoading} />
-        </div>
+
         <Button disabled={isLoading} type="submit">
-          {isLoading ? <ScaleLoader width={2} height={17} /> : "Upload"}
+          {isLoading ? <ScaleLoader width={2} height={15} /> : "Upload"}
         </Button>
       </form>
     </Modal>

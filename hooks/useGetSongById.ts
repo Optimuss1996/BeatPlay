@@ -25,7 +25,30 @@ export const useGetPlaylistSongById = (id?: number) => {
         setIsLoading(false);
       }
 
-      setSong(data as Tracks);
+      setSong({
+        song_id: data.id,
+        song_title: data.title,
+        song_url: data.preview,
+        duration: data.duration,
+        artist: data.song_artist
+          ? {
+              name: data.artist.name,
+              id: data.artist.id,
+              picture: data.artist.picture,
+              picture_medium: data.artist.picture_medium,
+            }
+          : undefined,
+        album: data.album
+          ? {
+              id: data.album.id,
+              title: data.album.title,
+              cover: data.album.cover,
+              cover_medium: data.album.cover_medium,
+              cover_big: data.album.cover_big,
+            }
+          : undefined,
+        type: "deezer", // Assigning type explicitly for identification
+      });
       setIsLoading(false);
     }
 

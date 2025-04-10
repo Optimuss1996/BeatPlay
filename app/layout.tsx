@@ -26,6 +26,7 @@ export const metadata: Metadata = {
       },
     ],
   },
+  manifest: "/manifest.json",
 };
 export const revalidate = 0;
 export default async function RootLayout({
@@ -36,13 +37,12 @@ export default async function RootLayout({
   const userPlaylists = await getPlaylists();
   return (
     <html lang="en" suppressHydrationWarning={true}>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+        <meta name="theme-color" content="#8b5cf6" />
+      </head>
       <body className={`${inter.className} `}>
-        <link
-          rel="icon"
-          href="/icon?<generated>"
-          type="image/<generated>"
-          sizes="<generated>"
-        />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ToasterProvider />
           <SupabaseProvider>

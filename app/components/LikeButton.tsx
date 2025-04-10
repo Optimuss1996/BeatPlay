@@ -84,7 +84,7 @@ export default function LikeButton({ track }: LikeButton) {
 
   return (
     <div>
-      <div onClick={handleClick} className=" ">
+      <div onClick={handleClick} className="  cursor-pointer">
         <Icon
           className={isLiked ? " text-purple-700 " : "  text-purple-500"}
           size={20}

@@ -16,7 +16,7 @@ interface SongsProps {
 }
 
 export default function TrendMusic({ songs }: SongsProps) {
-  const onPlay = useOnPlay(songs);
+  const onPlay = useOnPlay(songs, "deezer");
 
   return (
     <div className="w-full my-8 md:mb-10">

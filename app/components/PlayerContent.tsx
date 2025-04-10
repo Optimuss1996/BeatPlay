@@ -51,7 +51,7 @@ export default function PlayerContent({ song }: PlayerContentProps) {
       player.setId(player.ids[player.ids.length - 1]);
     }
   }
-
+  // const al
   const [play, { pause, sound }] = useSound(song.song_url, {
     volume: volume,
     onplay: () => setIsPlaying(true),
@@ -104,13 +104,13 @@ export default function PlayerContent({ song }: PlayerContentProps) {
 
   return (
     <div className="h-full w-full grid grid-cols-2 lg:grid-cols-3">
-      <div className="flex items-center gap-x-3">
+      <div className="flex items-center gap-x-4">
         <div className=" flex justify-start items-center gap-x-3">
           {/* Album image or fallback icon */}
           {song.album.cover_medium ? (
-            <div className=" w-12 h-12 md:w-16 md:h-16   rounded-full overflow-hidden">
+            <div className=" w-12 h-12 md:w-16 md:h-16  rounded-full overflow-hidden">
               <img
-                src={song.album.cover_medium}
+                src={song.album.cover_medium || "picture"}
                 alt="Album Cover"
                 className={`w-full h-full object-cover ${
                   isPlaying ? "animate-spin-slow" : ""

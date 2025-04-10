@@ -11,6 +11,7 @@ import useAuthModal from "@/hooks/useAuthModal";
 import { AiOutlineMenu } from "react-icons/ai";
 import useIsOpenSidebar from "@/hooks/useIsOpenSidebar";
 import SearchInput from "./SearchInput";
+import Link from "next/link";
 
 interface HeaderPropType {
   className?: string;
@@ -60,12 +61,11 @@ export default function Header({ className }: HeaderPropType) {
                 LogOut
               </Button>
 
-              <Button
-                onClick={() => router.push("/account")}
-                className="bg-purple-700 text-white  mx-auto "
-              >
-                <FaUserAlt className="mx-auto" />
-              </Button>
+              <Link href={`/account/${user.id}`}>
+                <Button className="bg-purple-700 text-white  mx-auto ">
+                  <FaUserAlt className="mx-auto" />
+                </Button>
+              </Link>
             </div>
           ) : (
             <>

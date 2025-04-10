@@ -12,7 +12,7 @@ interface AlbumTracksProps {
 }
 
 export default function Tracks({ albumTracks }: AlbumTracksProps) {
-  const onPlay = useOnPlay(albumTracks);
+  const onPlay = useOnPlay(albumTracks, "deezer");
   console.log("album tracks", albumTracks);
 
   if (albumTracks.length === 0) {

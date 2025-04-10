@@ -75,7 +75,7 @@ export default function AddToPlaylist({ track }: AddToPlaylistProps) {
         playlist_id: playlistId,
         song_id: track.song_id,
         song_title: track.song_title,
-        song_artist: track.song_artist,
+        song_artist: track.artist.name,
         image_url: track.image_url,
         song_url: track.song_url,
         duration: track.duration,

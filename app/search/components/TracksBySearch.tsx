@@ -12,7 +12,7 @@ interface TracksBySearchProps {
 }
 
 export default function TracksBySearch({ tracks }: TracksBySearchProps) {
-  const onPlay = useOnPlay(tracks);
+  const onPlay = useOnPlay(tracks, "deezer");
 
   if (tracks.length === 0) {
     return null;

@@ -1,18 +1,40 @@
-// import { Song } from "@/types";
-// import { useSessionContext } from "@supabase/auth-helpers-react";
+import { useEffect, useState } from "react";
 
-// const useSongLoadUrl = (song: Song) => {
-//   const { supabaseClient } = useSessionContext();
+interface DeezerTrack {
+  id: number;
+  title: string;
+  preview: string;
+  [key: string]: any; // in case you want more fields
+}
 
-//   if (!song) {
-//     return;
-//   }
+export function useDeezerPreviewUrl(trackId?: number) {
+  const [url, setUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-//   const { data: songData } = supabaseClient.storage
-//     .from("songs")
-//     .getPublicUrl(song.song_path);
+  useEffect(() => {
+    if (!trackId) return;
 
-//   return songData.publicUrl;
-// };
+    const fetchPreviewUrl = async () => {
+      setLoading(true);
+      setError(null);
 
-// export default useSongLoadUrl;
+      try {
+        const res = await fetch(`https://api.deezer.com/track/${trackId}`);
+        if (!res.ok) throw new Error("Failed to fetch track");
+
+        const data: DeezerTrack = await res.json();
+        setUrl(data.preview);
+      } catch (err: any) {
+        setError(err.message || "Something went wrong");
+        setUrl(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPreviewUrl();
+  }, [trackId]);
+
+  return { url, loading, error };
+}

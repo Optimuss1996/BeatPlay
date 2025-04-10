@@ -18,7 +18,7 @@ interface TracksProps {
 export default function Tracks({ songs }: TracksProps) {
   const router = useRouter();
   const { user, isLoading } = useUser();
-  const onPlay = useOnPlay(songs);
+  const onPlay = useOnPlay(songs, "liked");
 
   useEffect(() => {
     if (!isLoading && !user) {

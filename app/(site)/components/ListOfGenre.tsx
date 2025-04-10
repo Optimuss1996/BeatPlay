@@ -92,7 +92,7 @@ export default function ListOfGenre() {
   const [selectedGenreId, setSelectedGenreId] = useState<number | null>(null);
 
   const { tracks, loading, error } = useGenreTracks(selectedGenreId ?? 0);
-  const onPlay = useOnPlay(tracks);
+  // const onPlay = useOnPlay(tracks);
 
   return (
     <div className="w-full my-8 md:mb-10">
@@ -155,7 +155,7 @@ export default function ListOfGenre() {
             <div
               key={track.song_id}
               className="group cursor-pointer relative"
-              onClick={() => onPlay(track.song_id)}
+              // onClick={() => onPlay(track.song_id)}
             >
               <div className="relative w-full aspect-square rounded-lg overflow-hidden">
                 <Image

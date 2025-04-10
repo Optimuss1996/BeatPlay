@@ -112,4 +112,5 @@ export type Tracks = {
   };
 
   type: "playlist" | "liked" | "deezer"; // ✅ Identifies the track source
+  source?: "deezer" | "user"; // Optional source field
 };

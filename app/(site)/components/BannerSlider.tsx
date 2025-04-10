@@ -26,7 +26,12 @@ export default function BannerSlider() {
         <SwiperSlide>
           <Link href={"/artist/4050205"}>
             <div className=" relative w-full h-[300px] md:h-[350px]">
-              <Image src={"/slider-images/Ariana.jpg"} alt="Ariana" fill />
+              <Image
+                src={"/slider-images/Ariana.jpg"}
+                alt="Ariana"
+                fill
+                className="object-cover"
+              />
             </div>
           </Link>
         </SwiperSlide>
@@ -34,7 +39,12 @@ export default function BannerSlider() {
         <SwiperSlide>
           <Link href={"/artist/12246"}>
             <div className=" relative w-full h-[300px] md:h-[350px]">
-              <Image src={"/slider-images/Weekend.jpg"} alt="Weekend" fill />
+              <Image
+                src={"/slider-images/Weekend.jpg"}
+                alt="Weekend"
+                fill
+                className="object-cover"
+              />
             </div>
           </Link>
         </SwiperSlide>
@@ -42,7 +52,12 @@ export default function BannerSlider() {
         <SwiperSlide>
           <Link href={"/artist/1562681"}>
             <div className=" relative w-full h-[300px] md:h-[350px]">
-              <Image src={"/slider-images/Taylor.jpg"} alt="Taylor" fill />
+              <Image
+                src={"/slider-images/Taylor.jpg"}
+                alt="Taylor"
+                fill
+                className="object-cover"
+              />
             </div>
           </Link>
         </SwiperSlide>
