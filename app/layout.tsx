@@ -9,7 +9,7 @@ import Player from "./components/Player";
 import { ThemeProvider } from "next-themes";
 import { getPlaylists } from "@/action/getPlaylists";
 import App from "./components/App";
-
+import PwaInstallPrompt from "@/app/components/PwaInstallPrompt";
 const inter = Figtree({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -44,6 +44,7 @@ export default async function RootLayout({
       </head>
       <body className={`${inter.className} `}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <PwaInstallPrompt />
           <ToasterProvider />
           <SupabaseProvider>
             <UserProvider>

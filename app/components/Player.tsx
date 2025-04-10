@@ -14,7 +14,7 @@ export default function Player() {
   }
 
   return (
-    <div className="w-full h-[80px] px-6 py-3 fixed bottom-0 border-t border-gray-400 border-opacity-75 bg-purple-200 shadow-lg dark:bg-slate-900 z-50">
+    <div className="w-full h-[80px] px-2 py-3 fixed bottom-0 border-t border-gray-400 border-opacity-75 bg-purple-200 shadow-lg dark:bg-slate-900 z-50">
       <PlayerContent key={song.song_id} song={song} />
     </div>
   );
