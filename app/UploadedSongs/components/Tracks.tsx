@@ -1,35 +1,45 @@
 "use client";
 
+import AddToPlaylist from "@/app/liked/components/AddToPlaylist";
+import LikeButton from "@/app/components/LikeButton";
+import useOnPlay from "@/hooks/useOnPlay";
+import { useUser } from "@/hooks/useUser";
 import { type Tracks } from "@/types";
+import { formatDuration } from "@/utilities/commonFunction";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { FaMusic } from "react-icons/fa";
 import { MdOutlineWatchLater } from "react-icons/md";
-import LikeButton from "@/app/components/LikeButton";
-import AddToPlaylist from "@/app/components/AddToPlaylist";
-import useOnPlay from "@/hooks/useOnPlay";
-import { formatDuration } from "@/utilities/commonFunction";
-interface playlistTracksProps {
-  playlistTracks: Tracks[];
+
+interface TracksProps {
+  songs: Tracks[];
 }
 
-export default function Tracks({ playlistTracks }: playlistTracksProps) {
-  const onPlay = useOnPlay(playlistTracks, "playlist");
+export default function Tracks({ songs }: TracksProps) {
+  const router = useRouter();
+  const { user, isLoading } = useUser();
+  const onPlay = useOnPlay(songs, "uploaded");
 
-  if (playlistTracks.length === 0) {
+  useEffect(() => {
+    if (!isLoading && !user) {
+      router.replace("/");
+    }
+  }, [isLoading, router, user]);
+
+  if (songs.length === 0) {
     return (
-      <div className=" min-h-screen flex justify-center items-center px-3 py-2  text-black dark:text-white md:text-3xl my-10 md:mt-56  font-semibold ">
-        There is no songs in this playlist :(
+      <div className="flex justify-center items-center px-3 py-2  text-black dark:text-white md:text-xl mt-16 md:mt-36  ">
+        <p className=" font-ClashGrotesk font-semibold">
+          {"You haven't uploaded any songs yet."}
+        </p>
       </div>
     );
   }
-
   return (
     <section className="mt-20 mb-72 w-full px-3 md:px-6 ">
-      <p className="w-5/6 text-start text-2xl md:text-3xl text-black dark:text-white font-semibold mb-8">
-        Tracks
-      </p>
       <main className=" w-11/12 mx-auto flex justify-between items-center px-5  border-b-2 border-b-gray-300 dark:border-b-gray-500 pb-3">
         <div className=" flex-1 flex justify-start items-center gap-x-8 lg:gap-x-48 text-lg text-gray-700 dark:text-gray-400">
-          <p>Tracks</p>
+          <p>Track</p>
         </div>
         <div className=" flex justify-end items-center  gap-x-8 lg:gap-x-12">
           <MdOutlineWatchLater
@@ -39,7 +49,7 @@ export default function Tracks({ playlistTracks }: playlistTracksProps) {
         </div>
       </main>
       <main className=" w-11/12 mx-auto flex flex-col gap-y-3    py-2 dark:border-b-gray-500 ">
-        {playlistTracks.map((song) => (
+        {songs.map((song) => (
           <div
             key={song.song_id}
             className="w-full  flex justify-between items-center gap-x-3 px-3 py-3 cursor-pointer hover:bg-purple-200 dark:hover:bg-slate-800 transition  rounded-md"
@@ -55,10 +65,6 @@ export default function Tracks({ playlistTracks }: playlistTracksProps) {
             </div>
 
             <div className="basis-1/3 flex justify-end items-center gap-x-2 md:gap-x-5 lg:gap-x-8">
-              <div className=" flex items-center justify-end gap-x-6">
-                <AddToPlaylist track={song} />
-                <LikeButton track={song} />
-              </div>
               <p className="w-11 text-center text-sm md:text-base">
                 {formatDuration(song.duration)}
               </p>

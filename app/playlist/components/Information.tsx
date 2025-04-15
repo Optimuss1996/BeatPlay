@@ -9,7 +9,7 @@ interface InformationProps {
 export default function Information({ playlistInfo }: InformationProps) {
   return (
     <section className=" flex flex-col w-full  md:mt-32 mt-8">
-      <div className=" flex-1 flex flex-col md:ml-20 justify-center md:justify-start items-center md:gap-x-4 gap-y-4 ">
+      <div className=" flex-1 flex flex-col  justify-center md:justify-start items-center md:gap-x-4 gap-y-4 ">
         <div className=" relative w-56 h-56 md:w-72 md:h-72 rounded-md overflow-hidden">
           <Image
             src={playlistInfo.image_url}

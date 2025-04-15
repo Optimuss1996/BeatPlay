@@ -12,6 +12,7 @@ import usePlayListModal from "@/hooks/usePlayListModal";
 import PlaylistItem from "./PlayListItem";
 import Link from "next/link";
 import useIsOpenSidebar from "@/hooks/useIsOpenSidebar";
+import { FaUser } from "react-icons/fa";
 //
 interface PropsLibrary {
   playlists: Playlist[];
@@ -26,11 +27,17 @@ export default function Library({ playlists }: PropsLibrary) {
   const uploadModal = useUploadModal();
   const route = useRouter();
 
-  function handleClick() {
+  function handleClickLiked() {
     if (!user) {
       return authModal.onOpen();
     }
     return route.push("/liked");
+  }
+  function handleClickUploaded() {
+    if (!user) {
+      return authModal.onOpen();
+    }
+    return route.push("/UploadedSongs");
   }
 
   function handleOpenModal() {
@@ -53,9 +60,10 @@ export default function Library({ playlists }: PropsLibrary) {
           className="text-black dark:text-white  rounded-md transition cursor-pointer"
         />
       </div>
+
       <div className=" flex flex-col gap-y-2 mt-4 px-3">
         <div
-          onClick={handleClick}
+          onClick={handleClickLiked}
           className=" flex justify-start gap-x-3 items-center rounded-md hover:bg-purple-200 dark:hover:bg-purple-600 p-2 cursor-pointer "
         >
           <HiHeart
@@ -64,6 +72,18 @@ export default function Library({ playlists }: PropsLibrary) {
           />
           <p className="font-medium text-lg">Liked Songs</p>
         </div>
+
+        <div
+          onClick={handleClickUploaded}
+          className=" flex justify-start gap-x-3 items-center rounded-md hover:bg-purple-200 dark:hover:bg-purple-600 p-2 cursor-pointer "
+        >
+          <FaUser
+            size={45}
+            className="text-blue-500 bg-blue-200 p-2 rounded-md "
+          />
+          <p className="font-medium text-lg">uploaded Songs</p>
+        </div>
+
         <div
           onClick={handleOpenModal}
           className="flex justify-start gap-x-3 items-center rounded-md hover:bg-purple-200 dark:hover:bg-purple-600 p-2 cursor-pointer "
@@ -73,6 +93,7 @@ export default function Library({ playlists }: PropsLibrary) {
             Create Playlist
           </p>
         </div>
+
         <div className=" flex flex-col gap-y-1">
           {playlists.map((playlist) => (
             <Link href={`/playlist/${playlist.id}`} key={playlist.id}>

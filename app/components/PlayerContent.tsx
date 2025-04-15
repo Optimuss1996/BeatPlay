@@ -55,15 +55,6 @@ export default function PlayerContent({ song, songUrl }: PlayerContentProps) {
     }
   }
 
-  // const { songUrl } = useSongLoadUrl(song.song_id);
-  // const song_url = player.activeSource === "deezer" ? song.song_url : songUrl;
-  // // console.log(
-  // //   "final song_url :",
-  // //   song_url,
-  // //   "song url from hook useGetSongUrl : ",
-  // //   songUrl
-  // // );
-
   const [play, { pause, sound }] = useSound(songUrl, {
     volume: volume,
     onplay: () => setIsPlaying(true),
@@ -124,7 +115,7 @@ export default function PlayerContent({ song, songUrl }: PlayerContentProps) {
         <div className=" flex justify-start items-center gap-x-3">
           {/* Album image or fallback icon */}
           {image_url ? (
-            <div className=" w-12 h-12 md:w-16 md:h-16  rounded-full overflow-hidden">
+            <div className=" w-12 h-12 md:w-14 md:h-14  rounded-full overflow-hidden">
               <img
                 src={image_url || "picture"}
                 alt="Album Cover"
@@ -134,10 +125,10 @@ export default function PlayerContent({ song, songUrl }: PlayerContentProps) {
               />
             </div>
           ) : (
-            <div className="w-12 h-12 md:w-14 md:h-w-14 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+            <div className="w-12 h-12 md:w-14 md:h-w-14 rounded-full bg-purple-600 flex items-center justify-center overflow-hidden">
               <FaMusic
                 size={24}
-                className={`text-purple-600 p-1 ${
+                className={`text-white p-1 ${
                   isPlaying ? "animate-spin-slow" : ""
                 }`}
               />
@@ -150,7 +141,7 @@ export default function PlayerContent({ song, songUrl }: PlayerContentProps) {
               {song.song_title}
             </p>
             <p className="md:text-sm text-xs opacity-70 truncate max-w-44">
-              {song.artist?.name}
+              {song.artist?.name || song.song_artist}
             </p>
           </div>
         </div>

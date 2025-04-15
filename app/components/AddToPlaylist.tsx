@@ -84,7 +84,7 @@ export default function AddToPlaylist({ track }: AddToPlaylistProps) {
     setIsAdding(false);
 
     if (insertError) {
-      console.error("Error adding song to playlist:", insertError);
+      console.error("Error adding song to playlist:", insertError.message);
       toast.error("Failed to add to playlist.");
       return;
     }
