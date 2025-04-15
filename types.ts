@@ -112,5 +112,25 @@ export type Tracks = {
   };
 
   type: "playlist" | "liked" | "deezer"; // ✅ Identifies the track source
-  source?: "deezer" | "user"; // Optional source field
 };
+export interface PlaylistDeezer {
+  id: number;
+  title: string;
+  nb_tracks: number;
+  picture_medium: string;
+  picture_big: string;
+  user?: {
+    id: number;
+    name: string;
+  };
+}
+export interface PlaylistInfoDeezer {
+  id: number;
+  title: string;
+  description: string;
+  nb_tracks: number;
+  fans: number;
+  duration: number;
+  picture_medium: string;
+  picture_big: string;
+}

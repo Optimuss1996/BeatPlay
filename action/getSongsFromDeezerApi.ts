@@ -172,7 +172,6 @@ export async function getArtistInformation(
 
     const data = await res.json();
 
-    // Since you're fetching data for one artist, return a single artist object, not an array
     return {
       id: data.id,
       name: data.name,

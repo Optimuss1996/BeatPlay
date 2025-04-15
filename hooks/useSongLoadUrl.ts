@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
 
-interface DeezerTrack {
-  id: number;
-  title: string;
-  preview: string;
-  [key: string]: any; // in case you want more fields
-}
-
-export function useDeezerPreviewUrl(trackId?: number) {
-  const [url, setUrl] = useState<string | null>(null);
+export function useSongLoadUrl(trackId?: number) {
+  const [songUrl, setUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -20,13 +13,16 @@ export function useDeezerPreviewUrl(trackId?: number) {
       setError(null);
 
       try {
-        const res = await fetch(`https://api.deezer.com/track/${trackId}`);
-        if (!res.ok) throw new Error("Failed to fetch track");
+        const res = await fetch(`/api/getDeezerTrack?id=${trackId}`);
+        if (!res.ok) {
+          console.warn("Failed to fetch url track");
+          return null;
+        }
 
-        const data: DeezerTrack = await res.json();
+        const data = await res.json();
         setUrl(data.preview);
       } catch (err: any) {
-        setError(err.message || "Something went wrong");
+        setError(err.message || "Something went wrong for fetching url song");
         setUrl(null);
       } finally {
         setLoading(false);
@@ -36,5 +32,5 @@ export function useDeezerPreviewUrl(trackId?: number) {
     fetchPreviewUrl();
   }, [trackId]);
 
-  return { url, loading, error };
+  return { songUrl, loading, error };
 }

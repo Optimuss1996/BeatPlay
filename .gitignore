@@ -8,6 +8,9 @@ passwordSupabase.txt
 # testing
 /coverage
 
+# PWA 
+sw.js
+workbox-4754cb34.js
 # next.js
 /.next/
 /out/

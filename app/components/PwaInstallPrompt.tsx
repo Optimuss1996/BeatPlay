@@ -42,7 +42,7 @@ export default function PwaInstallPrompt() {
   return (
     <button
       onClick={handleInstallClick}
-      className="fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-xl z-50"
+      className="fixed bottom-2 right-2 bg-purple-400 text-white px-2 py-1 rounded-lg shadow-xl z-50"
     >
       Install App
     </button>

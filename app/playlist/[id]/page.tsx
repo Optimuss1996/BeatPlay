@@ -6,6 +6,7 @@ import Tracks from "../components/Tracks";
 interface PageProps {
   params: Promise<{ id: string }>;
 }
+export const revalidate = 0;
 export const metadata = {
   title: " Playlist Page",
 };
@@ -16,7 +17,7 @@ export default async function PlaylistPage({ params }: PageProps) {
     getTracksByPlaylistId(id),
   ]);
 
-  console.log("playlist : ", playlist, "playlistTrack :", playlistTrack);
+  // console.log("playlist : ", playlist, "playlistTrack :", playlistTrack);
 
   return (
     <div className=" bg-white dark:bg-slate-800/30  w-full h-full overflow-hidden overflow-y-auto">

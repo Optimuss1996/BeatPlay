@@ -12,7 +12,7 @@ export default function Album({ artistAlbums }: AlbumProps) {
       <p className="text-3xl md:text-5xl text-black dark:text-white font-semibold mb-8">
         Albums
       </p>
-      <div className=" grid gap-x-6  grid-cols-[repeat(auto-fit,_minmax(180px,_1fr))] gap-y-8 ">
+      <div className=" grid gap-x-6  grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] gap-y-8 ">
         {artistAlbums.map((album) => (
           <Link href={`/album/${album.id}`} key={album.id}>
             <div className=" flex flex-col  justify-center items-center  gap-y-4 bg-purple-200 dark:bg-slate-700 rounded-md h-64  pb-3 hover:opacity-70 transition cursor-pointer">
@@ -29,6 +29,8 @@ export default function Album({ artistAlbums }: AlbumProps) {
               <p className=" h-1/6 text-sm text-black font-semibold  dark:text-white px-1  truncate max-w-36">
                 {album.title}
               </p>
+              {/* Hover Overlay */}
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 rounded-full"></div>
             </div>
           </Link>
         ))}

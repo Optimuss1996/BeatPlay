@@ -6,9 +6,9 @@ async function getSongsLiked(): Promise<Tracks[]> {
   const supabase = createServerComponentClient({ cookies: () => cookies() });
 
   const { data: sessionData, error: sessionError } =
-    await supabase.auth.getSession();
+    await supabase.auth.getUser();
 
-  if (sessionError || !sessionData.session) {
+  if (sessionError || !sessionData.user) {
     console.log(
       "Error fetching session or no active session:",
       sessionError?.message
@@ -19,11 +19,11 @@ async function getSongsLiked(): Promise<Tracks[]> {
   const { data, error } = await supabase
     .from("liked_songs")
     .select("*")
-    .eq("user_id", sessionData.session.user.id)
+    .eq("user_id", sessionData.user.id)
     .order("created_at", { ascending: false });
 
   if (error) {
-    console.log("Fetching Songs Failed:", error.message);
+    console.log("Fetching liked Songs Failed:", error.message);
     return [];
   }
 

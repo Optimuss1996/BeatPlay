@@ -1,18 +1,18 @@
 "use client";
 import { useTheme } from "next-themes";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Logo() {
-  const { theme } = useTheme();
   return (
     <Link href="/">
-      <Image
-        src={theme === "dark" ? "/WhiteLogo.png" : "/blackLogo.png"}
-        alt="Logo"
-        width={220}
-        height={100}
-      />
+      <div className=" relative">
+        <p className=" text-2xl md:text-3xl font-ClashGrotesk text-purple-600">
+          BeatPlay
+        </p>
+        <p className=" absolute -bottom-[12px] right-0 font-ClashGrotesk font-medium text-black dark:text-white text-sm">
+          music
+        </p>
+      </div>
     </Link>
   );
 }

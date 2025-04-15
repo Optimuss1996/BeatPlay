@@ -14,6 +14,8 @@ import { AiOutlineClose } from "react-icons/ai";
 import ThemeToggle from "./ThemeToggle";
 import Header from "./Header";
 import Footer from "./Footer";
+// import { useEffect } from "react";
+// import { useSessionContext } from "@supabase/auth-helpers-react";
 
 interface AppProps {
   children: React.ReactNode;
@@ -23,6 +25,24 @@ interface AppProps {
 export default function App({ children, playlists }: AppProps) {
   const { user } = useUser();
   const isOpenSidebar = useIsOpenSidebar();
+  // const { supabaseClient } = useSessionContext();
+
+  // useEffect(() => {
+  //   async function getSong() {
+  //     const { data, error } = await supabaseClient
+  //       .from("playlist_songs")
+  //       .select("*")
+  //       .eq("song_id", 685562052)
+  //       .single();
+
+  //     if (error) {
+  //       console.log(error.message);
+  //     }
+
+  //     console.log("playlist Song", data);
+  //   }
+  //   getSong();
+  // }, []);
 
   return (
     <div

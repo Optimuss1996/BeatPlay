@@ -5,6 +5,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import Image from "next/image";
+import { formatNumberWithCommas } from "@/utilities/commonFunction";
 interface InformationProps {
   artistInfo: Artist;
 }
@@ -27,7 +28,7 @@ export default function Information({ artistInfo }: InformationProps) {
             {artistInfo.name}
           </h1>
           <div className=" flex flex-col items-center opacity-65 text-black dark:text-white">
-            <p>{artistInfo.number_fan} fans</p>
+            <p>{formatNumberWithCommas(artistInfo.number_fan)} fans</p>
             <p>{artistInfo.number_album} albums</p>
           </div>
         </div>

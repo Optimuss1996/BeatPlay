@@ -1,6 +1,6 @@
 "use client";
 
-import AddToPlaylist from "@/app/components/AddToPlaylist";
+import AddToPlaylist from "@/app/liked/components/AddToPlaylist";
 import LikeButton from "@/app/components/LikeButton";
 import useOnPlay from "@/hooks/useOnPlay";
 import { useUser } from "@/hooks/useUser";
@@ -29,7 +29,9 @@ export default function Tracks({ songs }: TracksProps) {
   if (songs.length === 0) {
     return (
       <div className="flex justify-center items-center px-3 py-2  text-black dark:text-white md:text-xl mt-16 md:mt-36  ">
-        <p>{"you haven't liked a song yet :("}</p>
+        <p className=" font-ClashGrotesk font-semibold">
+          {"you haven't liked a song yet :("}
+        </p>
       </div>
     );
   }

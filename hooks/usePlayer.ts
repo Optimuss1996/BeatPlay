@@ -14,7 +14,7 @@ const usePlayer = create<PlayStore>((set) => ({
   activeId: undefined,
   activeSource: undefined,
   setId: (id, source?) => set({ activeId: id, activeSource: source }),
-  setIds: (ids) => set({ ids }),
+  setIds: (ids: number[]) => set({ ids: ids }),
   reset: () => set({ ids: [], activeId: undefined, activeSource: undefined }),
 }));
 

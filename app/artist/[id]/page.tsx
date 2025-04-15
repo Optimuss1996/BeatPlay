@@ -22,7 +22,8 @@ export default async function Page({ params }: PageProps) {
     getArtistTopTracks(artistId, 20),
   ]);
 
-  console.log(artistInformation);
+  // console.log(artistInformation);
+  // console.log("tracks add to playlist : ", artistTopTracks);
 
   return (
     <>

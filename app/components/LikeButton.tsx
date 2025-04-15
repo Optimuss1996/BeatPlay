@@ -64,7 +64,7 @@ export default function LikeButton({ track }: LikeButton) {
     if (!isLiked) {
       const { error } = await supabaseClient.from("liked_songs").insert({
         user_id: user?.id,
-        // song_id: track.song_id,
+        song_id: track.song_id,
         song_title: track.song_title,
         song_artist: track.artist?.name,
         song_url: track.song_url,

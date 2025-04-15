@@ -1,5 +1,4 @@
 "use client";
-
 import { Tracks } from "@/types";
 import LikeButton from "@/app/components/LikeButton";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
@@ -12,47 +11,60 @@ import { useEffect, useState } from "react";
 import useSound from "use-sound";
 import { FaMusic } from "react-icons/fa";
 import AddToPlaylist from "@/app/components/AddToPlaylist";
+import { useSongLoadUrl } from "@/hooks/useSongLoadUrl";
 
 interface PlayerContentProps {
   song: Tracks;
+  songUrl: string;
 }
 
-export default function PlayerContent({ song }: PlayerContentProps) {
+export default function PlayerContent({ song, songUrl }: PlayerContentProps) {
   const player = usePlayer();
   const [volume, setVolume] = useState(1);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  // console.log("list of song ids 🎵 :", player.ids);
+  // console.log("current id's song 🎵 :", player.activeId);
 
   const Icon = isPlaying ? BsPauseFill : BsPlayFill;
   const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
 
   function onPlayNext() {
-    if (player.ids.length === 0) return;
+    if (player.ids.length === 0 || !player.activeSource) return;
 
     const currentIndex = player.ids.findIndex((id) => id === player.activeId);
     const nextSong = player.ids[currentIndex + 1];
 
     if (nextSong !== undefined) {
-      player.setId(nextSong);
+      player.setId(nextSong, player.activeSource);
     } else {
-      player.setId(player.ids[0]);
+      player.setId(player.ids[0], player.activeSource);
     }
   }
 
   function onPlayPrevious() {
-    if (player.ids.length === 0) return;
+    if (player.ids.length === 0 || !player.activeSource) return;
 
     const currentIndex = player.ids.findIndex((id) => id === player.activeId);
     const previous = player.ids[currentIndex - 1];
 
     if (previous !== undefined) {
-      player.setId(previous);
+      player.setId(previous, player.activeSource);
     } else {
-      player.setId(player.ids[player.ids.length - 1]);
+      player.setId(player.ids[player.ids.length - 1], player.activeSource);
     }
   }
-  // const al
-  const [play, { pause, sound }] = useSound(song.song_url, {
+
+  // const { songUrl } = useSongLoadUrl(song.song_id);
+  // const song_url = player.activeSource === "deezer" ? song.song_url : songUrl;
+  // // console.log(
+  // //   "final song_url :",
+  // //   song_url,
+  // //   "song url from hook useGetSongUrl : ",
+  // //   songUrl
+  // // );
+
+  const [play, { pause, sound }] = useSound(songUrl, {
     volume: volume,
     onplay: () => setIsPlaying(true),
     onend: () => {
@@ -101,16 +113,20 @@ export default function PlayerContent({ song }: PlayerContentProps) {
       setCurrentTime(time);
     }
   };
+  let image_url =
+    player.activeSource === "deezer"
+      ? song.album?.cover_medium
+      : song.image_url;
 
   return (
     <div className="h-full w-full grid grid-cols-2 lg:grid-cols-3">
       <div className="flex items-center gap-x-4">
         <div className=" flex justify-start items-center gap-x-3">
           {/* Album image or fallback icon */}
-          {song.album.cover_medium ? (
+          {image_url ? (
             <div className=" w-12 h-12 md:w-16 md:h-16  rounded-full overflow-hidden">
               <img
-                src={song.album.cover_medium || "picture"}
+                src={image_url || "picture"}
                 alt="Album Cover"
                 className={`w-full h-full object-cover ${
                   isPlaying ? "animate-spin-slow" : ""

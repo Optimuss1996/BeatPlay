@@ -6,6 +6,7 @@ import { MdOutlineWatchLater } from "react-icons/md";
 import LikeButton from "@/app/components/LikeButton";
 import AddToPlaylist from "@/app/playlist/components/AddToPlaylist";
 import useOnPlay from "@/hooks/useOnPlay";
+import { formatDuration } from "@/utilities/commonFunction";
 interface playlistTracksProps {
   playlistTracks: Tracks[];
 }
@@ -28,7 +29,7 @@ export default function Tracks({ playlistTracks }: playlistTracksProps) {
       </p>
       <main className=" w-11/12 mx-auto flex justify-between items-center px-5  border-b-2 border-b-gray-300 dark:border-b-gray-500 pb-3">
         <div className=" flex-1 flex justify-start items-center gap-x-8 lg:gap-x-48 text-lg text-gray-700 dark:text-gray-400">
-          <p>Track</p>
+          <p>Tracks</p>
         </div>
         <div className=" flex justify-end items-center  gap-x-8 lg:gap-x-12">
           <MdOutlineWatchLater
@@ -58,7 +59,9 @@ export default function Tracks({ playlistTracks }: playlistTracksProps) {
                 <AddToPlaylist track={song} />
                 <LikeButton track={song} />
               </div>
-              <p className="w-11 text-center text-sm md:text-base">02:45</p>
+              <p className="w-11 text-center text-sm md:text-base">
+                {formatDuration(song.duration)}
+              </p>
             </div>
           </div>
         ))}

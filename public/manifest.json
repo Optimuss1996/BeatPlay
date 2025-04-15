@@ -8,16 +8,16 @@
   "name": "BeatPlay",
   "short_name": "BeatPlay",
   "description": "BeatPlay Web App for listening and enjoy music",
-  "start_url": "https://beat-play.vercel.app/",
-  "scope": "https://beat-play.vercel.app/",
+  "start_url": "/",
+  "scope": "/",
   "icons": [
     {
-      "src": "/icons/web-app-manifest-192x192",
+      "src": "/icons/web-app-manifest-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icons/web-app-manifest-512x512",
+      "src": "/icons/web-app-manifest-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
