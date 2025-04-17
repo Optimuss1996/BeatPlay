@@ -10,15 +10,15 @@ interface PageProps {
     page?: string;
   };
 }
-interface LikedProps {
-  searchParams: { page?: string };
-}
+// interface LikedProps {
+//   searchParams: { page?: string };
+// }
 export default async function Page({ searchParams }: PageProps) {
   const currentPage = Number(searchParams.page) || 1;
   const limit = 10;
   const { data: songs, total } = await getSongsLiked(currentPage, limit);
-  const totalPages = Math.ceil(total / limit);
   // console.log("liked songs : ", songs);
+  const totalPages = Math.ceil(total / limit);
   return (
     <div className=" bg-white dark:bg-slate-800/30 rounded-lg w-full h-full overflow-y-auto ">
       <div className=" flex justify-center">

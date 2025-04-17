@@ -6,11 +6,16 @@ import { MdOutlineWatchLater } from "react-icons/md";
 import LikeButton from "@/app/components/LikeButton";
 import AddToPlaylist from "@/app/playlist/components/AddToPlaylist";
 import useOnPlay from "@/hooks/useOnPlay";
+import Pagination from "@/app/components/Pagination";
 interface playlistTracksProps {
   playlistTracks: Tracks[];
+  totalPages: number;
 }
 
-export default function Tracks({ playlistTracks }: playlistTracksProps) {
+export default function Tracks({
+  playlistTracks,
+  totalPages,
+}: playlistTracksProps) {
   const onPlay = useOnPlay(playlistTracks, "playlist");
 
   if (playlistTracks.length === 0) {
@@ -63,6 +68,10 @@ export default function Tracks({ playlistTracks }: playlistTracksProps) {
           </div>
         ))}
       </main>
+      {/* Pagination */}
+      <div className="mt-10">
+        <Pagination totalPages={totalPages} />
+      </div>
     </section>
   );
 }

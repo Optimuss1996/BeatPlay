@@ -2,20 +2,34 @@ import { type Tracks } from "@/types";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
-async function getTracksByPlaylistId(playlistId: string): Promise<Tracks[]> {
+async function getTracksByPlaylistId(
+  playlistId: string,
+  page: number = 1,
+  limit: number = 10
+): Promise<{ data: Tracks[]; total: number }> {
   const supabase = createServerComponentClient({
     cookies: () => cookies(),
   });
 
-  const { data, error } = await supabase
+  const from = (page - 1) * limit;
+  const to = from + limit - 1;
+
+  const { data, error, count } = await supabase
     .from("playlist_songs")
-    .select("*")
-    .eq("playlist_id", playlistId); // Filter by playlist_id
+    .select("*", { count: "exact" }) // ⚠️ Required for total count
+    .eq("playlist_id", playlistId)
+    .order("added_at", { ascending: false })
+    .range(from, to);
 
   if (error) {
-    console.log("Something wrong about Fetching Tracks By Playlist Id ");
+    console.error("Error fetching paginated playlist tracks:", error.message);
+    return { data: [], total: 0 };
   }
-  return (data as any) || [];
+
+  return {
+    data: data as Tracks[],
+    total: count || 0,
+  };
 }
 
 export default getTracksByPlaylistId;
