@@ -70,7 +70,46 @@ export const useGetLikedSongById = (id: number) => {
 };
 //
 //
+//
+//
+export const useGetUploadedSongById = (id: number) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [song, setSong] = useState<Tracks | undefined>(undefined);
+  const { supabaseClient } = useSessionContext();
+  const { user } = useUser();
+  useEffect(() => {
+    if (!id || !user?.id) {
+      return;
+    }
+    setIsLoading(true);
+    async function getSong() {
+      const { data, error } = await supabaseClient
+        .from("uploaded_songs")
+        .select("*")
+        .eq("song_id", id)
+        .eq("user_id", user?.id)
+        .maybeSingle();
+      if (error) {
+        toast.error(
+          `Error from get uploaded_songs tracks by Id ${error.message}`
+        );
+        setIsLoading(false);
+      }
+      setSong(data);
+      setIsLoading(false);
+      // console.log("playlist Song", data);
+    }
 
+    getSong();
+  }, [id, supabaseClient]);
+
+  return { song, isLoading };
+};
+//
+//
+//
+//
+//
 export function useGetSongDeezerById(id: number) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [song, setSong] = useState<Tracks | null>(null);

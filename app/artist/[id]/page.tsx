@@ -19,7 +19,7 @@ export default async function Page({ params }: PageProps) {
   const [artistInformation, artistAlbums, artistTopTracks] = await Promise.all([
     getArtistInformation(artistId),
     getArtistAlbums(artistId, 5),
-    getArtistTopTracks(artistId, 20),
+    getArtistTopTracks(artistId, 15),
   ]);
 
   // console.log(artistInformation);

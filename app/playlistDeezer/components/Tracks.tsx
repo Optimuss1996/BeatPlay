@@ -6,13 +6,18 @@ import { MdOutlineWatchLater } from "react-icons/md";
 import LikeButton from "@/app/components/LikeButton";
 import AddToPlaylist from "@/app/components/AddToPlaylist";
 import useOnPlay from "@/hooks/useOnPlay";
+import Pagination from "@/app/components/Pagination"; // create this next🚨
 import { formatDuration } from "@/utilities/commonFunction";
 interface playlistTracksProps {
   playlistTracks: Tracks[];
+  totalPages: number;
 }
 
-export default function Tracks({ playlistTracks }: playlistTracksProps) {
-  const onPlay = useOnPlay(playlistTracks, "playlist");
+export default function Tracks({
+  playlistTracks,
+  totalPages,
+}: playlistTracksProps) {
+  const onPlay = useOnPlay(playlistTracks, "deezer");
 
   if (playlistTracks.length === 0) {
     return (
@@ -49,7 +54,7 @@ export default function Tracks({ playlistTracks }: playlistTracksProps) {
               className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white"
             >
               <FaMusic size={20} className="text-purple-600 rounded-md" />
-              <p className=" md:text-sm text-xs font-semibold truncate  w-24 md:w-40 lg:w-full">
+              <p className=" md:text-sm text-xs font-semibold truncate  w-24 md:w-40 lg:w-64">
                 {song.song_title}
               </p>
             </div>
@@ -66,6 +71,10 @@ export default function Tracks({ playlistTracks }: playlistTracksProps) {
           </div>
         ))}
       </main>
+      {/* Pagination */}
+      <div className="mt-10">
+        <Pagination totalPages={totalPages} />
+      </div>
     </section>
   );
 }

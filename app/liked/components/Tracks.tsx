@@ -10,12 +10,14 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FaMusic } from "react-icons/fa";
 import { MdOutlineWatchLater } from "react-icons/md";
+import Pagination from "@/app/components/Pagination";
 
 interface TracksProps {
   songs: Tracks[];
+  totalPages: number;
 }
 
-export default function Tracks({ songs }: TracksProps) {
+export default function Tracks({ songs, totalPages }: TracksProps) {
   const router = useRouter();
   const { user, isLoading } = useUser();
   const onPlay = useOnPlay(songs, "liked");
@@ -76,6 +78,10 @@ export default function Tracks({ songs }: TracksProps) {
           </div>
         ))}
       </main>
+      {/* Pagination */}
+      <div className="mt-10">
+        <Pagination totalPages={totalPages} />
+      </div>
     </section>
   );
 }

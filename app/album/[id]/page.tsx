@@ -16,10 +16,9 @@ export const metadata = {
 
 export default async function PlaylistPage({ params }: PageProps) {
   const { id } = await params;
-  const numberId = Number(id);
   const [albumInfo, albumTracks] = await Promise.all([
-    getAlbumDeezerApi(numberId),
-    getAlbumTracksDezzerApi(numberId),
+    getAlbumDeezerApi(Number(id)),
+    getAlbumTracksDezzerApi(Number(id)),
   ]);
 
   return (

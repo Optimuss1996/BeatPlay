@@ -24,7 +24,7 @@ export default function BannerSlider() {
         className="mySwiper rounded-md"
       >
         <SwiperSlide>
-          <Link href={"/artist/4050205"}>
+          <Link href={"/artist/1562681"}>
             <div className=" relative w-full h-[300px] md:h-[350px]">
               <Image
                 src={"/slider-images/Ariana.jpg"}
@@ -37,7 +37,7 @@ export default function BannerSlider() {
         </SwiperSlide>
 
         <SwiperSlide>
-          <Link href={"/artist/12246"}>
+          <Link href={"/artist/4050205"}>
             <div className=" relative w-full h-[300px] md:h-[350px]">
               <Image
                 src={"/slider-images/Weekend.jpg"}
@@ -50,7 +50,7 @@ export default function BannerSlider() {
         </SwiperSlide>
 
         <SwiperSlide>
-          <Link href={"/artist/1562681"}>
+          <Link href={"/artist/12246"}>
             <div className=" relative w-full h-[300px] md:h-[350px]">
               <Image
                 src={"/slider-images/Taylor.jpg"}

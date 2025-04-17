@@ -2,7 +2,10 @@ import { type Tracks } from "@/types";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
-async function getSongsUploaded(): Promise<Tracks[]> {
+async function getSongsUploaded(
+  page: number,
+  limit: number
+): Promise<{ data: Tracks[]; total: number }> {
   const supabase = createServerComponentClient({ cookies: () => cookies() });
 
   const { data: sessionData, error: sessionError } =
@@ -13,21 +16,25 @@ async function getSongsUploaded(): Promise<Tracks[]> {
       "Error fetching session or no active session:",
       sessionError?.message
     );
-    return [];
+    return { data: [], total: 0 };
   }
 
-  const { data, error } = await supabase
+  const start = (page - 1) * limit;
+  const end = start + limit - 1;
+
+  const { data, error, count } = await supabase
     .from("uploaded_songs")
-    .select("*")
+    .select("*", { count: "exact" }) // 👈 important for total page calc
     .eq("user_id", sessionData.user.id)
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: false })
+    .range(start, end);
 
   if (error) {
     console.log("Fetching Uploaded Songs Failed:", error.message);
-    return [];
+    return { data: [], total: 0 };
   }
 
-  return data;
+  return { data: data || [], total: count || 0 };
 }
 
 export default getSongsUploaded;

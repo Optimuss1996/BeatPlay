@@ -17,43 +17,35 @@ interface ArtistProp {
 export default function PopularArtist({ artists }: ArtistProp) {
   return (
     <section className="w-full my-8 md:mb-12 overflow-hidden">
-      <h2 className="font-bold text-start text-lg md:text-2xl px-4 mb-6">
-        🌟 Popular Artists
+      <h2 className="font-bold text-start text-xl md:text-3xl px-4 mb-6">
+        Popular Artists
       </h2>
 
       <Swiper
         loop
         spaceBetween={15}
+        slidesPerView="auto"
         autoplay={{ delay: 3500, disableOnInteraction: false }}
         modules={[Autoplay, Pagination, Navigation]}
-        breakpoints={{
-          320: { slidesPerView: 2 },
-          480: { slidesPerView: 3 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 5 },
-        }}
         className="w-full px-4"
       >
         {artists.map((artist) => (
-          <SwiperSlide key={artist.id} className="w-full">
-            <Link href={`/artist/${artist.id}`} className="group">
+          <SwiperSlide
+            key={artist.id}
+            className="!w-40 sm:!w-44 md:!w-52 lg:!w-56 xl:!w-60"
+          >
+            <Link href={`/artist/${artist.id}`} className="group block">
               <div className="flex flex-col items-center gap-y-3">
-                {/* Image Container */}
-                <div className="relative w-24 sm:w-32 md:w-40 xl:w-48 2xl:w-56 aspect-square rounded-full overflow-hidden shadow-md ">
+                <div className="relative aspect-square w-full rounded-full overflow-hidden shadow-md transition-transform duration-300 ease-in-out transform group-hover:scale-95">
                   <Image
                     src={artist.picture_medium}
                     alt={artist.name}
                     fill
-                    className="object-cover"
+                    className="object-cover bg-slate-200 dark:bg-slate-700"
                     loading="lazy"
                   />
-
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
                 </div>
-
-                {/* Artist Name */}
-                <p className="text-center text-sm md:text-base font-medium text-gray-800 dark:text-gray-100 truncate w-32 sm:w-36">
+                <p className="text-center text-sm md:text-base font-medium text-gray-800 dark:text-gray-100 truncate w-full">
                   {artist.name}
                 </p>
               </div>

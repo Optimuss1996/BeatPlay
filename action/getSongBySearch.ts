@@ -72,11 +72,12 @@ export async function getAlbumBySearch(
 //get list of tracks by searching in input
 export async function getTracksBySearch(
   searchQuery: string,
-  limit: number
-): Promise<Tracks[]> {
+  limit: number,
+  index: number
+): Promise<{ data: Tracks[]; total: number }> {
   try {
     const res = await fetch(
-      `https://api.deezer.com/search/track?q=${searchQuery}&limit=${limit}&order=RANKING`,
+      `https://api.deezer.com/search/track?q=${searchQuery}&limit=${limit}&order=RANKING&index=${index}`,
       {
         next: { revalidate: 604800 }, // Refresh data once every 7 days (604800 sec)
       }
@@ -84,11 +85,12 @@ export async function getTracksBySearch(
 
     if (!res.ok) {
       console.warn(`Deezer API Error: ${res.status} ${res.statusText}`);
-      return [];
+      return { data: [], total: 0 };
     }
 
-    const data = await res.json();
-    return data.data.map((song: any) => ({
+    const result = await res.json();
+
+    const tracks: Tracks[] = result.data.map((song: any) => ({
       song_id: song.id,
       song_title: song.title,
       song_titleShort: song.title_short,
@@ -106,9 +108,11 @@ export async function getTracksBySearch(
         cover: song.album.cover,
       },
     }));
+
+    return { data: tracks, total: result.total };
   } catch (error) {
     console.error("Error fetching tracks by search", error);
-    return [];
+    return { data: [], total: 0 };
   }
 }
 //

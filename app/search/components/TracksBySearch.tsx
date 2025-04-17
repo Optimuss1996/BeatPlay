@@ -7,11 +7,16 @@ import { formatDuration } from "@/utilities/commonFunction";
 import LikeButton from "@/app/components/LikeButton";
 import AddToPlaylist from "@/app/components/AddToPlaylist";
 import useOnPlay from "@/hooks/useOnPlay";
+import Pagination from "@/app/components/Pagination";
 interface TracksBySearchProps {
   tracks: Tracks[];
+  totalPages: number;
 }
 
-export default function TracksBySearch({ tracks }: TracksBySearchProps) {
+export default function TracksBySearch({
+  tracks,
+  totalPages,
+}: TracksBySearchProps) {
   const onPlay = useOnPlay(tracks, "deezer");
 
   if (tracks.length === 0) {
@@ -62,6 +67,10 @@ export default function TracksBySearch({ tracks }: TracksBySearchProps) {
           </div>
         ))}
       </main>
+      {/* Pagination */}
+      <div className="mt-10">
+        <Pagination totalPages={totalPages} />
+      </div>
     </section>
   );
 }

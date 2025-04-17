@@ -5,8 +5,19 @@ export const revalidate = 0;
 export const metadata = {
   title: " Liked Page",
 };
-export default async function Page() {
-  const songs = await getSongsLiked();
+interface PageProps {
+  searchParams?: {
+    page?: string;
+  };
+}
+interface LikedProps {
+  searchParams: { page?: string };
+}
+export default async function Page({ searchParams }: PageProps) {
+  const currentPage = Number(searchParams.page) || 1;
+  const limit = 10;
+  const { data: songs, total } = await getSongsLiked(currentPage, limit);
+  const totalPages = Math.ceil(total / limit);
   // console.log("liked songs : ", songs);
   return (
     <div className=" bg-white dark:bg-slate-800/30 rounded-lg w-full h-full overflow-y-auto ">
@@ -16,7 +27,7 @@ export default async function Page() {
         </h1>
       </div>
 
-      <Tracks songs={songs} />
+      <Tracks songs={songs} totalPages={totalPages} />
     </div>
   );
 }

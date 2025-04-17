@@ -5,24 +5,34 @@ import {
 } from "@/action/getSongBySearch";
 import SearchContent from "./components/SearchContent";
 
-interface SearchProps {
-  searchParams: Promise<{ title: string }>;
+// interface SearchProps {
+//   searchParams: Promise<{ title: string }>;
+// }
+interface PageProps {
+  searchParams?: {
+    page?: string;
+    title: string;
+  };
 }
 
 export const revalidate = 0;
 export const metadata = {
   title: " Search Page",
 };
-export default async function Page({ searchParams }: SearchProps) {
-  const { title } = await searchParams;
+export default async function Page({ searchParams }: PageProps) {
+  const { title } = searchParams;
+  const currentPage = Number(searchParams?.page || 1);
+  const limit = 10;
+  const index = (currentPage - 1) * limit;
+  const [artistBySearch, albumBySearch, { data: tracksBySearch, total }] =
+    await Promise.all([
+      getArtistBySearch(title),
+      getAlbumBySearch(title),
+      getTracksBySearch(title, limit, index),
+    ]);
+  const totalPages = Math.ceil(total / limit);
 
-  const [artistBySearch, albumBySearch, tracksBySearch] = await Promise.all([
-    getArtistBySearch(title),
-    getAlbumBySearch(title),
-    getTracksBySearch(title, 20),
-  ]);
-
-  console.log(artistBySearch, albumBySearch, tracksBySearch);
+  // console.log(artistBySearch, albumBySearch, tracksBySearch);
 
   if (
     artistBySearch.length === 0 &&
@@ -48,6 +58,7 @@ export default async function Page({ searchParams }: SearchProps) {
         artists={artistBySearch}
         albums={albumBySearch}
         tracks={tracksBySearch}
+        totalPages={totalPages}
       />
     </div>
   );

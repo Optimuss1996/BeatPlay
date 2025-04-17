@@ -13,3 +13,6 @@ html {
   font-style: normal;
   font-display: swap;
 }
+* {
+  scroll-behavior: smooth;
+}

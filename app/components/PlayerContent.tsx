@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 import useSound from "use-sound";
 import { FaMusic } from "react-icons/fa";
 import AddToPlaylist from "@/app/components/AddToPlaylist";
-import { useSongLoadUrl } from "@/hooks/useSongLoadUrl";
 
 interface PlayerContentProps {
   song: Tracks;
@@ -128,7 +127,7 @@ export default function PlayerContent({ song, songUrl }: PlayerContentProps) {
             <div className="w-12 h-12 md:w-14 md:h-w-14 rounded-full bg-purple-600 flex items-center justify-center overflow-hidden">
               <FaMusic
                 size={24}
-                className={`text-white p-1 ${
+                className={`text-white p-1  ${
                   isPlaying ? "animate-spin-slow" : ""
                 }`}
               />
@@ -147,8 +146,14 @@ export default function PlayerContent({ song, songUrl }: PlayerContentProps) {
         </div>
 
         <div className=" flex items-center gap-x-2">
-          <LikeButton track={song} />
-          <AddToPlaylist track={song} />
+          {player.activeSource === "uploaded" ? (
+            ""
+          ) : (
+            <>
+              <LikeButton track={song} />
+              <AddToPlaylist track={song} />
+            </>
+          )}
         </div>
       </div>
 

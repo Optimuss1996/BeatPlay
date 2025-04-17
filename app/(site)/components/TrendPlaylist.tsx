@@ -10,7 +10,7 @@ interface TrendPlaylistProps {
 export default function TrendPlaylist({ topPlaylist }: TrendPlaylistProps) {
   return (
     <section className="w-full my-8 md:mb-10">
-      <div className="font-bold text-start text-base sm:text-lg md:text-xl px-4 mb-8 dark:text-white text-black">
+      <div className="font-bold text-start text-base sm:text-xl md:text-2xl px-4 mb-8 dark:text-white text-black">
         Top playlist
       </div>
       <div className="grid grid-cols-2  md:grid-cols-4 lg:grid-cols-6  gap-4 px-4">
@@ -18,7 +18,7 @@ export default function TrendPlaylist({ topPlaylist }: TrendPlaylistProps) {
           <Link href={`/playlistDeezer/${playlist.id}`} key={playlist.id}>
             <div
               key={playlist.id}
-              className="relative group rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-700 cursor-pointer shadow-lg"
+              className="relative group  rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-700 cursor-pointer shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-95"
             >
               <Image
                 src={playlist.picture_big}

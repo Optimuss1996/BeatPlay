@@ -66,21 +66,29 @@ export async function getPlaylistInfoDeezerApi(
     return null;
   }
 }
-export async function getPlaylistTracks(id: number): Promise<Tracks[]> {
+export async function getPlaylistTracks(
+  id: number,
+  limit: number,
+  index: number
+): Promise<{ data: Tracks[]; total: number }> {
   try {
-    const res = await fetch(`https://api.deezer.com/playlist/${id}/tracks`, {
-      next: { revalidate: 604800 }, // Refresh data once every 7 days (604800 sec)
-    });
+    const res = await fetch(
+      `https://api.deezer.com/playlist/${id}/tracks?limit=${limit}&index=${index}`,
+      {
+        next: { revalidate: 604800 }, // 7 days
+      }
+    );
 
     if (!res.ok) {
       console.warn(
         `Deezer API Error For Fetching Tracks Playlist : ${res.status} ${res.statusText}`
       );
-      return [];
+      return { data: [], total: 0 };
     }
 
-    const data = await res.json();
-    return data.data.map((song: any) => ({
+    const result = await res.json();
+
+    const tracks: Tracks[] = result.data.map((song: any) => ({
       song_id: song.id,
       song_title: song.title,
       song_titleShort: song.title_short,
@@ -98,8 +106,10 @@ export async function getPlaylistTracks(id: number): Promise<Tracks[]> {
         cover: song.album.cover,
       },
     }));
+
+    return { data: tracks, total: result.total };
   } catch (error) {
     console.error("Deezer API Error For Fetching Tracks Playlist ", error);
-    return [];
+    return { data: [], total: 0 };
   }
 }

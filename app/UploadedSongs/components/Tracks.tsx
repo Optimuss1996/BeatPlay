@@ -1,7 +1,6 @@
 "use client";
 
-import AddToPlaylist from "@/app/liked/components/AddToPlaylist";
-import LikeButton from "@/app/components/LikeButton";
+import Pagination from "@/app/components/Pagination";
 import useOnPlay from "@/hooks/useOnPlay";
 import { useUser } from "@/hooks/useUser";
 import { type Tracks } from "@/types";
@@ -13,9 +12,10 @@ import { MdOutlineWatchLater } from "react-icons/md";
 
 interface TracksProps {
   songs: Tracks[];
+  totalPages: number;
 }
 
-export default function Tracks({ songs }: TracksProps) {
+export default function Tracks({ songs, totalPages }: TracksProps) {
   const router = useRouter();
   const { user, isLoading } = useUser();
   const onPlay = useOnPlay(songs, "uploaded");
@@ -58,10 +58,15 @@ export default function Tracks({ songs }: TracksProps) {
               onClick={() => onPlay(song.song_id)}
               className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white"
             >
-              <FaMusic size={20} className="text-purple-600 rounded-md" />
-              <p className=" md:text-sm text-xs font-semibold truncate  w-24 md:w-40 lg:w-full">
-                {song.song_title}
-              </p>
+              <FaMusic size={25} className="text-purple-600 rounded-md" />
+              <div>
+                <p className=" md:text-sm text-sm font-semibold truncate  w-24 md:w-40 lg:w-full">
+                  {song.song_title}
+                </p>
+                <p className=" md:text-sm opacity-45 text-xs font-semibold truncate  w-24 md:w-40 lg:w-full">
+                  {song.song_artist}
+                </p>
+              </div>
             </div>
 
             <div className="basis-1/3 flex justify-end items-center gap-x-2 md:gap-x-5 lg:gap-x-8">
@@ -72,6 +77,10 @@ export default function Tracks({ songs }: TracksProps) {
           </div>
         ))}
       </main>
+      {/* Pagination */}
+      <div className="mt-10">
+        <Pagination totalPages={totalPages} />
+      </div>
     </section>
   );
 }

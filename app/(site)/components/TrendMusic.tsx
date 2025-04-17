@@ -42,7 +42,7 @@ export default function TrendMusic({ songs }: SongsProps) {
           <SwiperSlide key={song.song_id}>
             <div className="flex flex-col gap-2 group">
               <div
-                className="relative w-full h-full cursor-pointer rounded-xl overflow-hidden shadow-lg transition-transform duration-300 ease-in-out transform group-hover:scale-95"
+                className="relative w-full h-full cursor-pointer rounded-xl overflow-hidden shadow-lg transition-transform duration-300 ease-in-out transform group-hover:scale-95 bg-slate-200 dark:bg-slate-700"
                 onClick={() => onPlay(song.song_id)}
                 role="button"
                 aria-label={`Play ${song.song_titleShort}`}

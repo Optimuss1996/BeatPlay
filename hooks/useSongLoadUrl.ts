@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export function useSongLoadUrl(trackId?: number) {
-  const [songUrl, setUrl] = useState<string | null>(null);
+  const [song_Url, setUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -32,5 +32,5 @@ export function useSongLoadUrl(trackId?: number) {
     fetchPreviewUrl();
   }, [trackId]);
 
-  return { songUrl, loading, error };
+  return { song_Url, loading, error };
 }
