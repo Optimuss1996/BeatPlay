@@ -3,7 +3,6 @@ import usePlayListModal from "@/hooks/usePlayListModal";
 import Modal from "./Modal";
 import uniqid from "uniqid";
 import { AiOutlineCloudUpload } from "react-icons/ai";
-import { FaRegFileImage } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
 import { FieldValues, useForm } from "react-hook-form";
 import Button from "./Button";
@@ -36,7 +35,7 @@ export default function PlayListModal() {
       const file = e.target.files[0];
       setFileName(file.name);
       setImage(URL.createObjectURL(file));
-      setValue("image", file, { shouldValidate: true }); // ✅ Correctly registers file in react-hook-form
+      setValue("image", file, { shouldValidate: true });
     }
   };
 
@@ -58,7 +57,6 @@ export default function PlayListModal() {
 
   async function onSubmit(values: FieldValues) {
     setIsLoading(true);
-    console.log("Form values:", values);
 
     const imageFile = values.image;
     const title = values.title;
@@ -72,7 +70,6 @@ export default function PlayListModal() {
     try {
       const uniqueID = uniqid();
       const imagePath = `image-${values.title}-${uniqueID}`;
-      console.log("Uploading image to Supabase Storage...");
 
       const { data: imageData, error: imageError } =
         await supabaseClient.storage
@@ -82,7 +79,6 @@ export default function PlayListModal() {
             upsert: false,
           });
 
-      // Get the public URL of the uploaded song
       const { data: imageDataUrl } = supabaseClient.storage
         .from("images")
         .getPublicUrl(imagePath);
@@ -95,14 +91,12 @@ export default function PlayListModal() {
         return;
       }
 
-      console.log("Image uploaded successfully:", imageData);
-
       const { error: supabaseError } = await supabaseClient
         .from("playlists")
         .insert({
           user_id: user.id,
-          title: title,
-          description: description,
+          title,
+          description,
           image_path: imageData.path,
           image_url: imagePublicUrl,
         });
@@ -113,8 +107,6 @@ export default function PlayListModal() {
         toast.error("Something went wrong");
         return;
       }
-
-      console.log("Playlist created successfully!");
 
       router.refresh();
       toast.success("Playlist created!");
@@ -140,32 +132,30 @@ export default function PlayListModal() {
         <div className="flex flex-col md:flex-row gap-y-3 gap-x-5 items-center">
           <div>
             <div className="flex justify-center items-center">
-              <div className=" rounded-lg w-48 flex flex-col gap-y-2 justify-center items-center">
-                <div className="w-full h-44 md:h-52 rounded-lg  shadow-lg text-purple-600 flex justify-center items-center overflow-hidden  bg-purple-300 dark:bg-gray-800">
+              <div className="rounded-lg w-48 flex flex-col gap-y-2 justify-center items-center">
+                {/* CLICKABLE IMAGE AREA */}
+                <div
+                  className="w-full h-44 md:h-52 rounded-lg shadow-lg text-purple-600 flex justify-center items-center overflow-hidden bg-purple-300 dark:bg-gray-800 cursor-pointer"
+                  onClick={() => fileInputRef.current?.click()}
+                >
                   {image ? (
                     <img
-                      className="w-full object-cover"
+                      className="w-full h-full object-cover"
                       src={image}
-                      alt="Uploaded image"
+                      alt="Uploaded"
                     />
                   ) : (
                     <div className="w-full h-full flex flex-col justify-center items-center bg-purple-300 dark:bg-gray-800 rounded-lg">
                       <AiOutlineCloudUpload size={60} />
-                      <span>Browse File to upload!</span>
+                      <span>Click to upload</span>
                     </div>
                   )}
                 </div>
 
-                <div className="w-full  bg-purple-300 dark:bg-gray-800 rounded-lg">
+                {/* FILE NAME AND DELETE ICON */}
+                <div className="w-full bg-purple-300 dark:bg-gray-800 rounded-lg">
                   <div className="w-full flex justify-between items-center p-2 rounded-lg">
-                    <FaRegFileImage
-                      size={20}
-                      className="text-purple-600 hover:text-black cursor-pointer"
-                      onClick={() => fileInputRef.current?.click()}
-                    />
-                    <div>
-                      {fileName ? "Selected file" : "Not selected file"}
-                    </div>
+                    <div>{fileName ? "Selected file" : "No file selected"}</div>
                     <TiDelete
                       size={20}
                       className="text-purple-600 hover:text-black cursor-pointer rounded-full"
@@ -174,6 +164,7 @@ export default function PlayListModal() {
                   </div>
                 </div>
 
+                {/* HIDDEN FILE INPUT */}
                 <input
                   id="image"
                   disabled={isLoading}
@@ -187,6 +178,8 @@ export default function PlayListModal() {
               </div>
             </div>
           </div>
+
+          {/* TEXT INPUTS */}
           <div className="flex-1 flex flex-col gap-y-3 justify-center">
             <input
               id="title"
@@ -194,17 +187,19 @@ export default function PlayListModal() {
               {...register("title", { required: true })}
               type="text"
               placeholder="Playlist name"
-              className="bg-purple-300 dark:bg-gray-800 w-full h-14 rounded-md outline-none border-none px-4 py-2 text-base text-black  placeholder:text-gray-600"
+              className="bg-purple-300 dark:bg-gray-800 w-full h-14 rounded-md outline-none border-none px-4 py-2 text-base  placeholder-gray-400 placeholder:text-gray-600"
             />
             <textarea
               id="description"
               disabled={isLoading}
               {...register("description", { required: true })}
               placeholder="Description"
-              className="h-48 w-full px-4 py-2 bg-purple-300  dark:bg-gray-800 placeholder-gray-400 focus:outline-none rounded-md  placeholder:text-gray-600"
+              className="h-48 w-full px-4 py-2 bg-purple-300 dark:bg-gray-800 placeholder-gray-400 focus:outline-none rounded-md placeholder:text-gray-600"
             />
           </div>
         </div>
+
+        {/* SUBMIT BUTTON */}
         <Button
           disabled={isLoading}
           type="submit"

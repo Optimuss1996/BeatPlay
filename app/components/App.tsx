@@ -62,10 +62,7 @@ export default function App({ children, playlists }: AppProps) {
 
           <div className="flex flex-col gap-y-4 px-4 py-5">
             <SidebarItem key="Home" label="Home" icon={HiHome} href="/" />
-            <div className="flex items-center gap-x-3 h-auto w-full text-md font-medium hover:bg-purple-200 dark:bg-gray-900 rounded-md cursor-pointer transition text-black dark:text-white py-1 px-2 dark:hover:bg-purple-500">
-              <ThemeToggle />
-              <p>Dark mode</p>
-            </div>
+            <ThemeToggle />
           </div>
         </Box>
 
