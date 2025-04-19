@@ -45,7 +45,7 @@ export default function PopularArtist({ artists }: ArtistProp) {
                   <img
                     src={artist.picture_medium}
                     alt={artist.name}
-                    className="w-full h-full  rounded-full shadow-[0px_4px_14px_1px_rgba(17,_12,_46,_0.15)]"
+                    className="w-full h-full  rounded-full shadow-[0px_4px_14px_1px_rgba(17,_12,_46,_0.15)] bg-slate-200 dark:bg-slate-700"
                   />
                   <div className="flex justify-center items-center gap-x-1 absolute bottom-2 right-2  opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <IoMdPlay

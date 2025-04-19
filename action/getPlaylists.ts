@@ -41,7 +41,7 @@ export async function getPlaylistById(playlistId: string): Promise<Playlist> {
     .from("playlists")
     .select("*")
     .eq("id", playlistId)
-    .single();
+    .maybeSingle();
 
   if (error) {
     console.log("Something wrong about Fetching Playlist by Id");

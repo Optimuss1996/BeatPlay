@@ -50,7 +50,7 @@ export default function Tracks({ albumTracks }: AlbumTracksProps) {
               className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white"
             >
               <FaMusic size={20} className="text-purple-600 rounded-md " />
-              <p className=" md:text-sm text-xs font-semibold truncate w-24 md:w-40 lg:w-full">
+              <p className=" md:text-sm text-xs font-semibold truncate w-24 md:w-40 lg:w-72">
                 {song.song_titleShort}
               </p>
             </div>

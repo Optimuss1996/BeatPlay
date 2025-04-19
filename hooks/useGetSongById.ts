@@ -3,14 +3,16 @@ import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useUser } from "./useUser";
+import usePlayer from "./usePlayer";
 
 export const useGetPlaylistSongById = (id: number) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [song, setSong] = useState<Tracks | undefined>(undefined);
   const { supabaseClient } = useSessionContext();
   const { user } = useUser();
+  const player = usePlayer();
   useEffect(() => {
-    if (!id || !user?.id) {
+    if (!id || !user?.id || player.activeSource !== "playlist") {
       return;
     }
     setIsLoading(true);
@@ -23,6 +25,7 @@ export const useGetPlaylistSongById = (id: number) => {
         .maybeSingle();
       if (error) {
         toast.error(`Error from getPlaylist tracks by Id ${error.message}`);
+        console.error(`Error from getPlaylist tracks by Id ${error.message}`);
         setIsLoading(false);
       }
       setSong(data);
@@ -40,9 +43,9 @@ export const useGetLikedSongById = (id: number) => {
   const [song, setSong] = useState<Tracks | undefined>(undefined);
   const { supabaseClient } = useSessionContext();
   const { user } = useUser();
-
+  const player = usePlayer();
   useEffect(() => {
-    if (!id || !user?.id) {
+    if (!id || !user?.id || player.activeSource !== "liked") {
       return;
     }
     setIsLoading(true);
@@ -56,6 +59,7 @@ export const useGetLikedSongById = (id: number) => {
 
       if (error) {
         toast.error(`Error from getLiked tracks by Id ${error.message}`);
+        console.error(`Error from getLiked tracks by Id ${error.message}`);
         setIsLoading(false);
       }
 
@@ -76,9 +80,10 @@ export const useGetUploadedSongById = (id: number) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [song, setSong] = useState<Tracks | undefined>(undefined);
   const { supabaseClient } = useSessionContext();
+  const player = usePlayer();
   const { user } = useUser();
   useEffect(() => {
-    if (!id || !user?.id) {
+    if (!id || !user?.id || player.activeSource !== "uploaded") {
       return;
     }
     setIsLoading(true);
@@ -91,7 +96,10 @@ export const useGetUploadedSongById = (id: number) => {
         .maybeSingle();
       if (error) {
         toast.error(
-          `Error from get uploaded_songs tracks by Id ${error.message}`
+          `Error from get uploaded songs tracks by Id ${error.message}`
+        );
+        console.error(
+          `Error from get uploaded songs tracks by Id ${error.message}`
         );
         setIsLoading(false);
       }
@@ -113,9 +121,9 @@ export const useGetUploadedSongById = (id: number) => {
 export function useGetSongDeezerById(id: number) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [song, setSong] = useState<Tracks | null>(null);
-
+  const player = usePlayer();
   useEffect(() => {
-    if (!id) return;
+    if (!id || player.activeSource !== "deezer") return;
 
     async function getTrack() {
       setIsLoading(true);
@@ -124,7 +132,7 @@ export function useGetSongDeezerById(id: number) {
 
         if (!res.ok) {
           console.warn(
-            `goooooooooooooooooooz: ${res.status} ${res.statusText}`
+            `Error Fetching from deezer by ID  : ${res.status} ${res.statusText}`
           );
           return null;
         }
@@ -132,8 +140,12 @@ export function useGetSongDeezerById(id: number) {
         const data = await res.json();
 
         if (data.error) {
-          console.warn(`gooooooooooooooooooozr: ${data.error.message}`);
-          toast.error(`goooooooooooooooooooz : ${data.error.message}`);
+          console.warn(
+            `Error Fetching from deezer by ID : ${data.error.message}`
+          );
+          toast.error(
+            `Error Fetching from deezer by ID  : ${data.error.message}`
+          );
           return;
         }
 
@@ -163,8 +175,8 @@ export function useGetSongDeezerById(id: number) {
           type: "deezer",
         });
       } catch (error) {
-        console.error("goooooooooooooooz:", error);
-        toast.error("goooooooooooooooooooz.");
+        console.error("Error Fetching from deezer by ID :", error);
+        toast.error("Error Fetching from deezer by ID  `: ", error);
       } finally {
         setIsLoading(false);
       }

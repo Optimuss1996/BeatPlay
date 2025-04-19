@@ -149,10 +149,10 @@ export default function PlayerContent({ song, songUrl }: PlayerContentProps) {
           {player.activeSource === "uploaded" ? (
             ""
           ) : (
-            <>
+            <div className="flex items-center gap-x-3">
               <LikeButton track={song} />
               <AddToPlaylist track={song} />
-            </>
+            </div>
           )}
         </div>
       </div>

@@ -53,9 +53,14 @@ export default function Tracks({
               className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white"
             >
               <FaMusic size={20} className="text-purple-600 rounded-md" />
-              <p className=" md:text-sm text-xs font-semibold truncate  w-24 md:w-40 lg:w-full">
-                {song.song_title}
-              </p>
+              <div>
+                <p className=" md:text-sm text-sm font-semibold truncate  w-24 md:w-40 lg:w-full">
+                  {song.song_title}
+                </p>
+                <p className=" md:text-sm opacity-45 text-xs font-semibold truncate  w-24 md:w-40 lg:w-72">
+                  {song.song_artist}
+                </p>
+              </div>
             </div>
 
             <div className="basis-1/3 flex justify-end items-center gap-x-2 md:gap-x-5 lg:gap-x-8">

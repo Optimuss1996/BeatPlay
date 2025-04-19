@@ -100,7 +100,7 @@ export default function AddToPlaylist({ track }: AddToPlaylistProps) {
           className=" rounded-full border-none outline-none  hover:bg-gray-300 transition"
           disabled={isLoading}
         >
-          <FaPlus className="text-gray-600 dark:text-gray-300" size={15} />
+          <FaPlus className="text-gray-600 dark:text-gray-300" size={18} />
         </button>
       </DropdownMenu.Trigger>
 

@@ -26,13 +26,10 @@ export default async function Page({ params }: PageProps) {
   // console.log("tracks add to playlist : ", artistTopTracks);
 
   return (
-    <>
-      <div className=" bg-white dark:bg-slate-800/30 rounded-lg w-full h-full overflow-hidden overflow-y-auto">
-        <div className=" flex flex-col gap-x-12 md:gap-x-28 justify-center items-center"></div>
-        <Information artistInfo={artistInformation} />
-        <Album artistAlbums={artistAlbums} />
-        <Tracks artistTopTracks={artistTopTracks} />
-      </div>
-    </>
+    <div className=" bg-white dark:bg-slate-800/30  w-full h-full overflow-hidden overflow-y-auto">
+      <Information artistInfo={artistInformation} />
+      <Album artistAlbums={artistAlbums} />
+      <Tracks artistTopTracks={artistTopTracks} />
+    </div>
   );
 }

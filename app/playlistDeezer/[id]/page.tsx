@@ -34,7 +34,7 @@ export default async function PlaylistPage({
   // console.log("artistinfo : ", artistInformation);
   // console.log("playlistTracks : ", playlistTracks);
   return (
-    <div className=" bg-white dark:bg-slate-800/30  w-full h-full overflow-hidden overflow-y-auto">
+    <div className=" bg-white dark:bg-slate-800/30  w-full h-full overflow-hidden  overflow-y-auto">
       <div className=" flex flex-col gap-x-12 md:gap-x-28 justify-center items-center">
         <Information artistInformation={artistInformation} />
         <Tracks playlistTracks={playlistTracks} totalPages={totalPages} />

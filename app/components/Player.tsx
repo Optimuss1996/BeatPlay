@@ -14,26 +14,32 @@ import { useSongLoadUrl } from "@/hooks/useSongLoadUrl";
 
 export default function Player() {
   const { activeId, activeSource } = usePlayer();
+
   const { song: deezerSong } = useGetSongDeezerById(activeId);
   const { song: likedSong } = useGetLikedSongById(activeId);
   const { song: playlistSong } = useGetPlaylistSongById(activeId);
-  const { song: uploadedSongs } = useGetUploadedSongById(activeId);
-
+  const { song: uploadedSong } = useGetUploadedSongById(activeId);
   const { song_Url } = useSongLoadUrl(activeId);
-  let song: Tracks | null = null;
+
   if (!activeId || !activeSource) return null;
+
+  let song: Tracks | null = null;
+  let songUrl: string | undefined;
 
   if (activeSource === "deezer") {
     song = deezerSong ?? null;
+    songUrl = song_Url;
   } else if (activeSource === "liked") {
     song = likedSong ?? null;
+    songUrl = song_Url;
   } else if (activeSource === "playlist") {
     song = playlistSong ?? null;
+    songUrl = song_Url;
   } else if (activeSource === "uploaded") {
-    song = uploadedSongs ?? null;
+    song = uploadedSong ?? null;
+    songUrl = song?.song_url;
   }
 
-  let songUrl = activeSource === "uploaded" ? song?.song_url : song_Url;
   if (!song) return null;
 
   return (

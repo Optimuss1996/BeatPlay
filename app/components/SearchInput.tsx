@@ -20,7 +20,7 @@ export default function SearchInput() {
       // router.push(`/search?q=${encodeURIComponent(query)}`);
       // Create a full URL with query parameters
       const url = queryString.stringifyUrl({
-        url: "./search", // Make sure this URL is correct in the context of the app
+        url: "/search", // Make sure this URL is correct in the context of the app
         query: query,
       });
 

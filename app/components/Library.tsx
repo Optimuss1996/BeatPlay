@@ -70,7 +70,7 @@ export default function Library({ playlists }: PropsLibrary) {
             size={45}
             className="text-red-500 bg-red-200 p-2 rounded-md "
           />
-          <p className="font-medium text-lg">Liked Songs</p>
+          <p className="font-medium text-sm md:text-lg">Liked Songs</p>
         </div>
 
         <div
@@ -81,7 +81,7 @@ export default function Library({ playlists }: PropsLibrary) {
             size={45}
             className="text-blue-500 bg-blue-200 p-2 rounded-md "
           />
-          <p className="font-medium text-lg">uploaded Songs</p>
+          <p className="font-medium text-sm md:text-lg">uploaded Songs</p>
         </div>
 
         <div

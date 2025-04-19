@@ -58,12 +58,12 @@ export default function Tracks({ songs, totalPages }: TracksProps) {
               onClick={() => onPlay(song.song_id)}
               className=" basis-2/3 flex justify-start items-center gap-x-4 md:gap-x-8  text-lg text-black dark:text-white"
             >
-              <FaMusic size={25} className="text-purple-600 rounded-md" />
+              <FaMusic size={20} className="text-purple-600 rounded-md" />
               <div>
-                <p className=" md:text-sm text-sm font-semibold truncate  w-24 md:w-40 lg:w-full">
+                <p className=" md:text-sm text-sm font-semibold truncate  w-24 md:w-40 lg:w-72">
                   {song.song_title}
                 </p>
-                <p className=" md:text-sm opacity-45 text-xs font-semibold truncate  w-24 md:w-40 lg:w-full">
+                <p className=" md:text-sm opacity-45 text-xs font-semibold truncate  w-24 md:w-40 lg:w-72">
                   {song.song_artist}
                 </p>
               </div>
