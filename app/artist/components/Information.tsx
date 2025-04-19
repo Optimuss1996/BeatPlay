@@ -19,6 +19,7 @@ export default function Information({ artistInfo }: InformationProps) {
             src={artistInfo.picture_big}
             alt={artistInfo.name}
             fill
+            sizes="100%"
             className="object-cover rounded-full  "
           />
         </div>

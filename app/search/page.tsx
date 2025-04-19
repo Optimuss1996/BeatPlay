@@ -53,7 +53,7 @@ export default async function Page({ searchParams }: PageProps) {
   }
 
   return (
-    <div className=" bg-white dark:bg-slate-800/30 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
+    <div className=" bg-white dark:bg-slate-800/30  h-full w-full overflow-hidden overflow-y-auto">
       <SearchContent
         artists={artistBySearch}
         albums={albumBySearch}

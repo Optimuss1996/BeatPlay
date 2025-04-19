@@ -30,7 +30,6 @@ export default function Album({ artistAlbums }: AlbumProps) {
                 {album.title}
               </p>
               {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 rounded-full"></div>
             </div>
           </Link>
         ))}
