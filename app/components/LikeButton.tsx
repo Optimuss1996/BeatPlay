@@ -68,7 +68,7 @@ export default function LikeButton({ track }: LikeButton) {
         song_title: track.song_title,
         song_artist: track.artist?.name,
         song_url: track.song_url,
-        image_url: track.album?.cover_medium,
+        image_url: track.album?.cover_medium || track.image_url,
         duration: track.duration,
       });
 

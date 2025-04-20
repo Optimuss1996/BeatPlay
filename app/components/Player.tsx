@@ -41,6 +41,8 @@ export default function Player() {
   }
 
   if (!song) return null;
+  console.log(`song from ${activeSource}`, song);
+  console.log(`songUrl from ${activeSource}`, songUrl);
 
   return (
     <div className="w-full h-[80px] px-2 py-3 fixed bottom-0 border-t border-gray-400 border-opacity-75 bg-purple-200 shadow-lg dark:bg-slate-900 z-50">

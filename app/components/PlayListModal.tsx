@@ -155,10 +155,12 @@ export default function PlayListModal() {
                 {/* FILE NAME AND DELETE ICON */}
                 <div className="w-full bg-purple-300 dark:bg-gray-800 rounded-lg">
                   <div className="w-full flex justify-between items-center p-2 rounded-lg">
-                    <div>{fileName ? "Selected file" : "No file selected"}</div>
+                    <div className=" text-center">
+                      {fileName ? "Selected file" : "No file selected"}
+                    </div>
                     <TiDelete
-                      size={20}
-                      className="text-purple-600 hover:text-black cursor-pointer rounded-full"
+                      size={25}
+                      className="text-purple-600  cursor-pointer rounded-full"
                       onClick={handleRemoveFile}
                     />
                   </div>
@@ -194,7 +196,7 @@ export default function PlayListModal() {
               disabled={isLoading}
               {...register("description", { required: true })}
               placeholder="Description"
-              className="h-48 w-full px-4 py-2 bg-purple-300 dark:bg-gray-800 placeholder-gray-400 focus:outline-none rounded-md placeholder:text-gray-600"
+              className="h-36 w-full px-4 py-2 bg-purple-300 dark:bg-gray-800 placeholder-gray-400 focus:outline-none rounded-md placeholder:text-gray-600"
             />
           </div>
         </div>

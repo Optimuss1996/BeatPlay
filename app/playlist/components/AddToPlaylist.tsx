@@ -1,5 +1,6 @@
 "use client";
 
+import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
 import { Playlist, Tracks } from "@/types";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
@@ -18,6 +19,7 @@ export default function AddToPlaylist({ track }: AddToPlaylistProps) {
   const [isAdding, setIsAdding] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const supabaseClient = useSupabaseClient();
+  const authModal = useAuthModal();
   const { user } = useUser();
 
   useEffect(() => {
@@ -45,6 +47,10 @@ export default function AddToPlaylist({ track }: AddToPlaylistProps) {
   }, [user, supabaseClient]);
 
   async function addToPlaylist(playlistId: string) {
+    if (!user) {
+      authModal.onOpen();
+      return;
+    }
     if (!track || !track.song_id || isAdding) return;
 
     setIsAdding(true);
@@ -71,7 +77,7 @@ export default function AddToPlaylist({ track }: AddToPlaylistProps) {
     const { error: insertError } = await supabaseClient
       .from("playlist_songs")
       .insert({
-        user_id: track.user_id,
+        user_id: user?.id,
         playlist_id: playlistId,
         song_id: track.song_id,
         song_title: track.song_title,
