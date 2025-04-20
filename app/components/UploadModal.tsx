@@ -59,7 +59,7 @@ export default function UploadModal() {
           placeholder="Artist Name"
         />
         <div>
-          <p>Select a song file</p>
+          <p>Select a song file (just .mp3)</p>
           <Input
             id="song"
             type="file"
