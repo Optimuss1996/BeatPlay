@@ -26,7 +26,7 @@ export default function TrendMusic({ songs }: SongsProps) {
 
       <Swiper
         loop
-        autoplay={{ delay: 2500, disableOnInteraction: false }}
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
         modules={[Autoplay, Pagination, Navigation]}
         spaceBetween={16}
         slidesPerView={2}

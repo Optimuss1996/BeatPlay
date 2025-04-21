@@ -16,7 +16,7 @@ export default function BannerSlider() {
         centeredSlides={true}
         loop={true}
         autoplay={{
-          delay: 5000,
+          delay: 7000,
           disableOnInteraction: false,
         }}
         pagination={{ clickable: true }}

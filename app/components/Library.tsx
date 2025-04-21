@@ -45,17 +45,15 @@ export default function Library({ playlists }: PropsLibrary) {
     isOpenSidebar.onClose();
   }
   return (
-    <div className=" flex flex-col">
+    <div className=" flex flex-col overflow-x-hidden">
       <div className=" flex justify-between items-center px-5 pt-4">
-        <div className="sticky top-0">
-          <div className="inline-flex items-center gap-x-2 text-black dark:text-white">
-            <TbPlaylist size={26} />
+        <div className="inline-flex items-center justify-center gap-x-2 text-black dark:text-white">
+          <TbPlaylist size={26} />
 
-            <p>Your Library</p>
-          </div>
+          <p>Your Library</p>
         </div>
 
-        <div className="relative group w-fit">
+        <div className="relative  group w-fit">
           <LuUpload
             size={18}
             onClick={uploadModal.onOpen}
@@ -66,7 +64,6 @@ export default function Library({ playlists }: PropsLibrary) {
           </div>
         </div>
       </div>
-
       <div className=" flex flex-col gap-y-2 mt-4 px-3">
         <div
           onClick={handleClickLiked}
