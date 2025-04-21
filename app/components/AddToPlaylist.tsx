@@ -46,6 +46,11 @@ export default function AddToPlaylist({ track }: AddToPlaylistProps) {
     getPlaylists();
   }, [user, supabaseClient]);
 
+  function handleClick() {
+    if (!user) {
+      return authModal.onOpen();
+    }
+  }
   async function addToPlaylist(playlistId: string) {
     if (!user) {
       authModal.onOpen();
@@ -103,6 +108,7 @@ export default function AddToPlaylist({ track }: AddToPlaylistProps) {
       {/* Trigger button */}
       <DropdownMenu.Trigger asChild>
         <button
+          onClick={handleClick}
           className=" rounded-full cursor-pointer border-none outline-none  transition"
           disabled={isLoading}
         >
