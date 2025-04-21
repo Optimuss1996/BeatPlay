@@ -7,6 +7,7 @@ import LikeButton from "@/app/components/LikeButton";
 import AddToPlaylist from "@/app/playlist/components/AddToPlaylist";
 import useOnPlay from "@/hooks/useOnPlay";
 import Pagination from "@/app/components/Pagination";
+import { formatDuration } from "@/utilities/commonFunction";
 interface playlistTracksProps {
   playlistTracks: Tracks[];
   totalPages: number;
@@ -68,7 +69,9 @@ export default function Tracks({
                 <AddToPlaylist track={song} />
                 <LikeButton track={song} />
               </div>
-              <p className="w-11 text-center text-sm md:text-base">02:45</p>
+              <p className="w-11 text-center text-sm md:text-base">
+                {formatDuration(song.duration)}
+              </p>
             </div>
           </div>
         ))}

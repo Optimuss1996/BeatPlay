@@ -66,6 +66,7 @@ export default function UploadModal() {
             disabled={isLoading}
             {...register("song", { required: true })}
             accept=".mp3"
+            className=" cursor-pointer"
           />
         </div>
         <div>
@@ -76,6 +77,7 @@ export default function UploadModal() {
             disabled={isLoading}
             {...register("image", { required: true })}
             accept="image/*"
+            className=" cursor-pointer"
           />
         </div>
 

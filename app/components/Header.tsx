@@ -61,11 +61,11 @@ export default function Header({ className }: HeaderPropType) {
                 LogOut
               </Button>
 
-              <Link href={`/account/${user.id}`}>
+              {/* <Link href={`/account/${user.id}`}>
                 <Button className="bg-purple-700 text-white  mx-auto ">
                   <FaUserAlt className="mx-auto" />
                 </Button>
-              </Link>
+              </Link> */}
             </div>
           ) : (
             <>

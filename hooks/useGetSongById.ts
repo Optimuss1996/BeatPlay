@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useUser } from "./useUser";
 import usePlayer from "./usePlayer";
+import { useParams } from "next/navigation";
 
 export const useGetPlaylistSongById = (id: number) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -11,6 +12,8 @@ export const useGetPlaylistSongById = (id: number) => {
   const { supabaseClient } = useSessionContext();
   const { user } = useUser();
   const player = usePlayer();
+  const params = useParams(); // 👈
+  const playlistId = params?.id as string;
   useEffect(() => {
     if (!id || !user?.id || player.activeSource !== "playlist") {
       return;
@@ -22,6 +25,7 @@ export const useGetPlaylistSongById = (id: number) => {
         .select("*")
         .eq("song_id", id)
         .eq("user_id", user?.id)
+        .eq("playlist_id", playlistId)
         .maybeSingle();
       if (error) {
         toast.error(`Error from getPlaylist tracks by Id ${error.message}`);

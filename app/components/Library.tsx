@@ -1,7 +1,7 @@
 "use client";
 
 import { TbPlaylist } from "react-icons/tb";
-import { AiOutlinePlus } from "react-icons/ai";
+import { LuUpload } from "react-icons/lu";
 import { useUser } from "@/hooks/useUser";
 import useAuthModal from "@/hooks/useAuthModal";
 import useUploadModal from "@/hooks/useUploadModal";
@@ -48,17 +48,23 @@ export default function Library({ playlists }: PropsLibrary) {
     <div className=" flex flex-col">
       <div className=" flex justify-between items-center px-5 pt-4">
         <div className="sticky top-0">
-          <div className="inline-flex items-center gap-x-2 text-black dark:text-white cursor-pointer">
+          <div className="inline-flex items-center gap-x-2 text-black dark:text-white">
             <TbPlaylist size={26} />
+
             <p>Your Library</p>
           </div>
         </div>
 
-        <AiOutlinePlus
-          size={20}
-          onClick={uploadModal.onOpen}
-          className="text-black dark:text-white  rounded-md transition cursor-pointer"
-        />
+        <div className="relative group w-fit">
+          <LuUpload
+            size={18}
+            onClick={uploadModal.onOpen}
+            className="text-black dark:text-white hover:opacity-60 rounded-md transition cursor-pointer"
+          />
+          <div className="absolute left-0 -translate-x-1/2 top-full mt-1 w-max px-2 py-1 text-xs text-white bg-black rounded-md opacity-0 group-hover:opacity-100 transition duration-500">
+            Upload Song
+          </div>
+        </div>
       </div>
 
       <div className=" flex flex-col gap-y-2 mt-4 px-3">
