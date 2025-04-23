@@ -2,6 +2,8 @@
 
 **BeatPlay** is a modern music web app built with **Next.js**, **Supabase**, and the **Deezer API**. It lets users explore, play, and save music with a sleek and responsive UI.
 
+🔗 **Live Site**: [beat-play.vercel.app](https://beat-play.vercel.app/)
+
 ## 🚀 Features
 
 - 🔍 Search and play music from Deezer
@@ -19,6 +21,12 @@
 - **Tailwind CSS** + **Radix UI**
 
 ## 📦 Setup
+
+```bash
+git clone https://github.com/your-username/beatplay.git
+cd beatplay
+npm install
+npm run dev
 
 ```bash
 git clone https://github.com/your-username/beatplay.git
