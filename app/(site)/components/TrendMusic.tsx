@@ -54,6 +54,7 @@ export default function TrendMusic({ songs }: SongsProps) {
                   height={300}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  unoptimized
                 />
                 <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <PlayButton />

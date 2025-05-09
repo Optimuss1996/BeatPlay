@@ -26,6 +26,7 @@ export default function AlbumsSearch({ albums }: AlbumProps) {
                   className="absolute inset-0 w-full h-full object-cover"
                   width={400}
                   height={400}
+                  unoptimized
                 />
               </div>
 

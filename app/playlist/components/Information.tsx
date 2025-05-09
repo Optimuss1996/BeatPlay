@@ -16,6 +16,7 @@ export default function Information({ playlistInfo }: InformationProps) {
             alt={playlistInfo.title}
             fill
             className="object-cover rounded-md  "
+            unoptimized
           />
         </div>
 

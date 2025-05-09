@@ -26,6 +26,7 @@ export default function TrendPlaylist({ topPlaylist }: TrendPlaylistProps) {
                 width={300}
                 height={300}
                 className="w-full h-full object-cover"
+                unoptimized
               />
               <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <p className="text-slate-200 text-sm font-semibold font-ClashGrotesk truncate w-24 text-center">

@@ -21,6 +21,7 @@ export default function Information({ artistInfo }: InformationProps) {
             fill
             sizes="100%"
             className="object-cover rounded-full  "
+            unoptimized
           />
         </div>
 

@@ -17,6 +17,7 @@ export default function Information({ albumInfo }: InformationProps) {
             alt={albumInfo.title}
             fill
             className="object-cover rounded-md  "
+            unoptimized
           />
         </div>
 

@@ -43,6 +43,7 @@ export default function PopularArtist({ artists }: ArtistProp) {
                     fill
                     className="object-cover bg-slate-200 dark:bg-slate-700"
                     loading="lazy"
+                    unoptimized
                   />
                 </div>
                 <p className="text-center text-sm md:text-base font-medium text-gray-800 dark:text-gray-100 truncate w-full">

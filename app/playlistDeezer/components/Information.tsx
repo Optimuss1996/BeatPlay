@@ -20,6 +20,7 @@ export default function Information({ artistInformation }: InformationProps) {
             alt={artistInformation.title}
             fill
             className="object-cover rounded-md  "
+            unoptimized
           />
         </div>
 
